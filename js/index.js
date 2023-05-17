@@ -2,7 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', function(){
     'use strict';
-
+//Функционал кнопок
     btnChoice.addEventListener('click', choiceOneCity);
     btnAllCities.addEventListener('click', choiceAllCities);
     btnSortDownA.addEventListener('click', sortCitiesDownA);
@@ -10,22 +10,37 @@ window.addEventListener('DOMContentLoaded', function(){
     btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
     btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
     
+
+
+
+
+
+
+
+
+
+
+
+
+
     });
 
-const cities = document.querySelector('.cities');
-const btnChoice = document.querySelector('.panel__btn-choice');
-const btnAllCities = document.querySelector('.panel__btn-all-citie');
-const btnSortDownA = document.querySelector('.panel__btn-one');
-const btnSortUpA = document.querySelector('.panel__btn-two');
-const btnSortDownPeople = document.querySelector('.panel__btn-three');
-const btnSortUpPeople = document.querySelector('.panel__btn-four');
-const input = document.getElementById('input');
+const cities = document.querySelector('.cities'); //Таблица с городами 
+const btnChoice = document.querySelector('.panel__btn-choice'); //Кнопка Выбрать город
+const btnAllCities = document.querySelector('.panel__btn-all-citie'); //Кнопка ВСЕ ГОРОДА
+const btnSortDownA = document.querySelector('.panel__btn-one'); //Кнопка сортировать А-Я
+const btnSortUpA = document.querySelector('.panel__btn-two'); //Кнопка сортировать Я-А
+const btnSortDownPeople = document.querySelector('.panel__btn-three'); //Кнопка сортировать по уменьшению численности
+const btnSortUpPeople = document.querySelector('.panel__btn-four'); //Кнопка сортировать по увеличению численности
+const input = document.getElementById('input'); //Инпут для ввода города
+
 
 function choiceOneCity() {
     if (input.value != '' ) {
         cities.classList.add('hidden');
         // infoCity.classList.remove('hidden');
     }
+
 }
 
 function choiceAllCities() {
