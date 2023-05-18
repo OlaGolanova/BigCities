@@ -43,7 +43,7 @@ function choiceAllCities() {
    input.value = '';
 }
 
-
+//Функция сортировки городов по алфавиту от A-Я
 function sortCitiesDownA() {
     btnSortDownA.classList.add('btn-active');
     btnSortDownA.classList.add('active-svg-btn');
@@ -54,7 +54,7 @@ function sortCitiesDownA() {
     btnSortDownPeople.classList.remove('btn-active');
     btnSortDownPeople.classList.remove('active-svg-btn');
 }
-
+//Функция сортировки городов по алфавиту от Я-А
 function sortCitiesUpA() {
     btnSortUpA.classList.add('btn-active');
     btnSortUpA.classList.add('active-svg-btn');
@@ -66,6 +66,7 @@ function sortCitiesUpA() {
     btnSortDownPeople.classList.remove('active-svg-btn');
 }
 
+//Функция сортировки городов по численности населения от большего к меньшему
 function sortCitiesDownPeople() {
     btnSortDownPeople.classList.add('btn-active');
     btnSortDownPeople.classList.add('active-svg-btn');
@@ -76,7 +77,7 @@ function sortCitiesDownPeople() {
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
 }
-
+//Функция сортировки городов по численности населения от меньшего к большему
 function sortCitiesUpPeople() {
     btnSortUpPeople.classList.add('btn-active');
     btnSortUpPeople.classList.add('active-svg-btn');
@@ -87,5 +88,4 @@ function sortCitiesUpPeople() {
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
 }
-
 
