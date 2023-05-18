@@ -1,4 +1,3 @@
-//Здесь весь js код для главной страницы
 
 window.addEventListener('DOMContentLoaded', function(){
     'use strict';
@@ -13,14 +12,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 
-
-
-
-
-
-
-
-
+    //Здесь только вызываем функции
 
 
     });
@@ -33,6 +25,8 @@ const btnSortUpA = document.querySelector('.panel__btn-two'); //Кнопка с�
 const btnSortDownPeople = document.querySelector('.panel__btn-three'); //Кнопка сортировать по уменьшению численности
 const btnSortUpPeople = document.querySelector('.panel__btn-four'); //Кнопка сортировать по увеличению численности
 const input = document.getElementById('input'); //Инпут для ввода города
+
+
 
 
 function choiceOneCity() {
@@ -96,3 +90,26 @@ function sortCitiesUpPeople() {
 
 
 
+
+//Задаю локализацию moment.js
+moment.locale('ru', {
+  months : 'Января_Февраля_Марта_Апреля_Мая_Июня_Июля_Авгуса_Сентября_Октября_Ноября_Декабря'.split('_'),
+  weekdays : 'Воскресенье_Понедельник_Вторник_Среда_Четверг_Пятница_Суббота'.split('_'),
+ 
+});
+
+// //Часы выводят время каждую секунду
+// const date = document.querySelector('.date');
+// const hours = document.querySelector('.hours');
+
+let newDate = new Date();
+//   date.textContent = moment(newDate).format('dddd D MMMM YYYY');
+//   hours.textContent = moment(newDate).format('HH:mm:ss');
+  console.log(moment(newDate).format('dddd D MMMM YYYY'));
+
+
+// const intervalId = setInterval(function() {
+//   let now = new Date();
+//   date.textContent = moment(now).format('dddd D MMMM YYYY');
+//   hours.textContent = moment(now).format('HH:mm:ss'); 
+// }, 1000)
