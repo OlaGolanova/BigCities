@@ -1,21 +1,20 @@
-
-window.addEventListener('DOMContentLoaded', function(){
+window.addEventListener('DOMContentLoaded', function () {
     'use strict';
-//Функционал кнопок
+    //Функционал кнопок
     btnChoice.addEventListener('click', choiceOneCity);
     btnAllCities.addEventListener('click', choiceAllCities);
     btnSortDownA.addEventListener('click', sortCitiesDownA);
     btnSortUpA.addEventListener('click', sortCitiesUpA);
     btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
     btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
-    
+
 
 
 
     //Здесь только вызываем функции
 
 
-    });
+});
 
 const cities = document.querySelector('.cities'); //Таблица с городами 
 const btnChoice = document.querySelector('.panel__btn-choice'); //Кнопка Выбрать город
@@ -30,7 +29,7 @@ const input = document.getElementById('input'); //Инпут для ввода �
 
 
 function choiceOneCity() {
-    if (input.value != '' ) {
+    if (input.value != '') {
         cities.classList.add('hidden');
         // infoCity.classList.remove('hidden');
     }
@@ -40,7 +39,7 @@ function choiceOneCity() {
 function choiceAllCities() {
     cities.classList.remove('hidden');
     // infoCity.classList.add('hidden');
-   input.value = '';
+    input.value = '';
 }
 
 //Функция сортировки городов по алфавиту от A-Я
@@ -88,4 +87,3 @@ function sortCitiesUpPeople() {
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
 }
-
