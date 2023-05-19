@@ -128,6 +128,12 @@ body .cities {
   background-color: #fff;
   border-radius: 5px;
   border-collapse: collapse;
+  visibility: visible;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 body .cities td {
   font-size: 17px;
@@ -135,9 +141,11 @@ body .cities td {
   font-weight: 400;
   width: 200px;
   height: 60px;
-  padding-top: 20px;
   padding-left: 15px;
   border: 1px solid #F5F5F5;
+}
+body .cities td:hover {
+  cursor: pointer;
 }
 
 .hidden {

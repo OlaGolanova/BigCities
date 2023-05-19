@@ -15,6 +15,7 @@ body {
         background-color: #fff;
         padding: 20px; 
         border-radius: 5px;
+      
         .btn {
             width: 50px;
             height: 50px;
@@ -127,16 +128,22 @@ body {
         height: 600px;
         background-color: #fff;
         border-radius: 5px;
-        border-collapse: collapse; 
+        border-collapse: collapse;
+        visibility: visible;
+        transform: scale(1);
+        opacity: 1;
+        transition: 1s;
             td {
                 font-size: 17px;
                 font-family: Lato;
                 font-weight: 400;
                 width: 200px;
                 height: 60px;
-                padding-top: 20px;
                 padding-left: 15px;
                 border: 1px solid #F5F5F5;
+                &:hover {
+                    cursor: pointer;
+                }
             }
        
     }
