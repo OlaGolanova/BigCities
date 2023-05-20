@@ -1,5 +1,5 @@
 //Стили со второй страницы, где выводится информация об одном городе, график, погода и тд
-//Стили со второй страницы, где выводится информация об одном городе, график, погода и тд
+
 h2 {
     margin-bottom: 16px;
     font-weight: 700;
@@ -25,6 +25,11 @@ h2 {
     }
     .citycard__body-right {flex: 1 1 400px}
 
+    .dateCard {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .citycard__item {
         background: #FFFFFF;  
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
@@ -32,7 +37,7 @@ h2 {
         padding: 40px;
 
         & + .citycard__item { 
-                margin-top: 24px
+            margin-top: 24px;          
             } 
     }
 
