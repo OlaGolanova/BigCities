@@ -195,13 +195,6 @@ h2 {
        column-gap: 24px;
 }
 
-
-.citycard .info > p {
-  padding-bottom: 5px;
-}
-
-
-
 .info {
   height: calc(100% - 542px);
 }
