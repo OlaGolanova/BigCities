@@ -9,8 +9,8 @@ window.addEventListener('DOMContentLoaded', function(){
     btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
     btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
   
-    choiceCiyOnClickCity();
-    choiceCiyOnClickNumbers()
+    choiceCiyOnClickCity();//Функция выводит информацию о городе, при клике на название города
+    choiceCiyOnClickNumbers();//Функция выводит информацию о городе, при клике на количество населения в городе
 
 });
 
@@ -24,12 +24,13 @@ const btnSortUpPeople = document.querySelector('.panel__btn-four'); //Кнопк
 const input = document.getElementById('input'); //Инпут для ввода города
 const citiesArray = ['Токио', 'Дели', 'Шанхай', 'Сан-Паулу', 'Мехико']; //Маcсив из названий городов, которые могут быть выбраны
 const date = document.querySelector('.date');//блок, куда выводим дату
-const hours = document.querySelector('.hours');//блок, куда выводим время
-const dayWeek =  document.querySelector('.dayWeek');//блок, куда выводим день недели
+const hours = document.querySelector('.currenttime');//блок, куда выводим время
+const dayWeek =  document.querySelector('.day-of-week');//блок, куда выводим день недели
+const tableCities = document.querySelectorAll('.table__cities'); //Коллекция ячеек в таблице с городами
+const tableNumbers = document.querySelectorAll('.table__numbers'); //Коллекция ячеек в таблице с численностью населения
+const citycard = document.querySelector('.citycard');
 
-
-
-const dataArray = JSON.parse(datajson); //достаем данные по времени из формата JSON
+const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
@@ -38,43 +39,111 @@ moment.locale('ru', {
     weekdays : 'Воскресенье_Понедельник_Вторник_Среда_Четверг_Пятница_Суббота'.split('_'),
 
 });
-let getTimeZoneOfsset = ''; // getTimeZoneofsset выбранного города
+let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 
-//Функци  вызывается при клике на кнопку Выбрать
+//Функция  вызывается при клике на кнопку Выбрать
     function choiceOneCity() {
 
         for (let i=0; i < citiesArray.length; i++){
 
             if(input.value == citiesArray[i] ) {
-              
-                cities.style.opacity = '0';
-                cities.style.scale = '0';
-                cities.style.visibility = 'hidden';
-                // infoCity.classList.remove('hidden');
 
-                //Получаем getTimeZoneofsset выбранного города из, нужен для посекундного вывода времени
-                let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
-                let time = new Date().getTime(); //Таймстамп пользователя в мс         
-                let deltaTimeZone = timeZone - dataArray[i]; // Разница в часовых поясах пользователя и выбранного города
-                let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
-                let nowDateCity = new Date(timeCity);//Дата и время в выбранном городе 
-                date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-                hours.textContent = moment(nowDateCity).format('HH:mm:ss');
-                dayWeek.textContent = moment(nowDateCity).format('dddd');
-                getTimeZoneOfsset = dataArray[i];
+                cities.classList.add('hidden');
+                citycard.classList.remove('hidden');
+
+                getTimeZoneOfsset = dateArray[i];
+                getDate();//Функция выводит время на экран
+
+
+
+
+
+                
             }
-
-
-            //Функция для вывода времени и даты, обновляется каждую секунду
-         
-        
         }
-
-    
+  
     input.value = '';
+}
+
+//Выводит дату и время при загрузке страницы
+function getDate(){
+    //Получаем getTimeZoneofsset выбранного города из, нужен для посекундного вывода времени
+    let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
+    let time = new Date().getTime(); //Таймстамп пользователя в мс         
+    let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
+    let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
+    let nowDateCity = new Date(timeCity);//Дата и время в выбранном городе 
+    date.textContent = moment(nowDateCity).format('D. MM. YYYY');
+    hours.textContent = moment(nowDateCity).format('HH:mm');
+    dayWeek.textContent = moment(nowDateCity).format('dddd');
 
 }
 
+
+
+//При клике на город выходит информация о нем
+function choiceCiyOnClickCity() {
+
+    for (let i =0; i < tableCities.length; i++){
+
+        tableCities[i].addEventListener('click', function(event){
+
+            if(event.target == tableCities[i]){
+
+                cities.classList.add('hidden');
+                citycard.classList.remove('hidden');
+
+
+                getTimeZoneOfsset = dateArray[i];
+                getDate();//Функция выводит время на экран
+
+
+
+
+
+
+
+
+            }
+        })
+    }
+    input.value = '';
+}
+
+//При клике на численность города выходит информация о городе
+function choiceCiyOnClickNumbers() {
+
+    for (let i =0; i < tableNumbers.length; i++){
+
+        tableNumbers[i].addEventListener('click', function(event){
+
+            if(event.target== tableNumbers[i]){
+              
+                cities.classList.add('hidden');
+                citycard.classList.remove('hidden');
+
+
+                getTimeZoneOfsset = dateArray[i];
+                getDate();//Функция выводит время на экран
+
+
+
+
+
+
+
+
+            }
+        })
+    } 
+    input.value = '';
+}
+
+
+
+
+
+//Функция для вывода времени и даты, обновляется каждую секунду-время меняется, как часы.    
 const intervalId = setInterval(function() {
     let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
     let time = new Date().getTime(); //Таймстамп пользователя в мс         
@@ -82,21 +151,22 @@ const intervalId = setInterval(function() {
     let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
     let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
     date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-    hours.textContent = moment(nowDateCity).format('HH:mm:ss');
+    hours.textContent = moment(nowDateCity).format('HH:mm');
     dayWeek.textContent = moment(nowDateCity).format('dddd');
 }, 1000)
 
 
-function choiceAllCities() {
-    cities.style.visibility = 'visible';
-    cities.style.opacity = '1';
-    cities.style.scale = '1';
-    // infoCity.classList.add('hidden');
-   input.value = '';
 
+//Функция вызывается при нажатие на кнопку Все города
+function choiceAllCities() {
+    cities.classList.remove('hidden');
+    citycard.classList.add('hidden');
+    input.value = '';
 }
 
-//Функция сортировки городов по алфавиту от A-Я
+
+
+//Функция сортировки городов по алфавиту от A-Я, вызывается при нажатии на кнопку A-Я
 function sortCitiesDownA() {
     btnSortDownA.classList.add('btn-active');
     btnSortDownA.classList.add('active-svg-btn');
@@ -106,8 +176,10 @@ function sortCitiesDownA() {
     btnSortUpPeople.classList.remove('active-svg-btn');
     btnSortDownPeople.classList.remove('btn-active');
     btnSortDownPeople.classList.remove('active-svg-btn');
+
+
 }
-//Функция сортировки городов по алфавиту от Я-А
+//Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
 function sortCitiesUpA() {
     btnSortUpA.classList.add('btn-active');
     btnSortUpA.classList.add('active-svg-btn');
@@ -119,7 +191,7 @@ function sortCitiesUpA() {
     btnSortDownPeople.classList.remove('active-svg-btn');
 }
 
-//Функция сортировки городов по численности населения от большего к меньшему
+//Функция сортировки городов по численности населения от большего к меньшему, вызывается при нажатии на соответствующую кнопку 
 function sortCitiesDownPeople() {
     btnSortDownPeople.classList.add('btn-active');
     btnSortDownPeople.classList.add('active-svg-btn');
@@ -130,7 +202,7 @@ function sortCitiesDownPeople() {
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
 }
-//Функция сортировки городов по численности населения от меньшего к большему
+//Функция сортировки городов по численности населения от меньшего к большему,  вызывается при нажатии на соответствующую кнопку 
 function sortCitiesUpPeople() {
     btnSortUpPeople.classList.add('btn-active');
     btnSortUpPeople.classList.add('active-svg-btn');
@@ -141,114 +213,4 @@ function sortCitiesUpPeople() {
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
 }
-
-
-
-
-
-
-
-
-
-
-  
- 
-
-  
-   
-const tableCities = document.querySelectorAll('.table__cities'); //Коллекция ячеек в таблице с городами
-const tableNumbers = document.querySelectorAll('.table__numbers'); //Коллекция ячеек в таблице с численностью населения
-
-function choiceCiyOnClickCity() {
-
-    for (let i =0; i < tableCities.length; i++){
-
-        tableCities[i].addEventListener('click', function(event){
-
-            if(event.target == tableCities[i]){
-              
-                cities.style.opacity = '0';
-                cities.style.scale = '0';
-                cities.style.visibility = 'hidden';
-                // infoCity.classList.remove('hidden');
-
-                //Получаем getTimeZoneofsset выбранного города из, нужен для посекундного вывода времени
-                let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
-                let time = new Date().getTime(); //Таймстамп пользователя в мс         
-                let deltaTimeZone = timeZone - dataArray[i]; // Разница в часовых поясах пользователя и выбранного города
-                let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
-                let nowDateCity = new Date(timeCity);//Дата и время в выбранном городе 
-                date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-                hours.textContent = moment(nowDateCity).format('HH:mm:ss');
-                dayWeek.textContent = moment(nowDateCity).format('dddd');
-                getTimeZoneOfsset = dataArray[i];
-            }
-
-
-            //Функция для вывода времени и даты, обновляется каждую секунду
-            const intervalId = setInterval(function() {
-                let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
-                let time = new Date().getTime(); //Таймстамп пользователя в мс         
-                let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
-                let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
-                let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
-                date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-                hours.textContent = moment(nowDateCity).format('HH:mm:ss');
-                dayWeek.textContent = moment(nowDateCity).format('dddd');
-            }, 1000)
-
-        })
-    }
-  
-    input.value = '';
-   
-}
-
-
-
-function choiceCiyOnClickNumbers() {
-
-    for (let i =0; i < tableNumbers.length; i++){
-
-        tableNumbers[i].addEventListener('click', function(event){
-
-            if(event.target== tableNumbers[i]){
-              
-                cities.style.opacity = '0';
-                cities.style.scale = '0';
-                cities.style.visibility = 'hidden';
-                // infoCity.classList.remove('hidden');
-
-                //Получаем getTimeZoneofsset выбранного города из, нужен для посекундного вывода времени
-                let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
-                let time = new Date().getTime(); //Таймстамп пользователя в мс         
-                let deltaTimeZone = timeZone - dataArray[i]; // Разница в часовых поясах пользователя и выбранного города
-                let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
-                let nowDateCity = new Date(timeCity);//Дата и время в выбранном городе 
-                date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-                hours.textContent = moment(nowDateCity).format('HH:mm:ss');
-                dayWeek.textContent = moment(nowDateCity).format('dddd');
-                getTimeZoneOfsset = dataArray[i];
-            }
-
-
-            //Функция для вывода времени и даты, обновляется каждую секунду
-            const intervalId = setInterval(function() {
-                let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
-                let time = new Date().getTime(); //Таймстамп пользователя в мс         
-                let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
-                let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
-                let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
-                date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-                hours.textContent = moment(nowDateCity).format('HH:mm:ss');
-                dayWeek.textContent = moment(nowDateCity).format('dddd');
-            }, 1000)
-
-        })
-    }
-  
-    input.value = '';
-   
-}
-
 

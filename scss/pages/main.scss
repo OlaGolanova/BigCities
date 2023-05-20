@@ -1,10 +1,10 @@
 //Стили  главной страницы
 body {
-    background: url("../design/img/Mapsicle.jpg") center (center/cover) repeat;
+    background: url('../design/img/Mapsicle.jpg') center center no-repeat fixed;
+    background-size: cover;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     font-family: Lato;
-    
     .panel {
         margin: 50px 0px 0px 50px;
         display: flex;
@@ -129,25 +129,26 @@ body {
         height: 600px;
         background-color: #fff;
         border-radius: 5px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
         border-collapse: collapse;
-        visibility: visible;
-        transform: scale(1);
-        opacity: 1;
-        transition: 1s;
-            td {
-                font-size: 17px;
-                font-family: Lato;
-                font-weight: 400;
-                width: 200px;
-                height: 60px;
-                padding-left: 15px;
-                border: 1px solid #F5F5F5;
-                &:hover {
-                    cursor: pointer;
+
+            tr {
+                border-radius: 5px;
+
+                td {
+                    font-size: 17px;
+                    font-family: Lato;
+                    font-weight: 400;
+                    width: 200px;
+                    height: 60px;
+                    padding-left: 15px;
+                    border-radius: 5px;
+                    border: 1px solid #F5F5F5;
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
-            }
-       
+            }  
     }
   
-
 }

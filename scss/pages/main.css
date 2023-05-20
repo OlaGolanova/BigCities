@@ -1,7 +1,9 @@
 body {
-  background: url("../design/img/Mapsicle.jpg") center center/cover repeat;
+  background: url("../design/img/Mapsicle.jpg") center center no-repeat fixed;
+  background-size: cover;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  font-family: Lato;
 }
 body .panel {
   margin: 50px 0px 0px 50px;
@@ -127,23 +129,23 @@ body .cities {
   height: 600px;
   background-color: #fff;
   border-radius: 5px;
+  -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
+          box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
   border-collapse: collapse;
-  visibility: visible;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  opacity: 1;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
-body .cities td {
+body .cities tr {
+  border-radius: 5px;
+}
+body .cities tr td {
   font-size: 17px;
   font-family: Lato;
   font-weight: 400;
   width: 200px;
   height: 60px;
   padding-left: 15px;
+  border-radius: 5px;
   border: 1px solid #F5F5F5;
 }
-body .cities td:hover {
+body .cities tr td:hover {
   cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
