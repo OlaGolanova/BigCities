@@ -29,10 +29,13 @@ const dayWeek =  document.querySelector('.day-of-week');//блок, куда в�
 const tableCities = document.querySelectorAll('.table__cities'); //Коллекция ячеек в таблице с городами
 const tableNumbers = document.querySelectorAll('.table__numbers'); //Коллекция ячеек в таблице с численностью населения
 const citycard = document.querySelector('.citycard');
+
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
 
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
+
+
 
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
@@ -49,14 +52,16 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
         for (let i=0; i < citiesArray.length; i++){
 
             if(input.value == citiesArray[i] ) {
+
                 getInfo(infoArray[i]);
+
 
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-
+               
 
 
 
@@ -68,6 +73,7 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
     input.value = '';
 }
 
+
 //Функция для вывода информации о городе
 function getInfo(elem) {
     facts.innerHTML = "";
@@ -78,6 +84,7 @@ function getInfo(elem) {
     <p class="sights">Достопримечательности: ${elem.sights}</p>
     <p class="funFacts">${elem.funFacts}</p>`)
 }
+
 
 //Выводит дату и время при загрузке страницы
 function getDate(){
@@ -110,7 +117,7 @@ function choiceCiyOnClickCity() {
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-
+                getInfo(infoArray[i]);
 
 
 
@@ -139,7 +146,7 @@ function choiceCiyOnClickNumbers() {
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-
+                getInfo(infoArray[i]);
 
 
 
