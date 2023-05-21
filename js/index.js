@@ -8,7 +8,8 @@ window.addEventListener('DOMContentLoaded', function(){
     btnSortUpA.addEventListener('click', sortCitiesUpA);
     btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
     btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
-  
+    
+    animationLoad();
     choiceCiyOnClickCity();//Функция выводит информацию о городе, при клике на название города
     choiceCiyOnClickNumbers();//Функция выводит информацию о городе, при клике на количество населения в городе
 
@@ -50,10 +51,10 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
-
+                
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-
+                animation();
 
 
 
@@ -92,10 +93,11 @@ function choiceCiyOnClickCity() {
 
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
-
+                
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
+                animation();
 
 
 
@@ -125,7 +127,7 @@ function choiceCiyOnClickNumbers() {
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-
+                animation();
 
 
 
@@ -162,6 +164,7 @@ function choiceAllCities() {
     cities.classList.remove('hidden');
     citycard.classList.add('hidden');
     input.value = '';
+    animation();
 }
 
 
@@ -214,3 +217,34 @@ function sortCitiesUpPeople() {
     btnSortDownA.classList.remove('active-svg-btn');
 }
 
+
+function animation() {
+
+    gsap.from ('.citycard', {
+        opacity: 0,
+        scale: 0,
+        duration: 0.6
+    })
+    gsap.from ('.cities', {
+        opacity: 0,
+        scale: 0,
+        duration: 0.6
+    })
+}
+
+function animationLoad() {
+    gsap.from ('.panel', {
+        opacity: 0.1,
+        yPercent: 50,
+        duration: 1.2
+        
+    })
+    
+    gsap.from ('.cities', {
+        opacity: 0.1,
+        y: 50,
+        duration: 1.2
+        
+    })
+
+}
