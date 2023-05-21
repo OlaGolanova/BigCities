@@ -26,33 +26,29 @@ const btnSortDownPeople = document.querySelector('.panel__btn-three'); //Кно�
 const btnSortUpPeople = document.querySelector('.panel__btn-four'); //Кнопка сортировать по увеличению численности
 const input = document.getElementById('input'); //Инпут для ввода города
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
+const citiesArray = ['Токио', 'Дели', 'Шанхай', 'Сан-Паулу', 'Мехико']; //Маcсив из названий городов, которые могут быть выбраны
+
+const infoArray = JSON.parse(infoCities);
 
 function choiceOneCity() {
-    let elem;
     if (input.value != '') {
         cities.classList.add('hidden');
-        // infoCity.classList.remove('hidden');
     }
-    if (input.value == "Токио") {
-        elem = infoCities[0];
+    for (let i = 0; i < citiesArray.length; i++) {
+        if (input.value == citiesArray[i]) {
+            cities.classList.add('hidden');  
+            getInfo(infoArray[i]);
+        }
     }
-    if (input.value == "Дели") {
-        elem = infoCities[1];
-    }
-    if (input.value == "Шанхай") {
-        elem = infoCities[2];
-    }
-    if (input.value == "Сан-Паулу") {
-        elem = infoCities[3];
-    }
-    if (input.value == "Мехико") {
-        elem = infoCities[4];
-    }
+}
+
+//Функция для вывода информации о городе
+function getInfo(elem) {
     facts.insertAdjacentHTML("beforeEnd", `<p class="country">Страна: ${elem.country}</p>
-        <p class="language">Язык: ${elem.language}</p>
-        <p class="populationDensity">Плотность населения: ${elem.populationDensity}</p>
-        <p class="sights">Достопримечательности${elem.sights}</p>
-        <p class="funFacts">${elem.funFacts}</p>`)
+    <p class="language">Язык: ${elem.language}</p>
+    <p class="populationDensity">Плотность населения: ${elem.populationDensity}</p>
+    <p class="sights">Достопримечательности: ${elem.sights}</p>
+    <p class="funFacts">${elem.funFacts}</p>`)
 }
 
 function choiceAllCities() {
