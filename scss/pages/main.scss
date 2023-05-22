@@ -1,10 +1,10 @@
 //Стили  главной страницы
 body {
-    background: url("../design/img/Mapsicle.jpg") top center cover no-repeat;
+    background: url('../design/img/Mapsicle.jpg') center center no-repeat fixed;
+    background-size: cover;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     font-family: Lato;
-    
     .panel {
         padding: 50px 0px 0px 50px;
         display: flex;
@@ -16,6 +16,7 @@ body {
         background-color: #fff;
         padding: 20px; 
         border-radius: 5px;
+      
         .btn {
             width: 50px;
             height: 50px;
@@ -36,9 +37,9 @@ body {
             border: 1px solid #0085FF;
         }
         .active-svg-btn {
-             path {
+            path {
                 fill: #0085FF;
-              }
+                }
             
         }
         &__btn-choice {
@@ -97,7 +98,7 @@ body {
                 outline-offset: 0;
             }
         }
-       #input {
+        #input {
         width: 250px;
         height: 50px;
         border-radius: 5px;
@@ -120,7 +121,7 @@ body {
                 outline: 0;
                 outline-offset: 0;
             }
-       }
+        }
     }
     .cities {
         margin: 24px 0px 0px 50px;
@@ -128,19 +129,26 @@ body {
         height: 600px;
         background-color: #fff;
         border-radius: 5px;
-        border-collapse: collapse; 
-            td {
-                font-size: 17px;
-                font-family: Lato;
-                font-weight: 400;
-                width: 200px;
-                height: 60px;
-                padding-top: 20px;
-                padding-left: 15px;
-                border: 1px solid #F5F5F5;
-            }
-       
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
+        border-collapse: collapse;
+
+            tr {
+                border-radius: 5px;
+
+                td {
+                    font-size: 17px;
+                    font-family: Lato;
+                    font-weight: 400;
+                    width: 200px;
+                    height: 60px;
+                    padding-left: 15px;
+                    border-radius: 5px;
+                    border: 1px solid #F5F5F5;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }  
     }
   
-
 }

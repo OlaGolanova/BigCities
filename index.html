@@ -43,7 +43,50 @@
     <button class="panel__btn-choice">Выбрать</button>
     <button class="panel__btn-all-citie">Все города</button>
   </div>
-  <div class="citycard infocity">
+
+  <table class="cities">
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+  </table>
+  <div class="citycard hidden">
     <div class="citycard__header">
       <span class="citycard__name name">Токио</span>
       <span class="citycard__amount number">(37 435 191)</span>
@@ -59,7 +102,9 @@
         </div>
         <div class="citycard__item info">
           <h2>Информация о городе</h2>
+
           <p class="facts">Страна, язык, короткие факты</p>
+
         </div>
       </div>
       <div class="citycard__body-right">
@@ -76,7 +121,7 @@
 
           </div>
         </div>
-        <div class="citycard__item data">
+        <div class="citycard__item dateCard">
           <div class="currenttime">13:35</div>
           <div class="currentday">
             <div class="day-of-week">Воскресенье</div>
@@ -101,55 +146,15 @@
       </div>
     </div>
   </div>
-  <table class="cities">
-    <tr>
-      <td>Токио</td>
-      <td>37 435 191</td>
-    </tr>
-    <tr>
-      <td>Дели</td>
-      <td>26 317 104</td>
-    </tr>
-    <tr>
-      <td>Шанхай</td>
-      <td>26 317 104</td>
-    </tr>
-    <tr>
-      <td>Сан-Паулу</td>
-      <td>21 846 507</td>
-    </tr>
-    <tr>
-      <td>Мехико</td>
-      <td>21 671 908</td>
-    </tr>
-    <!-- <tr>
-                <td>Каир</td>
-                <td>20 484 965</td>
-            </tr>
-            <tr>
-                <td>Дакка</td>
-                <td>20 283 552</td>
-            </tr>
-            <tr>
-                <td>Мумбаи</td>
-                <td>20 185 064</td>
-            </tr>
-            <tr>
-                <td>Пекин</td>
-                <td>20 035 455</td>
-            </tr>>
-            <tr>
-                <td>Осака</td>
-                <td>19 222 665</td>
-            </tr> -->
-  </table>
+
 
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script type="text/javascript" src="./js/JSONInfoCity.js"></script>
   <script src="js/JSONSlider.js"></script>
-  <script src="js/JSONData.js"></script>
+  <script src="js/JSONDate.js"></script>
   <script src="js/JSONWeather.js"></script>
   <script src="js/JSONChart.js"></script>
   <script src="js/index.js"></script>
