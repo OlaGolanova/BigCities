@@ -1,9 +1,14 @@
 
 window.addEventListener('DOMContentLoaded', function(){
     'use strict';
-//Функционал кнопок
+    
+   //При загрузке страницы заносятся города в таблицу
+    setTableInfo(); 
+   //Кнопки
     btnChoice.addEventListener('click', choiceOneCity);
     btnAllCities.addEventListener('click', choiceAllCities);
+
+    //Кнопки для сортировки
     btnSortDownA.addEventListener('click', sortCitiesDownA);
     btnSortUpA.addEventListener('click', sortCitiesUpA);
     btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
@@ -12,6 +17,7 @@ window.addEventListener('DOMContentLoaded', function(){
     animationLoad();
     choiceCiyOnClickCity();//Функция выводит информацию о городе, при клике на название города
     choiceCiyOnClickNumbers();//Функция выводит информацию о городе, при клике на количество населения в городе
+   
 
 });
 
@@ -23,18 +29,21 @@ const btnSortUpA = document.querySelector('.panel__btn-two'); //Кнопка с�
 const btnSortDownPeople = document.querySelector('.panel__btn-three'); //Кнопка сортировать по уменьшению численности
 const btnSortUpPeople = document.querySelector('.panel__btn-four'); //Кнопка сортировать по увеличению численности
 const input = document.getElementById('input'); //Инпут для ввода города
-const citiesArray = ['Токио', 'Дели', 'Шанхай', 'Сан-Паулу', 'Мехико']; //Маcсив из названий городов, которые могут быть выбраны
+const citiesArray = ['Токио', 'Дели', 'Шанхай', 'Сан-Паулу', 'Мехико', 'Каир', 'Дакка', 'Мумбаи', 'Пекин', 'Осака']; //Маcсив из названий городов, которые могут быть выбраны
+const populationArray = ['37435191', '29399141', '26317104', '21846507', '21671908', '20484965', '20283552', '20185064', '20035455', '19222665']; //массив из численнности населения
 const date = document.querySelector('.date');//блок, куда выводим дату
 const hours = document.querySelector('.currenttime');//блок, куда выводим время
 const dayWeek =  document.querySelector('.day-of-week');//блок, куда выводим день недели
 const tableCities = document.querySelectorAll('.table__cities'); //Коллекция ячеек в таблице с городами
 const tableNumbers = document.querySelectorAll('.table__numbers'); //Коллекция ячеек в таблице с численностью населения
 const citycard = document.querySelector('.citycard');
-
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
+const table = document.querySelector('table'); 
+
 
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
+
 
 
 
@@ -51,21 +60,19 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
     function choiceOneCity() {
 
         for (let i=0; i < citiesArray.length; i++){
+      
 
-            if(input.value == citiesArray[i] ) {
-
-                getInfo(infoArray[i]);
-
-
+            if (input.value == citiesArray[i] ) {
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
-                
-                getTimeZoneOfsset = dateArray[i];
-                getDate();//Функция выводит время на экран
-
+                disableBtn();
                 animation();
 
-
+                getTimeZoneOfsset = dateArray[i];
+                getDate();//Функция выводит время на экран
+               
+                getInfo(infoArray[i]);
+                
 
 
 
@@ -110,20 +117,18 @@ function getDate(){
 function choiceCiyOnClickCity() {
 
     for (let i =0; i < tableCities.length; i++){
+      
 
         tableCities[i].addEventListener('click', function(event){
 
             if(event.target == tableCities[i]){
-
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
-                
+                disableBtn();
+                animation();
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-
-                animation();
-
 
                 getInfo(infoArray[i]);
 
@@ -148,15 +153,13 @@ function choiceCiyOnClickNumbers() {
         tableNumbers[i].addEventListener('click', function(event){
 
             if(event.target== tableNumbers[i]){
-              
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
-
+                disableBtn();
+                animation();
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-
-                animation();
 
                 getInfo(infoArray[i]);
 
@@ -197,6 +200,9 @@ function choiceAllCities() {
     citycard.classList.add('hidden');
     input.value = '';
     animation();
+    enableBtn();
+   
+
 }
 
 
@@ -212,6 +218,12 @@ function sortCitiesDownA() {
     btnSortDownPeople.classList.remove('btn-active');
     btnSortDownPeople.classList.remove('active-svg-btn');
 
+    //Сортировка строк таблицы по алфавиту
+    let sortedRows = Array.from(table.rows) 
+     .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
+
+   table.tBodies[0].append(...sortedRows);
+
 
 }
 //Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
@@ -224,6 +236,15 @@ function sortCitiesUpA() {
     btnSortUpPeople.classList.remove('active-svg-btn');
     btnSortDownPeople.classList.remove('btn-active');
     btnSortDownPeople.classList.remove('active-svg-btn');
+
+    //Сортировка строк таблицы по алфавиту в обратном порядке
+    let sortedRows = Array.from(table.rows) 
+    .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1)
+    .reverse();
+
+    table.tBodies[0].append(...sortedRows);
+
+  
 }
 
 //Функция сортировки городов по численности населения от большего к меньшему, вызывается при нажатии на соответствующую кнопку 
@@ -236,6 +257,13 @@ function sortCitiesDownPeople() {
     btnSortUpA.classList.remove('active-svg-btn');
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
+
+    //Сортировка строк таблицы по населению в порядке убывания
+    let sortedRows = Array.from(table.rows) 
+    .sort((rowA, rowB) => rowA.cells[1].innerHTML > rowB.cells[1].innerHTML ? 1 : -1)
+    .reverse();
+  
+     table.tBodies[0].append(...sortedRows);
 }
 //Функция сортировки городов по численности населения от меньшего к большему,  вызывается при нажатии на соответствующую кнопку 
 function sortCitiesUpPeople() {
@@ -247,7 +275,33 @@ function sortCitiesUpPeople() {
     btnSortUpA.classList.remove('active-svg-btn');
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
+
+    //Сортировка строк таблицы по населению в порядке возростания
+    let sortedRows = Array.from(table.rows) 
+    .sort((rowA, rowB) => rowA.cells[1].innerHTML > rowB.cells[1].innerHTML ? 1 : -1);
+
+    table.tBodies[0].append(...sortedRows); 
+
 }
+
+//Функция заносит данные о городах и населении в таблицу при загрузке
+function setTableInfo(){
+    
+    for (let i = 0; i < citiesArray.length; i++){
+        tableCities[i].textContent = citiesArray[i];
+    };
+    for (let i = 0; i < populationArray.length; i++){
+        tableNumbers[i].textContent = populationArray[i];
+    };
+
+}
+
+
+
+
+
+
+
 
 
 function animation() {
@@ -280,3 +334,18 @@ function animationLoad() {
     })
 
 }
+//Функция для блокировки кнопок сортировки
+function disableBtn(){
+    btnSortDownA.disabled = true;
+    btnSortUpA.disabled = true;
+    btnSortDownPeople.disabled = true;
+    btnSortUpPeople.disabled = true;
+};
+
+//Функция для активации кнопок сортировки
+function enableBtn(){
+    btnSortDownA.disabled = false;
+    btnSortUpA.disabled = false;
+    btnSortDownPeople.disabled = false;
+    btnSortUpPeople.disabled = false;
+};
