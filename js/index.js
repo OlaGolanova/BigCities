@@ -1,3 +1,30 @@
+//Альбина
+const cityPopulation = `[{
+        "city": "Токио",
+        "population": [37378386, 37708372, 37983840, 38078860, 38161719, 38235966, 38323229]
+    },
+    {
+        "city": "Дели",
+        "population": [23692872, 24758302, 25647707, 26583618, 27520816, 28360618, 29347622]
+    },
+    {
+        "city": "Шанхай",
+        "population": [21734336, 22797724, 23685423, 24561335, 25434781, 26217454, 27137316]
+    },
+    {
+        "city": "Сан-Паулу",
+        "population": [20315891, 20713569, 21045544, 21320552, 21591251, 21833816, 22118900]
+    },
+    {
+        "city": "Мехико",
+        "population": [20536063, 20781172, 20985784, 21208619, 21432216, 21632584, 21868073]
+    }
+]`
+
+const dataPopulation = JSON.parse(cityPopulation);
+console.log(dataPopulation);
+//--Альбина
+
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
     //Функционал кнопок
@@ -87,3 +114,36 @@ function sortCitiesUpPeople() {
     btnSortDownA.classList.remove('btn-active');
     btnSortDownA.classList.remove('active-svg-btn');
 }
+
+//Альбина
+function BuildChart(values) {
+    dataPopulation.find(function (item, index) {
+        if (item.city === input.value) {
+            values = item.population
+        }
+    })
+
+    const ctx = document.getElementById("myChart").getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["2013", "2014", "2015", "2016", "2017", "2018", "2019"], // Наши метки
+            datasets: [{
+                label: 'Population',
+                data: values, // Значения
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgb(255, 99, 132)'
+            }]
+        },
+        options: {
+            responsive: true, // Даем Chart.js указание реагировать правильно.
+            maintainAspectRatio: false, // Добавляем эту строку, чтобы избежать переключения на полноразмерный вид (высоту/ширину) 
+        }
+    });
+    return myChart;
+}
+
+btnChoice.onclick = function () {
+    BuildChart();
+}
+//--Альбина
