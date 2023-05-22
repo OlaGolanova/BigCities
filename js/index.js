@@ -13,7 +13,8 @@ window.addEventListener('DOMContentLoaded', function(){
     btnSortUpA.addEventListener('click', sortCitiesUpA);
     btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
     btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
-  
+    
+    animationLoad();
     choiceCiyOnClickCity();//Функция выводит информацию о городе, при клике на название города
     choiceCiyOnClickNumbers();//Функция выводит информацию о городе, при клике на количество населения в городе
    
@@ -59,17 +60,19 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
     function choiceOneCity() {
 
         for (let i=0; i < citiesArray.length; i++){
+      
 
-            if(input.value == citiesArray[i] ) {
-
-            
+            if (input.value == citiesArray[i] ) {
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
+                disableBtn();
+                animation();
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-                getInfo(infoArray[i]);
                
+                getInfo(infoArray[i]);
+                
 
 
 
@@ -114,18 +117,21 @@ function getDate(){
 function choiceCiyOnClickCity() {
 
     for (let i =0; i < tableCities.length; i++){
+      
 
         tableCities[i].addEventListener('click', function(event){
 
             if(event.target == tableCities[i]){
-
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
-
+                disableBtn();
+                animation();
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
+
                 getInfo(infoArray[i]);
+
 
 
 
@@ -147,14 +153,16 @@ function choiceCiyOnClickNumbers() {
         tableNumbers[i].addEventListener('click', function(event){
 
             if(event.target== tableNumbers[i]){
-              
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
-
+                disableBtn();
+                animation();
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
+
                 getInfo(infoArray[i]);
+
 
 
 
@@ -191,6 +199,10 @@ function choiceAllCities() {
     cities.classList.remove('hidden');
     citycard.classList.add('hidden');
     input.value = '';
+    animation();
+    enableBtn();
+   
+
 }
 
 
@@ -291,3 +303,49 @@ function setTableInfo(){
 
 
 
+
+function animation() {
+
+    gsap.from ('.citycard', {
+        opacity: 0,
+        scale: 0,
+        duration: 0.6
+    })
+    gsap.from ('.cities', {
+        opacity: 0,
+        scale: 0,
+        duration: 0.6
+    })
+}
+
+function animationLoad() {
+    gsap.from ('.panel', {
+        opacity: 0.1,
+        yPercent: 50,
+        duration: 1.2
+        
+    })
+    
+    gsap.from ('.cities', {
+        opacity: 0.1,
+        y: 50,
+        duration: 1.2
+        
+    })
+
+}
+//Функция для блокировки кнопок сортировки
+function disableBtn(){
+    btnSortDownA.disabled = true;
+    btnSortUpA.disabled = true;
+    btnSortDownPeople.disabled = true;
+    btnSortUpPeople.disabled = true;
+};
+
+//Функция для активации кнопок сортировки
+function enableBtn(){
+    btnSortDownA.disabled = false;
+    btnSortUpA.disabled = false;
+    btnSortDownPeople.disabled = false;
+    btnSortUpPeople.disabled = false;
+};
