@@ -1,12 +1,12 @@
 //Стили  главной страницы
 body {
-    background: url("../design/img/Mapsicle.jpg") center (center/cover) repeat;
+    background: url("../design/img/Mapsicle.jpg") top center cover no-repeat;
     width: 100%;
     height: 100vh;
     font-family: Lato;
     
     .panel {
-        margin: 50px 0px 0px 50px;
+        padding: 50px 0px 0px 50px;
         display: flex;
         justify-content: space-around;
         align-items: center;
