@@ -70,14 +70,6 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-<<<<<<<<< Temporary merge branch 1
-               
-=========
-                animation();
->>>>>>>>> Temporary merge branch 2
-
-
-
 
                 
             }
@@ -131,12 +123,9 @@ function choiceCiyOnClickCity() {
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-<<<<<<<<< Temporary merge branch 1
-                getInfo(infoArray[i]);
-=========
-                animation();
 
->>>>>>>>> Temporary merge branch 2
+                getInfo(infoArray[i]);
+
 
 
 
@@ -165,11 +154,8 @@ function choiceCiyOnClickNumbers() {
 
                 getTimeZoneOfsset = dateArray[i];
                 getDate();//Функция выводит время на экран
-<<<<<<<<< Temporary merge branch 1
+
                 getInfo(infoArray[i]);
-=========
-                animation();
->>>>>>>>> Temporary merge branch 2
 
 
 
