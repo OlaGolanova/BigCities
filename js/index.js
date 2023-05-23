@@ -1,6 +1,6 @@
 // Координаты локации
-const arrLatitude = ['35.69', '28.65', '31.22', '-23.55', '19.43','30.06','32.73','19.07','39.91','34.69'];
-const arrLongitude = ['139.69', '77.23', '121.46','-46.64','-99.13','31.25','76.27','72.88','116.40','135.50'];
+const arrLatitude = ['35.69', '28.65', '31.22', '-23.55', '19.43', '30.06', '32.73', '19.07', '39.91', '34.69'];
+const arrLongitude = ['139.69', '77.23', '121.46', '-46.64', '-99.13', '31.25', '76.27', '72.88', '116.40', '135.50'];
 
 // Вывод погоды
 const temparature = document.querySelector('.temparature');
@@ -340,7 +340,7 @@ function enableBtn() {
 };
 
 
-function getDateNow(){
+function getDateNow() {
     let timeZone = new Date().getTimezoneOffset();
     let time = new Date().getTime();
     let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
