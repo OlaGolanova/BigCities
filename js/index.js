@@ -1,6 +1,6 @@
 // Координаты локации
-const arrLatitude = ['35.69', '28.65', '31.22', '-23.55', '19.43'];
-const arrLongitude = ['139.69', '77.23', '121.46', '-46.64', '-99.13'];
+const arrLatitude = ['35.69', '28.65', '31.22', '-23.55', '19.43','30.06','32.73','19.07','39.91','34.69'];
+const arrLongitude = ['139.69', '77.23', '121.46','-46.64','-99.13','31.25','76.27','72.88','116.40','135.50'];
 
 // Вывод погоды
 const temparature = document.querySelector('.temparature');
@@ -380,7 +380,6 @@ function dateForWeather() {
 async function showWeather() {
     let dateForWeatherParams = dateForWeather();
     const data = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + `${latitude}` + '&longitude=' + `${longitude}` + '&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=2');
-    console.log(data.url);
     const JSONWeather = await data.json();
     const weather = await JSONWeather;
 
@@ -405,7 +404,6 @@ async function showWeather() {
 
     // Влажность
     const windHuminidity = await weather.hourly.relativehumidity_2m[index];
-    console.log(windHuminidity);
 
     // Ощущается как
     const apparentTemperature = await weather.hourly.apparent_temperature[index];
@@ -563,7 +561,7 @@ function howWeather(numb) {
             break;
         default:
             currentImg.src = './design/img/images_Weather/Ясно.jpg';
-            how = ' ';
+            how = 'Извините,сервис недоступен';
     }
 
     return how;
