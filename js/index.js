@@ -312,7 +312,3 @@ function enableBtn(){
     btnSortUpPeople.disabled = false;
 };
 
-
-
-
-
