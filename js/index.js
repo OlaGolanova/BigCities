@@ -1,26 +1,3 @@
-
-window.addEventListener('DOMContentLoaded', function(){
-    'use strict';
-    
-   //При загрузке страницы заносятся города в таблицу
-    setTableInfo(); 
-   //Кнопки
-    btnChoice.addEventListener('click', choiceOneCity);
-    btnAllCities.addEventListener('click', choiceAllCities);
-
-    //Кнопки для сортировки
-    btnSortDownA.addEventListener('click', sortCitiesDownA);
-    btnSortUpA.addEventListener('click', sortCitiesUpA);
-    btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
-    btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
-    
-    animationLoad();
-    choiceCiyOnClickCity();//Функция выводит информацию о городе, при клике на название города
-    choiceCiyOnClickNumbers();//Функция выводит информацию о городе, при клике на количество населения в городе
-   
-
-});
-
 const cities = document.querySelector('.cities'); //Таблица с городами 
 const btnChoice = document.querySelector('.panel__btn-choice'); //Кнопка Выбрать город
 const btnAllCities = document.querySelector('.panel__btn-all-citie'); //Кнопка ВСЕ ГОРОДА
@@ -40,12 +17,30 @@ const citycard = document.querySelector('.citycard');
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
 const table = document.querySelector('table'); 
 
+window.addEventListener('DOMContentLoaded', function(){
+    'use strict';
+    
+   //При загрузке страницы заносятся города в таблицу
+    setTableInfo(); 
+   //Кнопки
+    btnChoice.addEventListener('click', choiceOneCity);
+    btnAllCities.addEventListener('click', choiceAllCities);
+
+    //Кнопки для сортировки
+    btnSortDownA.addEventListener('click', sortCitiesDownA);
+    btnSortUpA.addEventListener('click', sortCitiesUpA);
+    btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
+    btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
+    
+    animationLoad();
+    choiceCityOnClickCity();//Функция выводит информацию о городе, при клике на название города
+    choiceCityOnClickNumbers();//Функция выводит информацию о городе, при клике на количество населения в городе
+   
+
+});
 
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
-
-
-
 
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
@@ -72,8 +67,8 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
                 getDate();//Функция выводит время на экран
                
                 getInfo(infoArray[i]);
-                
 
+           
 
 
 
@@ -83,8 +78,6 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
   
     input.value = '';
 }
-
-
 //Функция для вывода информации о городе
 function getInfo(elem) {
     facts.innerHTML = "";
@@ -108,13 +101,13 @@ function getDate(){
     date.textContent = moment(nowDateCity).format('D. MM. YYYY');
     hours.textContent = moment(nowDateCity).format('HH:mm');
     dayWeek.textContent = moment(nowDateCity).format('dddd');
-
 }
-
-
-
+//Функция для вывода времени и даты, обновляется каждую секунду-время меняется, как часы.    
+const intervalId = setInterval(function() {
+    getDate();
+}, 1000)
 //При клике на город выходит информация о нем
-function choiceCiyOnClickCity() {
+function choiceCityOnClickCity() {
 
     for (let i =0; i < tableCities.length; i++){
       
@@ -146,7 +139,7 @@ function choiceCiyOnClickCity() {
 }
 
 //При клике на численность города выходит информация о городе
-function choiceCiyOnClickNumbers() {
+function choiceCityOnClickNumbers() {
 
     for (let i =0; i < tableNumbers.length; i++){
 
@@ -177,23 +170,6 @@ function choiceCiyOnClickNumbers() {
 }
 
 
-
-
-
-//Функция для вывода времени и даты, обновляется каждую секунду-время меняется, как часы.    
-const intervalId = setInterval(function() {
-    let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
-    let time = new Date().getTime(); //Таймстамп пользователя в мс         
-    let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
-    let timeCity = time + (deltaTimeZone*60*1000); //Время в выбранном городе в таймстампе
-    let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
-    date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-    hours.textContent = moment(nowDateCity).format('HH:mm');
-    dayWeek.textContent = moment(nowDateCity).format('dddd');
-}, 1000)
-
-
-
 //Функция вызывается при нажатие на кнопку Все города
 function choiceAllCities() {
     cities.classList.remove('hidden');
@@ -204,9 +180,6 @@ function choiceAllCities() {
    
 
 }
-
-
-
 //Функция сортировки городов по алфавиту от A-Я, вызывается при нажатии на кнопку A-Я
 function sortCitiesDownA() {
     btnSortDownA.classList.add('btn-active');
@@ -223,8 +196,6 @@ function sortCitiesDownA() {
      .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
 
    table.tBodies[0].append(...sortedRows);
-
-
 }
 //Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
 function sortCitiesUpA() {
@@ -243,8 +214,6 @@ function sortCitiesUpA() {
     .reverse();
 
     table.tBodies[0].append(...sortedRows);
-
-  
 }
 
 //Функция сортировки городов по численности населения от большего к меньшему, вызывается при нажатии на соответствующую кнопку 
@@ -283,6 +252,8 @@ function sortCitiesUpPeople() {
     table.tBodies[0].append(...sortedRows); 
 
 }
+//Регулярное выражение // число преобразуется в вид с пробелами 1_111_111
+const parse = (s)=>[...s.replace(/[^0-9]/g,"")].reduce((a,c,i,l)=>a+=c+((l.length-i)%3==1?" ":"")||a,""); 
 
 //Функция заносит данные о городах и населении в таблицу при загрузке
 function setTableInfo(){
@@ -291,18 +262,9 @@ function setTableInfo(){
         tableCities[i].textContent = citiesArray[i];
     };
     for (let i = 0; i < populationArray.length; i++){
-        tableNumbers[i].textContent = populationArray[i];
+        tableNumbers[i].textContent = parse(populationArray[i]);
     };
-
-}
-
-
-
-
-
-
-
-
+};
 
 function animation() {
 
@@ -317,7 +279,6 @@ function animation() {
         duration: 0.6
     })
 }
-
 function animationLoad() {
     gsap.from ('.panel', {
         opacity: 0.1,
@@ -349,3 +310,8 @@ function enableBtn(){
     btnSortDownPeople.disabled = false;
     btnSortUpPeople.disabled = false;
 };
+
+
+
+
+
