@@ -357,24 +357,24 @@ function dateForWeather() {
     let minutesNow = nowDateCity.getMinutes();
     if (day < 10) {
         day = '0' + day
-      }
-  
-      if (month < 10) {
+    }
+
+    if (month < 10) {
         month = '0' + month
-      }
-  
-      if (minutesNow < 10) {
+    }
+
+    if (minutesNow < 10) {
         minutesNow = '0' + minutesNow
-      }
-  
-      if (hours < 10) {
+    }
+
+    if (hours < 10) {
         hours = '0' + hours
-      }
+    }
 
     let dateForWeather = (`${year}-` + `${month}-${day}` + 'T');
-    
-    let testishe = dateForWeather +  hours + ':00'
-  
+
+    let timeNow = dateForWeather + hours + ':00'
+
     return timeNow;
 }
 
@@ -388,7 +388,7 @@ async function showWeather() {
     // Индекс времени
     const indexHuminidity = await weather.hourly.time;
     let index = indexHuminidity.indexOf(dateForWeatherParams);
-    
+
 
 
     // Температура
