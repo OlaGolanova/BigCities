@@ -1,4 +1,3 @@
-
 //Аня
 
 const infoCities = `[{
