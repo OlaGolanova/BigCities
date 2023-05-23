@@ -55,8 +55,8 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 
 
 //Функция  вызывается при клике на кнопку Выбрать
-    function choiceOneCity() {
-
+    function choiceOneCity(event) {
+        event.preventDefault();
         for (let i=0; i < citiesArray.length; i++){
       
 
@@ -173,7 +173,8 @@ function choiceCityOnClickNumbers() {
 
 
 //Функция вызывается при нажатие на кнопку Все города
-function choiceAllCities() {
+function choiceAllCities(event) {
+    event.preventDefault();
     cities.classList.remove('hidden');
     citycard.classList.add('hidden');
     input.value = '';
