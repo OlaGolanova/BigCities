@@ -342,7 +342,6 @@ function enableBtn() {
 
 
 
-
 // Время для вывода погоды
 function dateForWeather() {
     let timeZone = new Date().getTimezoneOffset();
