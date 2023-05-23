@@ -35,6 +35,20 @@ const facts = document.querySelector('.citycard__item.info'); //div с инфо�
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
 
+// Координаты локации
+const arrLatitude = ['35.69', '28.65', '31.22', '-23.55', '19.43'];
+const arrLongitude = ['139.69', '77.23', '121.46', '-46.64', '-99.13'];
+
+// Вывод погоды
+const temparature = document.querySelector('.temparature');
+const wind = document.querySelector('.wind');
+const description = document.querySelector('.description');
+const feelslike = document.querySelector('.feelslike');
+const humidity = document.querySelector('.humidity');
+const currentImg = document.querySelector('.current-img');
+const weatherCity = document.querySelector('.weather');
+// 
+
 
 
 // Вывод времени, даты, дня недели moment.js
@@ -45,13 +59,16 @@ moment.locale('ru', {
 
 });
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
-
+let latitude;
+let longitude;
 //Функция  вызывается при клике на кнопку Выбрать
     function choiceOneCity() {
 
+        let cleanCityValue = cleanNameCity(input.value);
+
         for (let i=0; i < citiesArray.length; i++){
 
-            if(input.value == citiesArray[i] ) {
+            if(cleanCityValue == citiesArray[i] ) {
 
                 getInfo(infoArray[i]);
 
@@ -63,7 +80,10 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
                 getDate();//Функция выводит время на экран
                
 
-
+                latitude = arrLatitude[i];
+                longitude = arrLongitude[i];
+                showWeather();
+          
 
 
                 
@@ -235,3 +255,207 @@ function sortCitiesUpPeople() {
     btnSortDownA.classList.remove('active-svg-btn');
 }
 
+// Время для вывода погоды
+function dateForWeather() {
+    let timeZone = new Date().getTimezoneOffset();
+    let time = new Date().getTime();
+    let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
+    let timeCity = time + (deltaTimeZone * 60 * 1000); //Время в выбранном городе в таймстампе
+    let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
+    let dateForWeather = (`${nowDateCity.getFullYear()}-` + '0' + `${nowDateCity.getMonth()+1}-${nowDateCity.getDate()}` + 'T');
+    let hour = nowDateCity.getHours();
+    let testishe = dateForWeather + hour + ':00'
+    return testishe;
+  }
+  
+  async function showWeather() {
+    let dateForWeatherParams = dateForWeather();
+  
+    const data = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + `${latitude}` + '&longitude=' + `${longitude}` + '&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=1');
+    console.log(data.url);
+    const JSONWeather = await data.json();
+    const weather = await JSONWeather;
+  
+    // Индекс времени
+    const indexHuminidity = await weather.hourly.time;
+    let index = indexHuminidity.indexOf(dateForWeatherParams);
+  
+  
+    // Температура
+    const temperature = await weather.current_weather.temperature;
+    const resultWeather = Math.round(temperature);
+  
+  
+    //  Скорость ветра
+    const windspeed = await weather.current_weather.windspeed;
+    const roundWindspeed = Math.round(windspeed);
+  
+    // Направление ветра
+    const winddirection = await weather.current_weather.winddirection;
+    const showWindDirection = textWindDirection(winddirection);
+  
+    // Влажность
+    const windHuminidity = await weather.hourly.relativehumidity_2m[index];
+  
+    // Ощущается как
+    const apparentTemperature = await weather.hourly.apparent_temperature[index];
+    const resultTemperature = Math.round(apparentTemperature);
+  
+  
+    // weathercode
+    const weatherCode = weather.current_weather.weathercode;
+    const showhowWeather = howWeather(weatherCode);
+  
+  
+    temparature.innerHTML = resultWeather + '°C';
+    wind.innerHTML = roundWindspeed + 'м/с, ' + showWindDirection;
+    description.innerHTML = showhowWeather;
+    feelslike.innerHTML = 'Ощущается как ' + resultTemperature + ' °C'
+    humidity.innerHTML = 'Влажность: ' + windHuminidity + ' %';
+  
+  
+  }
+  
+  
+  
+  // Функция валидации поля с названием города
+  function cleanNameCity(param) {
+  
+    if (param.search(/[-]/g) !== -1) {
+  
+      param = param.split('-');
+      const firstPartName = param[0].trim(param[0]).toLowerCase();
+      const firstElem = firstPartName.slice(0, 1).toUpperCase() + firstPartName.slice(1);
+  
+      const secondPartName = param[1].trim(param[1]).toLowerCase();
+      const secondElem = secondPartName.slice(0, 1).toUpperCase() + secondPartName.slice(1);
+  
+      param = firstElem + '-' + secondElem;
+      return param;
+    } else {
+  
+      param = param.trim(param).toLowerCase();
+      param = param.slice(0, 1).toUpperCase() + param.slice(1);
+      return param;
+    }
+  
+  
+  }
+  
+  // Направление ветра
+  
+  function textWindDirection(val) {
+    let valRound = val;
+    let windDirection;
+    if ((valRound >= Number(0) && valRound <= Number(22))) {
+      windDirection = 'С';
+    }
+    if ((valRound >= Number(23) && valRound <= Number(67))) {
+      windDirection = 'С/В';
+    }
+    if ((valRound >= Number(68) && valRound <= Number(112))) {
+      windDirection = 'В';
+    }
+    if ((valRound >= Number(113) && valRound <= Number(137))) {
+      windDirection = 'Ю/В';
+    }
+    if ((valRound >= Number(138) && valRound <= Number(203))) {
+      windDirection = 'Ю';
+    }
+    if ((valRound >= Number(204) && valRound <= Number(247))) {
+      windDirection = 'Ю/З';
+    }
+    if ((valRound >= Number(248) && valRound <= Number(292))) {
+      windDirection = 'З';
+    }
+    if ((valRound >= Number(293) && valRound <= Number(337))) {
+      windDirection = 'С/З';
+    }
+    if ((valRound >= Number(338) && valRound <= Number(360))) {
+      windDirection = 'С';
+    }
+  
+    return windDirection;
+  }
+  
+  
+  
+  function howWeather(numb) {
+    let how = numb;
+    switch (how) {
+      case 0:
+        currentImg.src = './design/img/images_Weather/Ясно.jpg';
+        how = 'Ясно';
+        break;
+      case 1:
+        currentImg.src = './design/img/images_Weather/Преимущественно ясно.jpg';
+        how = 'Преимущественно ясно';
+        break;
+      case 2:
+        currentImg.src = './design/img/images_Weather/Переменная облачность.jpg';
+        how = 'Переменная облачность';
+        break;
+  
+      case 3:
+        currentImg.src = './design/img/images_Weather/Пасмурно.jpg';
+        how = 'Пасмурно';
+        break;
+  
+      case 45:
+        currentImg.src = './design/img/images_Weather/Туман.jpg';
+        how = 'Туман';
+        break;
+  
+      case 61:
+        currentImg.src = './design/img/images_Weather/Небольшой дождь.jpg';
+        how = 'Небольшой дождь';
+        break;
+      case 63:
+        currentImg.src = './design/img/images_Weather/Умеренный Дождь.jpg';
+        how = 'Умеренный Дождь';
+        break;
+      case 65:
+        currentImg.src = './design/img/images_Weather/Дождь.jpg';
+        how = 'Дождь';
+        break;
+      case 80:
+        currentImg.src = './design/img/images_Weather/Слабый ливень.jpeg';
+        how = 'Слабый ливень';
+        break;
+      case 81:
+        currentImg.src = './design/img/images_Weather/Умеренный ливень.jpg';
+        how = 'Умеренный ливень';
+        break;
+      case 82:
+        currentImg.src = './design/img/images_Weather/Сильный ливень.jpg';
+        how = 'Сильный ливень';
+        break;
+      case 85:
+        currentImg.src = './design/img/images_Weather/Снег.jpeg';
+        how = 'Снег';
+        break;
+      case 86:
+        currentImg.src = './design/img/images_Weather/Снегопад.jpg';
+        how = 'Снегопад';
+        break;
+      case 95:
+        currentImg.src = './design/img/images_Weather/Гроза.jpg';
+        how = 'Гроза';
+        break;
+      case 96:
+        currentImg.src = './design/img/images_Weather/гроза,слабый град.jpg';
+        how = 'Гроза,слабый град';
+        break;
+      case 99:
+        currentImg.src = './design/img/images_Weather/Гроза,сильный град.jpeg';
+        how = 'Гроза,сильный град';
+        break;
+      default:
+        currentImg.src = './design/img/images_Weather/Ясно.jpg';
+        how = ' ';
+    }
+  
+    return how;
+  }
+  
+  
