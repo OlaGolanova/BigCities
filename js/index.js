@@ -340,20 +340,26 @@ function enableBtn() {
 };
 
 
-
-
-// Время для вывода погоды
-function dateForWeather() {
+function getDateNow(){
     let timeZone = new Date().getTimezoneOffset();
     let time = new Date().getTime();
     let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
     let timeCity = time + (deltaTimeZone * 60 * 1000); //Время в выбранном городе в таймстампе
     let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
-    let day = nowDateCity.getDate();
-    let month = nowDateCity.getMonth() + 1;
-    let year = nowDateCity.getFullYear();
-    let hours = nowDateCity.getHours();
-    let minutesNow = nowDateCity.getMinutes();
+    return nowDateCity;
+}
+
+
+// Время для вывода погоды
+function dateForWeather() {
+    let dateNow = getDateNow();
+    let day = dateNow.getDate(); //Получаем число месяца
+    let month = dateNow.getMonth() + 1; //Получаем месяц в привычном нам формате от 1 до 12
+    let year = dateNow.getFullYear(); //Получаем год
+    let hours = dateNow.getHours(); //Получаем часы
+    let minutesNow = dateNow.getMinutes(); //Получаем минуты
+
+    //Для корректного отображения даты
     if (day < 10) {
         day = '0' + day
     }
@@ -370,12 +376,14 @@ function dateForWeather() {
         hours = '0' + hours
     }
 
+    //Вывод даты в формате для получения данных погоды
     let dateForWeather = (`${year}-` + `${month}-${day}` + 'T');
 
     let timeNow = dateForWeather + hours + ':00'
 
     return timeNow;
 }
+
 
 async function showWeather() {
     let dateForWeatherParams = dateForWeather();
