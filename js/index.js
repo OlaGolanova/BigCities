@@ -387,47 +387,52 @@ function dateForWeather() {
 
 async function showWeather() {
     let dateForWeatherParams = dateForWeather();
-    const data = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + `${latitude}` + '&longitude=' + `${longitude}` + '&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=2');
-    const JSONWeather = await data.json();
-    const weather = await JSONWeather;
+    try {
+        const data = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + `${latitude}` + '&longitude=' + `${longitude}` + '&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=2');
+        const JSONWeather = await data.json();
+        const weather = await JSONWeather;
 
-    // Индекс времени
-    const indexHuminidity = await weather.hourly.time;
-    let index = indexHuminidity.indexOf(dateForWeatherParams);
-
-
-
-    // Температура
-    const temperature = await weather.current_weather.temperature;
-    const resultWeather = Math.round(temperature);
+        // Индекс времени
+        const indexHuminidity = await weather.hourly.time;
+        let index = indexHuminidity.indexOf(dateForWeatherParams);
 
 
-    //  Скорость ветра
-    const windspeed = await weather.current_weather.windspeed;
-    const roundWindspeed = Math.round(windspeed);
 
-    // Направление ветра
-    const winddirection = await weather.current_weather.winddirection;
-    const showWindDirection = textWindDirection(winddirection);
-
-    // Влажность
-    const windHuminidity = await weather.hourly.relativehumidity_2m[index];
-
-    // Ощущается как
-    const apparentTemperature = await weather.hourly.apparent_temperature[index];
-    const resultTemperature = Math.round(apparentTemperature);
+        // Температура
+        const temperature = await weather.current_weather.temperature;
+        const resultWeather = Math.round(temperature);
 
 
-    // weathercode
-    const weatherCode = weather.current_weather.weathercode;
-    const showhowWeather = howWeather(weatherCode);
+        //  Скорость ветра
+        const windspeed = await weather.current_weather.windspeed;
+        const roundWindspeed = Math.round(windspeed);
+
+        // Направление ветра
+        const winddirection = await weather.current_weather.winddirection;
+        const showWindDirection = textWindDirection(winddirection);
+
+        // Влажность
+        const windHuminidity = await weather.hourly.relativehumidity_2m[index];
+
+        // Ощущается как
+        const apparentTemperature = await weather.hourly.apparent_temperature[index];
+        const resultTemperature = Math.round(apparentTemperature);
 
 
-    temparature.innerHTML = resultWeather + '°C';
-    wind.innerHTML = roundWindspeed + 'м/с, ' + showWindDirection;
-    description.innerHTML = showhowWeather;
-    feelslike.innerHTML = 'Ощущается как ' + resultTemperature + ' °C'
-    humidity.innerHTML = 'Влажность: ' + windHuminidity + ' %';
+        // weathercode
+        const weatherCode = weather.current_weather.weathercode;
+        const showhowWeather = howWeather(weatherCode);
+
+        temparature.innerHTML = resultWeather + '°C';
+        wind.innerHTML = roundWindspeed + 'м/с, ' + showWindDirection;
+        description.innerHTML = showhowWeather;
+        feelslike.innerHTML = 'Ощущается как ' + resultTemperature + ' °C'
+        humidity.innerHTML = 'Влажность: ' + windHuminidity + ' %';
+    } catch (err) {
+        console.log('Подробности ошибки:' + `${err}`);
+        description.innerHTML = 'Прогноз погоды недоступен,пожалуйста,повторите попытку позже.';
+        currentImg.src = '';
+    }
 
 
 }
