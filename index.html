@@ -31,51 +31,53 @@
             <path d="M3.5 0C4.03043 0 4.53914 0.210714 4.91421 0.585786C5.28929 0.960859 5.5 1.46957 5.5 2C5.5 2.53043 5.28929 3.03914 4.91421 3.41421C4.53914 3.78929 4.03043 4 3.5 4C2.96957 4 2.46086 3.78929 2.08579 3.41421C1.71071 3.03914 1.5 2.53043 1.5 2C1.5 1.46957 1.71071 0.960859 2.08579 0.585786C2.46086 0.210714 2.96957 0 3.5 0ZM2 5H5C5.53043 5 6.03914 5.21071 6.41421 5.58579C6.78929 5.96086 7 6.46957 7 7V12.5H5.5V20H1.5V12.5H0V7C0 6.46957 0.210714 5.96086 0.585787 5.58579C0.96086 5.21071 1.46957 5 2 5Z" fill="black"/>
           </svg>
         </button>
-         <input type="text" id="input" required placeholder="Введите город">
-         <button class="panel__btn-choice">Выбрать</button>
-         <button class="panel__btn-all-citie">Все города</button>
+        <form>
+          <input type="text" id="input" required placeholder="Введите город">
+          <button type="submit" class="panel__btn-choice">Выбрать</button>
+          <button type="submit" class="panel__btn-all-citie">Все города</button>
+        </form>
       </div>
 
       <table class="cities">
           <tr>
-              <td class="table__cities">Токио</td>
-              <td class="table__numbers">37 435 191</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Дели</td>
-              <td class="table__numbers">26 317 104</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-            <td class="table__cities">Шанхай</td>
-            <td class="table__numbers">26 317 104</td>
+            <td class="table__cities"></td>
+            <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Сан-Паулу</td>
-              <td class="table__numbers">21 846 507</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Мехико</td>
-              <td class="table__numbers">21 671 908</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Каир</td>
-              <td class="table__numbers">20 484 965</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Дакка</td>
-              <td class="table__numbers">20 283 552</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Мумбаи</td>
-              <td class="table__numbers">20 185 064</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Пекин</td>
-              <td class="table__numbers">20 035 455</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
           <tr>
-              <td class="table__cities">Осака</td>
-              <td class="table__numbers">19 222 665</td>
+              <td class="table__cities"></td>
+              <td class="table__numbers"></td>
           </tr>
       </table>
       <div class="citycard hidden">
@@ -142,6 +144,7 @@
       
     
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
       <script type="text/javascript" src="./js/JSONInfoCity.js"></script>
       <script src="js/JSONSlider.js"></script>
       <script src="js/JSONDate.js"></script>

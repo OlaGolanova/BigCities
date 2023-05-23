@@ -427,7 +427,6 @@ function dateForWeather() {
     if (param.search(/[-]/g) !== -1) {
   
       param = param.split('-');
-      
       const firstPartName = param[0].trim(param[0]).toLowerCase();
       const firstElem = firstPartName.slice(0, 1).toUpperCase() + firstPartName.slice(1);
   
