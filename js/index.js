@@ -350,11 +350,32 @@ function dateForWeather() {
     let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
     let timeCity = time + (deltaTimeZone * 60 * 1000); //Время в выбранном городе в таймстампе
     let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
-    let dateForWeather = (`${nowDateCity.getFullYear()}-` + '0' + `${nowDateCity.getMonth()+1}-${nowDateCity.getDate()}` + 'T');
-    let hour = nowDateCity.getHours();
-    let testishe = dateForWeather + '0'+ hour + ':00'
-    console.log(testishe);
-    return testishe;
+    let day = nowDateCity.getDate();
+    let month = nowDateCity.getMonth() + 1;
+    let year = nowDateCity.getFullYear();
+    let hours = nowDateCity.getHours();
+    let minutesNow = nowDateCity.getMinutes();
+    if (day < 10) {
+        day = '0' + day
+      }
+  
+      if (month < 10) {
+        month = '0' + month
+      }
+  
+      if (minutesNow < 10) {
+        minutesNow = '0' + minutesNow
+      }
+  
+      if (hours < 10) {
+        hours = '0' + hours
+      }
+
+    let dateForWeather = (`${year}-` + `${month}-${day}` + 'T');
+    
+    let testishe = dateForWeather +  hours + ':00'
+  
+    return timeNow;
 }
 
 async function showWeather() {
