@@ -103,38 +103,49 @@
         </div>
         <div class="citycard__item info">
           <h2>Информация о городе</h2>
+
           <p class="facts">Страна, язык, короткие факты</p>
+
         </div>
       </div>
-      <div class="weather__right">
-        <div class="wind">2 м/с, СЗ</div>
-        <div class="description">Малооблачно</div>
-        <div class="feelslike">Ощущается как +15°</div>
-        <div class="humidity">Влажность 77%</div>
-      </div>
-    </div>
-    <div class="citycard__item dateCard">
-      <div class="currenttime">13:35</div>
-      <div class="currentday">
-        <div class="day-of-week">Воскресенье</div>
-        <div class="date">27.09.2022</div>
-      </div>
-    </div>
-    <div class="citycard__item slider">
-      <div class="swiper">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div class="swiper-slide"> <img src="./design/img/Tokio.jpg" alt="City"></div>
+      <div class="citycard__body-right">
+        <div class="citycard__item weather">
+          <div class="weather__left">
+            <img src="" alt="Current weather" class="current-img">
+            <div class="temparature"></div>
+          </div>
+          <div class="weather__right">
+            <div class="wind"></div>
+            <div class="description"></div>
+            <div class="feelslike"></div>
+            <div class="humidity"></div>
+
+          </div>
         </div>
-        <div class="swiper-button-prev swiper-button-disabled"><img src="./design/icons/arrow-left.svg"
-            alt="arrow-prev"></div>
-        <div class="swiper-button-next"><img src="./design/icons/arrow-right.svg" alt="arrow-next"></div>
+        <div class="citycard__item dateCard">
+          <div class="currenttime">13:35</div>
+          <div class="currentday">
+            <div class="day-of-week">Воскресенье</div>
+            <div class="date">27.09.2022</div>
+          </div>
+        </div>
+        <div class="citycard__item slider">
+          <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide"> <img src="./design/img/Tokio.jpg" alt="City"></div>
+
+            </div>
+
+            <div class="swiper-button-prev swiper-button-disabled"><img src="./design/icons/arrow-left.svg"
+                alt="arrow-prev"></div>
+            <div class="swiper-button-next"><img src="./design/icons/arrow-right.svg" alt="arrow-next"></div>
+
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
   </div>
 
 
@@ -143,7 +154,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <script type="text/javascript" src="./js/JSONInfoCity.js"></script>
   <script src="js/JSONSlider.js"></script>
   <script src="js/JSONDate.js"></script>
