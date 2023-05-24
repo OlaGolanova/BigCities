@@ -15,7 +15,9 @@ const tableCities = document.querySelectorAll('.table__cities'); //Коллек�
 const tableNumbers = document.querySelectorAll('.table__numbers'); //Коллекция ячеек в таблице с численностью населения
 const citycard = document.querySelector('.citycard');
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
-const table = document.querySelector('table'); 
+const table = document.querySelector('table');
+const nameCity = document.querySelector('.name');
+const people = document.querySelector('.number')
 
 window.addEventListener('DOMContentLoaded', function(){
     'use strict';
@@ -51,6 +53,7 @@ moment.locale('ru', {
 });
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 
+
 //Функция  вызывается при клике на кнопку Выбрать
     function choiceOneCity(event) {
         event.preventDefault();
@@ -68,9 +71,8 @@ let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
                
                 getInfo(infoArray[i]);
 
-           
-
-
+                nameCity.innerText = citiesArray[i]
+                people.innerText = parse(populationArray[i])
 
                 
             }
@@ -102,6 +104,7 @@ function getDate(){
     hours.textContent = moment(nowDateCity).format('HH:mm');
     dayWeek.textContent = moment(nowDateCity).format('dddd');
 }
+
 //Функция для вывода времени и даты, обновляется каждую секунду-время меняется, как часы.    
 const intervalId = setInterval(function() {
     getDate();
@@ -125,9 +128,8 @@ function choiceCityOnClickCity() {
 
                 getInfo(infoArray[i]);
 
-
-
-
+                nameCity.innerText = citiesArray[i]
+                people.innerText = parse(populationArray[i])
 
 
 
@@ -156,8 +158,8 @@ function choiceCityOnClickNumbers() {
 
                 getInfo(infoArray[i]);
 
-
-
+                nameCity.innerText = citiesArray[i]
+                people.innerText = parse(populationArray[i])
 
 
 
