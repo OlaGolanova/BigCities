@@ -30,6 +30,10 @@ const citycard = document.querySelector('.citycard');
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
 const table = document.querySelector('table');
 
+const nameCity = document.querySelector('.name');
+const people = document.querySelector('.number')
+
+
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
@@ -69,6 +73,7 @@ moment.locale('ru', {
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 let latitude;
 let longitude;
+
 //Функция  вызывается при клике на кнопку Выбрать
 function choiceOneCity() {
 
@@ -96,7 +101,8 @@ function choiceOneCity() {
             longitude = arrLongitude[i];
             showWeather();
 
-
+            nameCity.innerText = citiesArray[i]
+            people.innerText = parse(populationArray[i])
 
 
         }
@@ -128,6 +134,7 @@ function getDate() {
     hours.textContent = moment(nowDateCity).format('HH:mm');
     dayWeek.textContent = moment(nowDateCity).format('dddd');
 }
+
 //Функция для вывода времени и даты, обновляется каждую секунду-время меняется, как часы.    
 const intervalId = setInterval(function () {
     getDate();
@@ -151,9 +158,8 @@ function choiceCityOnClickCity() {
 
                 getInfo(infoArray[i]);
 
-
-
-
+                nameCity.innerText = citiesArray[i]
+                people.innerText = parse(populationArray[i])
 
 
 
@@ -182,8 +188,8 @@ function choiceCityOnClickNumbers() {
 
                 getInfo(infoArray[i]);
 
-
-
+                nameCity.innerText = citiesArray[i]
+                people.innerText = parse(populationArray[i])
 
 
 
