@@ -166,6 +166,8 @@ function choiceCityOnClickNumbers() {
 
                 getInfo(infoArray[i]);
 
+                buildChart(dataPopulation[i]);
+
 
 
 
@@ -280,25 +282,24 @@ const parse = (s) => [...s.replace(/[^0-9]/g, "")].reduce((a, c, i, l) => a += c
 //Альбина
 //Функция для вывода графика по городу и численности населения
 function buildChart(item) {
-    values = item.population; //данные о численности
-    console.log(values);
+    values = item.population; //Данные о численности
 
     const ctx = document.getElementById("myChart").getContext('2d');
 
     if (myChart != null) {
-        myChart.destroy(); //
+        myChart.destroy(); // Очистка
     }
 
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2021", "2022"], // метки
+            labels: ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"], // Метки
             datasets: [{
                 label: 'Численность населения',
                 data: values, // Значения
                 backgroundColor: 'rgba(14,156,255,0.2)',
                 borderColor: '#0E9CFF',
-                fill: true // заливка линейного графика цветом
+                fill: true // Заливка линейного графика цветом
             }]
         },
         options: {
@@ -309,7 +310,7 @@ function buildChart(item) {
 
     return myChart;
 }
-//--Альбина*/
+//--Альбина
 
 //Функция заносит данные о городах и населении в таблицу при загрузке
 function setTableInfo() {
