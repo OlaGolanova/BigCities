@@ -29,9 +29,9 @@ const tableNumbers = document.querySelectorAll('.table__numbers'); //Колле�
 const citycard = document.querySelector('.citycard');
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
 const table = document.querySelector('table');
-
 const nameCity = document.querySelector('.name');
 const people = document.querySelector('.number')
+const btnArrLocalStorage = [];//В массив заносятся данные о том, какая кнопка сортировки городов выбрана
 
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function () {
     animationLoad();
     choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
     choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
-
+    
 
 });
 
@@ -100,7 +100,7 @@ function choiceOneCity() {
             latitude = arrLatitude[i];
             longitude = arrLongitude[i];
             showWeather(); 
-            
+
             nameCity.innerText = citiesArray[i]
             people.innerText = parse(populationArray[i])
 
@@ -237,6 +237,12 @@ function sortCitiesDownA() {
         .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
 
     table.tBodies[0].append(...sortedRows);
+
+    btnArrLocalStorage[0] = true;
+    btnArrLocalStorage[1] = false;
+    btnArrLocalStorage[2] = false;
+    btnArrLocalStorage[3] = false;
+    setLocalStorage();
 }
 //Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
 function sortCitiesUpA() {
@@ -255,6 +261,12 @@ function sortCitiesUpA() {
         .reverse();
 
     table.tBodies[0].append(...sortedRows);
+
+    btnArrLocalStorage[1] = true;
+    btnArrLocalStorage[0] = false;
+    btnArrLocalStorage[2] = false;
+    btnArrLocalStorage[3] = false;
+    setLocalStorage();
 }
 
 //Функция сортировки городов по численности населения от большего к меньшему, вызывается при нажатии на соответствующую кнопку 
@@ -274,6 +286,13 @@ function sortCitiesDownPeople() {
         .reverse();
 
     table.tBodies[0].append(...sortedRows);
+
+    btnArrLocalStorage[0] = false;
+    btnArrLocalStorage[1] = false;
+    btnArrLocalStorage[2] = true;
+    btnArrLocalStorage[3] = false;
+    setLocalStorage();
+  
 }
 //Функция сортировки городов по численности населения от меньшего к большему,  вызывается при нажатии на соответствующую кнопку 
 function sortCitiesUpPeople() {
@@ -291,6 +310,12 @@ function sortCitiesUpPeople() {
         .sort((rowA, rowB) => rowA.cells[1].innerHTML > rowB.cells[1].innerHTML ? 1 : -1);
 
     table.tBodies[0].append(...sortedRows);
+
+    btnArrLocalStorage[3] = true;
+    btnArrLocalStorage[0] = false;
+    btnArrLocalStorage[1] = false;
+    btnArrLocalStorage[2] = false;
+    setLocalStorage();
 
 }
 //Регулярное выражение // число преобразуется в вид с пробелами 1_111_111
@@ -450,9 +475,6 @@ async function showWeather() {
 
 
 }
-
-
-
 // Функция валидации поля с названием города
 function cleanNameCity(param) {
 
@@ -474,12 +496,9 @@ function cleanNameCity(param) {
         param = param.slice(0, 1).toUpperCase() + param.slice(1);
         return param;
     }
-
-
 }
 
 // Направление ветра
-
 function textWindDirection(val) {
     let valRound = val;
     let windDirection;
@@ -513,9 +532,6 @@ function textWindDirection(val) {
 
     return windDirection;
 }
-
-
-
 function howWeather(numb) {
     let how = numb;
     switch (how) {
@@ -593,3 +609,11 @@ function howWeather(numb) {
 
     return how;
 }
+
+//Функция записывает данные в localStorage
+function setLocalStorage(){
+   
+    let serializedBtnArrLocalStorage = JSON.stringify(btnArrLocalStorage);
+    localStorage.setItem("btnArrLocalStorage", serializedBtnArrLocalStorage );
+};
+
