@@ -162,6 +162,10 @@ h2 {
   height: 389px;
 }
 
+.swiper-slider-item {
+  opacity: 0;
+}
+
 .swiper-slide img {
   display: block;
   width: 100%;

@@ -358,6 +358,21 @@ swiper-container {
   position: relative;
 }
 
+.swiper-wrapper {
+  --gap: 1rem;
+  gap: var(--gap);
+}
+
+.swiper-slider-item {
+  flex: 0 0 auto;
+  width: 100%;
+  display: none;
+}
+
+.swiper-slider-item.active {
+  display: block;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   position: absolute;

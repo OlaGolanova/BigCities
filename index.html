@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/fonts.css">
   <link rel="stylesheet" href="./scss/app.css">
+  <link rel="stylesheet" href="./scss/infoCity.css">
 </head>
 
 <body>
@@ -128,13 +129,12 @@
             <div class="date">27.09.2022</div>
           </div>
         </div>
-        <div class="citycard__item slider">
+        <div class="citycard__item slider" data-slider="itc-slider" data-loop="true" data-autoplay="true"
+          data-interval="7000">
           <div class="swiper">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
-              <div class="swiper-slide"> <img src="./design/img/Tokio.jpg" alt="City"></div>
-
             </div>
 
             <div class="swiper-button-prev swiper-button-disabled"><img src="./design/icons/arrow-left.svg"
@@ -146,8 +146,6 @@
       </div>
     </div>
   </div>
-
-
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
