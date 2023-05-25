@@ -29,9 +29,11 @@ const tableNumbers = document.querySelectorAll('.table__numbers'); //Колле�
 const citycard = document.querySelector('.citycard');
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
 const table = document.querySelector('table');
+
+let myChart = null;
 const nameCity = document.querySelector('.name');
 const people = document.querySelector('.number')
-const btnArrLocalStorage = [];//В массив заносятся данные о том, какая кнопка сортировки городов выбрана
+const btnArrLocalStorage = []; //В массив заносятся данные о том, какая кнопка сортировки городов выбрана
 
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -52,12 +54,13 @@ window.addEventListener('DOMContentLoaded', function () {
     animationLoad();
     choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
     choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
-    
+
 
 });
 
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
+const dataPopulation = JSON.parse(cityPopulation);
 
 
 
@@ -97,9 +100,11 @@ function choiceOneCity() {
 
             getInfo(infoArray[i]);
 
+            buildChart(dataPopulation[i]);
+
             latitude = arrLatitude[i];
             longitude = arrLongitude[i];
-            showWeather(); 
+            showWeather();
 
             nameCity.innerText = citiesArray[i]
             people.innerText = parse(populationArray[i])
@@ -110,6 +115,7 @@ function choiceOneCity() {
 
     input.value = '';
 }
+
 //Функция для вывода информации о городе
 function getInfo(elem) {
     facts.innerHTML = "";
@@ -139,6 +145,7 @@ function getDate() {
 const intervalId = setInterval(function () {
     getDate();
 }, 1000)
+
 //При клике на город выходит информация о нем
 function choiceCityOnClickCity() {
 
@@ -158,9 +165,11 @@ function choiceCityOnClickCity() {
 
                 getInfo(infoArray[i]);
 
+                buildChart(dataPopulation[i]);
+
                 latitude = arrLatitude[i];
                 longitude = arrLongitude[i];
-                showWeather(); 
+                showWeather();
 
                 nameCity.innerText = citiesArray[i]
                 people.innerText = parse(populationArray[i])
@@ -192,9 +201,11 @@ function choiceCityOnClickNumbers() {
 
                 getInfo(infoArray[i]);
 
+                buildChart(dataPopulation[i]);
+
                 latitude = arrLatitude[i];
                 longitude = arrLongitude[i];
-                showWeather(); 
+                showWeather();
 
                 nameCity.innerText = citiesArray[i]
                 people.innerText = parse(populationArray[i])
@@ -208,7 +219,6 @@ function choiceCityOnClickNumbers() {
     }
     input.value = '';
 }
-
 
 //Функция вызывается при нажатие на кнопку Все города
 function choiceAllCities(event) {
@@ -292,7 +302,7 @@ function sortCitiesDownPeople() {
     btnArrLocalStorage[2] = true;
     btnArrLocalStorage[3] = false;
     setLocalStorage();
-  
+
 }
 //Функция сортировки городов по численности населения от меньшего к большему,  вызывается при нажатии на соответствующую кнопку 
 function sortCitiesUpPeople() {
@@ -320,6 +330,39 @@ function sortCitiesUpPeople() {
 }
 //Регулярное выражение // число преобразуется в вид с пробелами 1_111_111
 const parse = (s) => [...s.replace(/[^0-9]/g, "")].reduce((a, c, i, l) => a += c + ((l.length - i) % 3 == 1 ? " " : "") || a, "");
+
+//Альбина
+//Функция для вывода графика по городу и численности населения
+function buildChart(item) {
+    values = item.population; //Данные о численности
+
+    const ctx = document.getElementById("myChart").getContext('2d');
+
+    if (myChart != null) {
+        myChart.destroy(); // Очистка
+    }
+
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"], // Метки
+            datasets: [{
+                label: 'Численность населения',
+                data: values, // Значения
+                backgroundColor: 'rgba(14,156,255,0.2)',
+                borderColor: '#0E9CFF',
+                fill: true // Заливка линейного графика цветом
+            }]
+        },
+        options: {
+            responsive: true, // Даем Chart.js указание реагировать правильно.
+            maintainAspectRatio: false, // Добавляем эту строку, чтобы избежать переключения на полноразмерный вид (высоту/ширину) 
+        }
+    });
+
+    return myChart;
+}
+//--Альбина
 
 //Функция заносит данные о городах и населении в таблицу при загрузке
 function setTableInfo() {
@@ -532,6 +575,7 @@ function textWindDirection(val) {
 
     return windDirection;
 }
+
 function howWeather(numb) {
     let how = numb;
     switch (how) {
@@ -611,9 +655,8 @@ function howWeather(numb) {
 }
 
 //Функция записывает данные в localStorage
-function setLocalStorage(){
-   
-    let serializedBtnArrLocalStorage = JSON.stringify(btnArrLocalStorage);
-    localStorage.setItem("btnArrLocalStorage", serializedBtnArrLocalStorage );
-};
+function setLocalStorage() {
 
+    let serializedBtnArrLocalStorage = JSON.stringify(btnArrLocalStorage);
+    localStorage.setItem("btnArrLocalStorage", serializedBtnArrLocalStorage);
+};
