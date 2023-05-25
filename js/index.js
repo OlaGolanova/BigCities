@@ -30,15 +30,15 @@ const citycard = document.querySelector('.citycard');
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
 const table = document.querySelector('table');
 const nameCity = document.querySelector('.name');
-const people = document.querySelector('.number')
-const btnArrLocalStorage = [];//В массив заносятся данные о том, какая кнопка сортировки городов выбрана
+const people = document.querySelector('.number');
+let btnLocalStorage = '';//В массив заносятся данные о том, какая кнопка сортировки городов выбрана
+
 
 
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
-
     //При загрузке страницы заносятся города в таблицу
-    setTableInfo();
+    getActiveBtn();
     //Кнопки
     btnChoice.addEventListener('click', choiceOneCity);
     btnAllCities.addEventListener('click', choiceAllCities);
@@ -60,6 +60,31 @@ const dateArray = JSON.parse(datejson); //достаем данные по вр�
 const infoArray = JSON.parse(infoCities);
 
 
+//Функция записывает данные в localStorage
+function setLocalStorage(){
+   
+    let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
+    localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage );
+};
+
+//Проверяем, есть ли данные в localStorage 
+function getActiveBtn(){
+    const infoSortBtn = localStorage.getItem('btnLocalStorage');
+
+    if (infoSortBtn == null || infoSortBtn == 2){
+        setTableInfo();
+    } else if (infoSortBtn == 0){
+        setTableInfo();
+        sortCitiesDownA()
+    } else if (infoSortBtn == 1){
+        setTableInfo();
+        sortCitiesUpA();
+    } else {
+        setTableInfo();
+        sortCitiesUpPeople();
+    }
+   
+}
 
 
 
@@ -103,7 +128,6 @@ function choiceOneCity() {
 
             nameCity.innerText = citiesArray[i]
             people.innerText = parse(populationArray[i])
-
 
         }
     }
@@ -238,10 +262,7 @@ function sortCitiesDownA() {
 
     table.tBodies[0].append(...sortedRows);
 
-    btnArrLocalStorage[0] = true;
-    btnArrLocalStorage[1] = false;
-    btnArrLocalStorage[2] = false;
-    btnArrLocalStorage[3] = false;
+    btnLocalStorage = 0;
     setLocalStorage();
 }
 //Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
@@ -262,10 +283,7 @@ function sortCitiesUpA() {
 
     table.tBodies[0].append(...sortedRows);
 
-    btnArrLocalStorage[1] = true;
-    btnArrLocalStorage[0] = false;
-    btnArrLocalStorage[2] = false;
-    btnArrLocalStorage[3] = false;
+    btnLocalStorage = 1;
     setLocalStorage();
 }
 
@@ -287,10 +305,7 @@ function sortCitiesDownPeople() {
 
     table.tBodies[0].append(...sortedRows);
 
-    btnArrLocalStorage[0] = false;
-    btnArrLocalStorage[1] = false;
-    btnArrLocalStorage[2] = true;
-    btnArrLocalStorage[3] = false;
+    btnLocalStorage = 2;
     setLocalStorage();
   
 }
@@ -311,10 +326,7 @@ function sortCitiesUpPeople() {
 
     table.tBodies[0].append(...sortedRows);
 
-    btnArrLocalStorage[3] = true;
-    btnArrLocalStorage[0] = false;
-    btnArrLocalStorage[1] = false;
-    btnArrLocalStorage[2] = false;
+    btnLocalStorage = 3;
     setLocalStorage();
 
 }
@@ -323,7 +335,6 @@ const parse = (s) => [...s.replace(/[^0-9]/g, "")].reduce((a, c, i, l) => a += c
 
 //Функция заносит данные о городах и населении в таблицу при загрузке
 function setTableInfo() {
-
     for (let i = 0; i < citiesArray.length; i++) {
         tableCities[i].textContent = citiesArray[i];
     };
@@ -333,7 +344,6 @@ function setTableInfo() {
 };
 
 function animation() {
-
     gsap.from('.citycard', {
         opacity: 0,
         scale: 0,
@@ -344,24 +354,20 @@ function animation() {
         scale: 0,
         duration: 0.6
     })
-}
+};
 
 function animationLoad() {
     gsap.from('.panel', {
         opacity: 0.1,
         yPercent: 50,
         duration: 1.2
-
     })
-
     gsap.from('.cities', {
         opacity: 0.1,
         y: 50,
         duration: 1.2
-
     })
-
-}
+};
 //Функция для блокировки кнопок сортировки
 function disableBtn() {
     btnSortDownA.disabled = true;
@@ -609,11 +615,4 @@ function howWeather(numb) {
 
     return how;
 }
-
-//Функция записывает данные в localStorage
-function setLocalStorage(){
-   
-    let serializedBtnArrLocalStorage = JSON.stringify(btnArrLocalStorage);
-    localStorage.setItem("btnArrLocalStorage", serializedBtnArrLocalStorage );
-};
 
