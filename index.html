@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/fonts.css">
   <link rel="stylesheet" href="./scss/app.css">
-  <link rel="stylesheet" href="./scss/infoCity.css">
 </head>
 
 <body>
@@ -40,9 +39,11 @@
           fill="black" />
       </svg>
     </button>
-    <input type="text" id="input" required placeholder="Введите город">
-    <button class="panel__btn-choice">Выбрать</button>
-    <button class="panel__btn-all-citie">Все города</button>
+    <form>
+      <input type="text" id="input" required placeholder="Введите город">
+      <button type="submit" class="panel__btn-choice">Выбрать</button>
+      <button type="submit" class="panel__btn-all-citie">Все города</button>
+    </form>
   </div>
 
   <table class="cities">
@@ -97,8 +98,7 @@
         <div class="citycard__item chart">
           <h2>Рост населения за последние 10 лет</h2>
           <div class="chartblock">
-            <img src="./design/img/chart.png" alt="">
-            <!-- <canvas id="myChart"></canvas> -->
+            <canvas id="myChart"></canvas>
           </div>
         </div>
         <div class="citycard__item info">
@@ -111,14 +111,14 @@
       <div class="citycard__body-right">
         <div class="citycard__item weather">
           <div class="weather__left">
-            <img src="./design/img/weather.jpg" alt="Current weather" class="current-img">
-            <div class="temparature">+17°</div>
+            <img src="" alt="Current weather" class="current-img">
+            <div class="temparature"></div>
           </div>
           <div class="weather__right">
-            <div class="wind">2 м/с, СЗ</div>
-            <div class="description">Малооблачно</div>
-            <div class="feelslike">Ощущается как +15°</div>
-            <div class="humidity">Влажность 77%</div>
+            <div class="wind"></div>
+            <div class="description"></div>
+            <div class="feelslike"></div>
+            <div class="humidity"></div>
 
           </div>
         </div>
@@ -129,12 +129,13 @@
             <div class="date">27.09.2022</div>
           </div>
         </div>
-        <div class="citycard__item slider" data-slider="itc-slider" data-loop="true" data-autoplay="true"
-          data-interval="7000">
+        <div class="citycard__item slider">
           <div class="swiper">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
+              <div class="swiper-slide"> <img src="./design/img/Tokio.jpg" alt="City"></div>
+
             </div>
 
             <div class="swiper-button-prev swiper-button-disabled"><img src="./design/icons/arrow-left.svg"
@@ -148,8 +149,11 @@
   </div>
 
 
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="text/javascript" src="./js/JSONInfoCity.js"></script>
   <script src="js/JSONSlider.js"></script>
   <script src="js/JSONDate.js"></script>
@@ -157,5 +161,6 @@
   <script src="js/JSONChart.js"></script>
   <script src="js/index.js"></script>
 </body>
+
 
 </html>
