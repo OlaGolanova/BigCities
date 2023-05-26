@@ -81,6 +81,7 @@ h2 {
     font-size: 17px;
     line-height: 20px;
     border-left:  2px solid #F5F5F5;
+    
 }
 
 .currenttime, .temparature {
@@ -90,9 +91,14 @@ h2 {
 
 .current-img {
     border-radius: 5px; 
+    max-height: 120px;
 }
 
-.weather {display: flex;}
+.weather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .weather__left {
     position: relative;
@@ -164,6 +170,14 @@ h2 {
 .swiper-button-disabled > img {
     opacity: 0.35;
 } 
-
-
+form {
+    position: relative ;
+}
+#errorMessage {
+    bottom: -19px;
+    left:0;
+    position: absolute;
+    color:red;
+    margin-left: 10%;
+    }
 //Юля

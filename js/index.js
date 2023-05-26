@@ -68,9 +68,7 @@ window.addEventListener('DOMContentLoaded', function () {
 // Координаты для погоды из JSON
 const arrLatitude = JSON.parse(arrLatitudeJson);
 const arrLongitude = JSON.parse(arrLongitudeJson);
-//
-const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
-const infoArray = JSON.parse(infoCities);
+
 
 //Функция записывает данные в localStorage
 function setLocalStorage(){
@@ -108,39 +106,31 @@ let latitude;
 let longitude;
 
 //Функция  вызывается при клике на кнопку Выбрать
-function choiceOneCity(evt) {
-
+function choiceOneCity(eventt) {
+    eventt.preventDefault();
     // Валидация поля
-    evt.preventDefault();
-
     if (input.value == '') {
         errorMessage.innerHTML = 'Поле не заполнено*';
-
     } else {
         let cleanCityValue = cleanNameCity(input.value);
 
         for (let i = 0; i < citiesArray.length; i++) {
 
-
             if (cleanCityValue == citiesArray[i]) {
-
                 getInfo(infoArray[i]);
-
-
                 cities.classList.add('hidden');
                 citycard.classList.remove('hidden');
                 disableBtn();
                 animation();
-
                 getTimeZoneOfsset = dateArray[i];
                 getDate(); //Функция выводит время на экран
-
                 getInfo(infoArray[i]);
-
-                // Погода
+                buildChart(dataPopulation[i]);
                 latitude = arrLatitude[i];
                 longitude = arrLongitude[i];
                 showWeather();
+                nameCity.innerText = citiesArray[i]
+                people.innerText = parse(populationArray[i])
             }
         }
     }
@@ -234,6 +224,7 @@ function choiceAllCities(event) {
     cities.classList.remove('hidden');
     citycard.classList.add('hidden');
     input.value = '';
+    errorMessage.innerHTML = '';
     animation();
     enableBtn();
 }
