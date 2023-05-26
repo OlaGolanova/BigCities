@@ -1,7 +1,3 @@
-// Координаты локации
-const arrLatitude = ['35.69', '28.65', '31.22', '-23.55', '19.43', '30.06', '32.73', '19.07', '39.91', '34.69'];
-const arrLongitude = ['139.69', '77.23', '121.46', '-46.64', '-99.13', '31.25', '76.27', '72.88', '116.40', '135.50'];
-
 // Вывод погоды
 const temparature = document.querySelector('.temparature');
 const wind = document.querySelector('.wind');
@@ -11,6 +7,12 @@ const humidity = document.querySelector('.humidity');
 const currentImg = document.querySelector('.current-img');
 const weatherCity = document.querySelector('.weather');
 // 
+
+// Вывод ошибки "Поле не заполнено*"
+const errorMessage = document.getElementById('errorMessage');
+
+// 
+
 const cities = document.querySelector('.cities'); //Таблица с городами 
 const btnChoice = document.querySelector('.panel__btn-choice'); //Кнопка Выбрать город
 const btnAllCities = document.querySelector('.panel__btn-all-citie'); //Кнопка ВСЕ ГОРОДА
@@ -52,6 +54,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
 });
 
+// Координаты для погоды из JSON
+const arrLatitude = JSON.parse(arrLatitudeJson);
+const arrLongitude = JSON.parse(arrLongitudeJson);
+//
+
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
 
@@ -67,45 +74,62 @@ moment.locale('ru', {
 
 });
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
+
+
+// Переменные для координат погоды
 let latitude;
 let longitude;
+// 
+
 //Функция  вызывается при клике на кнопку Выбрать
-function choiceOneCity() {
+function choiceOneCity(evt) {
 
-    let cleanCityValue = cleanNameCity(input.value);
+    // Валидация поля
+    evt.preventDefault();
 
-    for (let i = 0; i < citiesArray.length; i++) {
+    if (input.value == '') {
+        errorMessage.innerHTML = 'Поле не заполнено*';
 
+    } else {
+        let cleanCityValue = cleanNameCity(input.value);
 
-        if (cleanCityValue == citiesArray[i]) {
-
-            getInfo(infoArray[i]);
-
-
-            cities.classList.add('hidden');
-            citycard.classList.remove('hidden');
-            disableBtn();
-            animation();
-
-            getTimeZoneOfsset = dateArray[i];
-            getDate(); //Функция выводит время на экран
-
-            getInfo(infoArray[i]);
-
-            latitude = arrLatitude[i];
-            longitude = arrLongitude[i];
-            showWeather();
+        for (let i = 0; i < citiesArray.length; i++) {
 
 
+            if (cleanCityValue == citiesArray[i]) {
+
+                getInfo(infoArray[i]);
 
 
+                cities.classList.add('hidden');
+                citycard.classList.remove('hidden');
+                disableBtn();
+                animation();
+
+                getTimeZoneOfsset = dateArray[i];
+                getDate(); //Функция выводит время на экран
+
+                getInfo(infoArray[i]);
+
+                // Погода
+                latitude = arrLatitude[i];
+                longitude = arrLongitude[i];
+                showWeather();
+
+
+
+            }
         }
     }
 
     input.value = '';
 }
+// Получение даты
+let dateNow;
 //Функция для вывода информации о городе
 function getInfo(elem) {
+
+    errorMessage.innerHTML = '';
     facts.innerHTML = "";
 
     facts.insertAdjacentHTML("beforeEnd", `<p class="country">Страна: ${elem.country}</p>
@@ -119,20 +143,17 @@ function getInfo(elem) {
 //Выводит дату и время при загрузке страницы
 function getDate() {
     //Получаем getTimeZoneofsset выбранного города из, нужен для посекундного вывода времени
-    let timeZone = new Date().getTimezoneOffset(); // Разница в минутах между utc и местным часовым поясом пользователя
-    let time = new Date().getTime(); //Таймстамп пользователя в мс         
-    let deltaTimeZone = timeZone - getTimeZoneOfsset; // Разница в часовых поясах пользователя и выбранного города
-    let timeCity = time + (deltaTimeZone * 60 * 1000); //Время в выбранном городе в таймстампе
-    let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе 
-    date.textContent = moment(nowDateCity).format('D. MM. YYYY');
-    hours.textContent = moment(nowDateCity).format('HH:mm');
-    dayWeek.textContent = moment(nowDateCity).format('dddd');
+    dateNow = getDateNow();
+    date.textContent = moment(dateNow).format('D. MM. YYYY');
+    hours.textContent = moment(dateNow).format('HH:mm');
+    dayWeek.textContent = moment(dateNow).format('dddd');
 }
 //Функция для вывода времени и даты, обновляется каждую секунду-время меняется, как часы.    
 const intervalId = setInterval(function () {
     getDate();
 }, 1000)
 //При клике на город выходит информация о нем
+
 function choiceCityOnClickCity() {
 
     for (let i = 0; i < tableCities.length; i++) {
@@ -151,8 +172,10 @@ function choiceCityOnClickCity() {
 
                 getInfo(infoArray[i]);
 
-
-
+                // Погода
+                latitude = arrLatitude[i];
+                longitude = arrLongitude[i];
+                showWeather();
 
 
 
@@ -166,6 +189,7 @@ function choiceCityOnClickCity() {
 
 //При клике на численность города выходит информация о городе
 function choiceCityOnClickNumbers() {
+
 
     for (let i = 0; i < tableNumbers.length; i++) {
 
@@ -182,8 +206,10 @@ function choiceCityOnClickNumbers() {
 
                 getInfo(infoArray[i]);
 
-
-
+                // Погода
+                latitude = arrLatitude[i];
+                longitude = arrLongitude[i];
+                showWeather();
 
 
 
@@ -352,7 +378,6 @@ function getDateNow() {
 
 // Время для вывода погоды
 function dateForWeather() {
-    let dateNow = getDateNow();
     let day = dateNow.getDate(); //Получаем число месяца
     let month = dateNow.getMonth() + 1; //Получаем месяц в привычном нам формате от 1 до 12
     let year = dateNow.getFullYear(); //Получаем год
@@ -461,8 +486,10 @@ function cleanNameCity(param) {
         return param;
     }
 
-
 }
+
+
+
 
 // Направление ветра
 
@@ -500,7 +527,7 @@ function textWindDirection(val) {
     return windDirection;
 }
 
-
+// Получение картинки для определенной погоды 
 
 function howWeather(numb) {
     let how = numb;
