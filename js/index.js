@@ -18,8 +18,6 @@ const btnSortUpA = document.querySelector('.panel__btn-two'); //Кнопка с�
 const btnSortDownPeople = document.querySelector('.panel__btn-three'); //Кнопка сортировать по уменьшению численности
 const btnSortUpPeople = document.querySelector('.panel__btn-four'); //Кнопка сортировать по увеличению численности
 const input = document.getElementById('input'); //Инпут для ввода города
-const citiesArray = ['Токио', 'Дели', 'Шанхай', 'Сан-Паулу', 'Мехико', 'Каир', 'Дакка', 'Мумбаи', 'Пекин', 'Осака']; //Маcсив из названий городов, которые могут быть выбраны
-const populationArray = ['37435191', '29399141', '26317104', '21846507', '21671908', '20484965', '20283552', '20185064', '20035455', '19222665']; //массив из численнности населения
 const date = document.querySelector('.date'); //блок, куда выводим дату
 const hours = document.querySelector('.currenttime'); //блок, куда выводим время
 const dayWeek = document.querySelector('.day-of-week'); //блок, куда выводим день недели
@@ -28,14 +26,27 @@ const tableNumbers = document.querySelectorAll('.table__numbers'); //Колле�
 const citycard = document.querySelector('.citycard');
 const facts = document.querySelector('.citycard__item.info'); //div с информацией о городах
 const table = document.querySelector('table');
-
 let myChart = null;
 const nameCity = document.querySelector('.name');
 const people = document.querySelector('.number');
 let btnLocalStorage = '';//В массив заносятся данные о том, какая кнопка сортировки городов выбрана
+//
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
 const dataPopulation = JSON.parse(cityPopulation);
+//
+const citiesArray = []; //Маcсив из названий городов, которые могут быть выбраны, получаем перебором из массива в JSON
+const populationArray = []; //массив из численнности населения,  получаем перебором из массива в JSON
+
+for (let i =0; i < dataPopulation.length; i++) {
+    citiesArray.push(dataPopulation[i].city);
+   };
+for (let i =0; i < dataPopulation.length; i++) {
+    populationArray.push(String(dataPopulation[i].population.pop()));
+    };
+
+// const citiesArray = ['Токио', 'Дели', 'Шанхай', 'Сан-Паулу', 'Мехико', 'Каир', 'Дакка', 'Мумбаи', 'Пекин', 'Осака']; //Маcсив из названий городов, которые могут быть выбраны
+// const populationArray = ['37435191', '29399141', '26317104', '21846507', '21671908', '20484965', '20283552', '20185064', '20035455', '19222665']; //массив из численнности населения
 
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
@@ -579,9 +590,8 @@ function howWeather(numb) {
     return how;
 }
 
-//Функция записывает данные в localStorage
+//Функция записывает данные о нажатых кнопах в localStorage
 function setLocalStorage(){
     let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
     localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage );
 };
-
