@@ -120,6 +120,7 @@ function getActiveBtn() {
     sortCitiesUpPeople();
   }
 }
+
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
 moment.locale("ru", {
@@ -133,6 +134,7 @@ moment.locale("ru", {
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 let latitude;
 let longitude;
+
 //Функция  вызывается при клике на кнопку Выбрать
 function choiceOneCity() {
   let cleanCityValue = cleanNameCity(input.value);
@@ -152,6 +154,7 @@ function choiceOneCity() {
       showWeather();
       nameCity.innerText = citiesArray[i];
       people.innerText = parse(populationArray[i]);
+      showSlider();
     }
   }
   input.value = "";

@@ -13,6 +13,18 @@ const imgCities = [
     ],
   },
   {
+    city: "Дели",
+    imgUrls: [
+      "../design/img/cities/delhi/delhi1.jpg",
+      "../design/img/cities/delhi/delhi2.jpg",
+      "../design/img/cities/delhi/delhi3.jpg",
+      "../design/img/cities/delhi/delhi4.jpg",
+      "../design/img/cities/delhi/delhi5.jpg",
+      "../design/img/cities/delhi/delhi6.jpg",
+      "../design/img/cities/delhi/delhi7.jpg",
+    ],
+  },
+  {
     city: "Шанхай",
     imgUrls: [
       "../design/img/cities/shanghai/shanghai1.jpg",
@@ -46,18 +58,6 @@ const imgCities = [
       "../design/img/cities/mexico/mexico5.jpg",
       "../design/img/cities/mexico/mexico6.jpg",
       "../design/img/cities/mexico/mexico7.jpg",
-    ],
-  },
-  {
-    city: "Дели",
-    imgUrls: [
-      "../design/img/cities/delhi/delhi1.jpg",
-      "../design/img/cities/delhi/delhi2.jpg",
-      "../design/img/cities/delhi/delhi3.jpg",
-      "../design/img/cities/delhi/delhi4.jpg",
-      "../design/img/cities/delhi/delhi5.jpg",
-      "../design/img/cities/delhi/delhi6.jpg",
-      "../design/img/cities/delhi/delhi7.jpg",
     ],
   },
   {
@@ -122,12 +122,12 @@ const imgCities = [
   },
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
-  // clear after function >>>>>>>
+let createSlidersElements = () => {
   let slidesWrapper = document.querySelector(".swiper-wrapper");
-  let cityName = document.querySelector(".citycard__name").textContent;
-  console.log(cityName);
-  let cityImagesArr = imgCities.find((elem) => elem.city === cityName).imgUrls;
+  let cityName = document.getElementById("input").value;
+  let cityImagesArr = imgCities.find(
+    (elem) => elem.city.toLowerCase() === cityName.toLowerCase()
+  ).imgUrls;
 
   cityImagesArr.forEach((elem) => {
     const slide = document.createElement("div");
@@ -138,23 +138,28 @@ document.addEventListener("DOMContentLoaded", () => {
     slide.appendChild(imageInSlide);
     slidesWrapper.appendChild(slide);
   });
-  // <<<<<<<<
-  let currentSlide = 0;
+};
+
+function showSlide(index) {
   let slides = document.querySelectorAll(".swiper-slider-item");
 
-  function showSlide(index) {
-    slides.forEach((elem) => {
-      elem.classList.remove("active");
-    });
-    slides[index].classList.add("active");
-  }
+  slides.forEach((elem) => {
+    elem.classList.remove("active");
+  });
+  slides[index].classList.add("active");
+}
 
+let showSlider = () => {
+  let currentSlide = 0;
+  createSlidersElements();
+  let slides = document.querySelectorAll(".swiper-slider-item");
   showSlide(currentSlide);
 
-  // перелистывание слайдов по нажатию кнопки //
+  // // перелистывание слайдов по нажатию кнопки //
   let btnPrev = document.querySelector(".swiper-button-prev");
   let btnNext = document.querySelector(".swiper-button-next");
 
+  console.log(slides);
   btnNext.addEventListener("click", () => {
     if (currentSlide + 1 < slides.length) {
       btnPrev.classList.remove("swiper-button-disabled");
@@ -177,4 +182,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     console.log("all is good");
   });
-});
+};
