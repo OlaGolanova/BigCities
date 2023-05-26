@@ -1,0 +1,14 @@
+@media (max-width: 640px) {
+  .game__question {
+    font-size: 22px;
+  }
+  .game .container .wrap__answer {
+    font-size: 18px;
+  }
+  .game .container .wrap__answer .answer-true {
+    font-size: 40px;
+  }
+  .game .container .wrap__answer .answer-false {
+    font-size: 40px;
+  }
+}/*# sourceMappingURL=media.css.map */
