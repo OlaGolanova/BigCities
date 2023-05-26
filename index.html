@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Большие города</title>
+  <link rel="icon" href="design/icons/icon.ico">
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/fonts.css">
   <link rel="stylesheet" href="./scss/app.css">
@@ -40,12 +41,12 @@
       </svg>
     </button>
     <form>
-
       <input type="text" id="input" placeholder="Введите город">
       <button type="submit" class="panel__btn-choice">Выбрать</button>
       <button type="submit" class="panel__btn-all-citie">Все города</button>
       <div id="errorMessage"></div>
     </form>
+    <a href="./game.html" target="_blank"><button class="panel__btn-game">Сыграем?</button></a>
   </div>
 
   <table class="cities">
@@ -100,8 +101,7 @@
         <div class="citycard__item chart">
           <h2>Рост населения за последние 10 лет</h2>
           <div class="chartblock">
-            <img src="./design/img/chart.png" alt="">
-            <!-- <canvas id="myChart"></canvas> -->
+            <canvas id="myChart"></canvas>
           </div>
         </div>
         <div class="citycard__item info">
@@ -156,6 +156,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="text/javascript" src="./js/JSONInfoCity.js"></script>
   <script src="js/JSONSlider.js"></script>
   <script src="js/JSONDate.js"></script>

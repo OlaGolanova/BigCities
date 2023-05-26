@@ -1,0 +1,35 @@
+
+@media(max-width: 1024px) {
+    
+}
+
+@media(max-width: 640px){
+ 
+    .game__question{
+        font-size: 22px;
+    }
+    .game {
+        .container {
+            .wrap__answer {
+                font-size: 18px;
+                .answer-true {
+                    font-size: 40px;
+                }
+                .answer-false {
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+   
+} 
+
+@media(max-width: 470px) {
+
+ 
+}
+
+@media(max-width: 376px) {
+    
+  
+}
