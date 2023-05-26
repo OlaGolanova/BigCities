@@ -653,3 +653,10 @@ h2 {
 .hidden {
   display: none;
 }/*# sourceMappingURL=app.css.map */
+
+/* Ошибка,если в поле ввода пусто */
+#errorMessage{
+color:red;
+margin-left: 10%;
+
+}
