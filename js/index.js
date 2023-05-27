@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', function () {
     btnSortUpA.addEventListener('click', sortCitiesUpA);
     btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
     btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
-    input.addEventListener('input', deleteMessage);
+    input.addEventListener('input', delMessage);
     animationLoad();
     choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
     choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
@@ -660,7 +660,7 @@ function setLocalStorage(){
     let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
     localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage );
 };
-function deleteMessage(){
+function delMessage(){
     errorMessage.innerHTML = '';
 };
    
