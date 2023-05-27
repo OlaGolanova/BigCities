@@ -11,7 +11,7 @@ body {
         justify-content: space-around;
         align-items: center;
         flex-wrap:wrap;
-        width: 849px;
+        width: 1000px;
         height: 90px;
         background-color: #fff;
         padding: 20px; 
@@ -98,7 +98,36 @@ body {
                 outline-offset: 0;
             }
         }
-        #input {
+        &__btn-game {
+            width: 143px;
+            height: 50px;
+            background-color:#F5F5F5;
+            border-radius: 5px;
+            border: none;
+            font-size: 13px;
+            font-family: Lato;
+            font-weight: 600;
+            text-transform: uppercase;
+            color:#0085FF;
+            border: 1px solid #0085FF;
+            &:hover {
+                background-color:#e5e4e4;
+                cursor: pointer;
+            }
+            &:active {
+                outline: 0;
+                outline-offset: 0;
+            }
+            &:hover {
+                outline: 0;
+                outline-offset: 0;
+            }
+            &:focus {
+                outline: 0;
+                outline-offset: 0;
+            }
+        }
+       #input {
         width: 250px;
         height: 50px;
         border-radius: 5px;

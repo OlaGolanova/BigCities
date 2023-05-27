@@ -131,7 +131,6 @@ const imgCities = [
     ],
   },
 ];
-// загрузка слайдера при клике на численность населения в таблице//
 
 // загрузка слайдера при вводе названия города в инпут//
 let createSlidersElements = (tempCityName) => {
@@ -140,7 +139,6 @@ let createSlidersElements = (tempCityName) => {
   let cityName = document.getElementById("input").value;
 
   if (!cityName) cityName = tempCityName;
-  console.log(cityName);
   let cityImagesArr = imgCities.find(
     (elem) => elem.city.toLowerCase() === cityName.toLowerCase()
   ).imgUrls;
@@ -155,22 +153,6 @@ let createSlidersElements = (tempCityName) => {
     slidesWrapper.appendChild(slide);
   });
 };
-setTimeout(() => {
-  console.log(document.querySelector("citycard__name"));
-}, 2000);
-// загрузка слайдера при клике на город в таблице//
-// let cityImagesArrByCityNameInTable = imgCities.find(
-//   (elem) => elem.city.toLowerCase() === tableCities[i].toLowerCase()
-// ).imgUrls;
-// cityImagesArrByCityNameInTable.forEach((elem) => {
-//   const slide = document.createElement("div");
-//   slide.classList.add("swiper-slider-item");
-//   const imageInSlide = document.createElement("img");
-//   imageInSlide.src = elem;
-//   imageInSlide.alt = "фото города";
-//   slide.appendChild(imageInSlide);
-//   slidesWrapper.appendChild(slide);
-// });
 
 function showSlide(index) {
   let slides = document.querySelectorAll(".swiper-slider-item");
@@ -181,12 +163,10 @@ function showSlide(index) {
 }
 
 let showSlider = (cityName) => {
-  console.log("click12");
   let currentSlide = 0;
   createSlidersElements(cityName);
   let slides = document.querySelectorAll(".swiper-slider-item");
   showSlide(currentSlide);
-  console.log("click1");
 
   // перелистывание слайдов по нажатию кнопки //
   let btnPrev = document.querySelector(".swiper-button-prev");
