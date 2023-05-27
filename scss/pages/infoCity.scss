@@ -174,10 +174,12 @@ form {
     position: relative ;
 }
 #errorMessage {
+    font-size: 14px;
+    font-family: Lato;
+    font-weight: 400;
     bottom: -19px;
-    left:0;
+    left: 17px;
     position: absolute;
-    color:red;
-    margin-left: 10%;
+    color:#0085FF;
     }
 //Юля

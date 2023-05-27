@@ -62,6 +62,11 @@ window.addEventListener('DOMContentLoaded', function () {
     animationLoad();
     choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
     choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
+
+    input.addEventListener('input', function(){
+        errorMessage.innerHTML = '';
+
+    });
 });
 
 
@@ -230,6 +235,7 @@ function choiceAllCities(event) {
 }
 //Функция сортировки городов по алфавиту от A-Я, вызывается при нажатии на кнопку A-Я
 function sortCitiesDownA() {
+    errorMessage.innerHTML = '';
     btnSortDownA.classList.add('btn-active');
     btnSortDownA.classList.add('active-svg-btn');
     btnSortUpA.classList.remove('btn-active');
@@ -250,6 +256,7 @@ function sortCitiesDownA() {
 }
 //Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
 function sortCitiesUpA() {
+    errorMessage.innerHTML = '';
     btnSortUpA.classList.add('btn-active');
     btnSortUpA.classList.add('active-svg-btn');
     btnSortDownA.classList.remove('btn-active');
@@ -272,6 +279,7 @@ function sortCitiesUpA() {
 
 //Функция сортировки городов по численности населения от большего к меньшему, вызывается при нажатии на соответствующую кнопку 
 function sortCitiesDownPeople() {
+    errorMessage.innerHTML = '';
     btnSortDownPeople.classList.add('btn-active');
     btnSortDownPeople.classList.add('active-svg-btn');
     btnSortUpPeople.classList.remove('btn-active');
@@ -294,6 +302,7 @@ function sortCitiesDownPeople() {
 }
 //Функция сортировки городов по численности населения от меньшего к большему,  вызывается при нажатии на соответствующую кнопку 
 function sortCitiesUpPeople() {
+    errorMessage.innerHTML = '';
     btnSortUpPeople.classList.add('btn-active');
     btnSortUpPeople.classList.add('active-svg-btn');
     btnSortDownPeople.classList.remove('btn-active');
@@ -622,3 +631,7 @@ function setLocalStorage(){
     let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
     localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage );
 };
+
+
+   
+
