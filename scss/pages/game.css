@@ -5,33 +5,17 @@
   width: 100%;
   min-height: 100vh;
   font-family: Lato;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .game__wrap {
   margin-top: 300px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .game .result {
   position: relative;
@@ -71,7 +55,6 @@
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 .game .start:hover {
@@ -92,7 +75,6 @@
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 .game .again:hover {
@@ -112,7 +94,6 @@
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 .game .main:hover {
@@ -124,19 +105,10 @@
   position: relative;
   z-index: 3;
   padding: 0 50px 0 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .game .container .wrap__answer {
   position: relative;
@@ -192,7 +164,6 @@
   font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 .game__btn:active {
@@ -212,14 +183,9 @@
   z-index: 5;
   margin-top: 100px;
   width: 50vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .game__btn-wrap .green {
   background-color: #37c81d;
