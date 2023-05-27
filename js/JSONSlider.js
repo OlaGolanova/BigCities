@@ -2,6 +2,7 @@
 const imgCities = [
   {
     city: "Токио",
+    population: "37435191",
     imgUrls: [
       "../design/img/cities/tokyo/tokyo1.jpg",
       "../design/img/cities/tokyo/tokyo2.jpg",
@@ -14,6 +15,7 @@ const imgCities = [
   },
   {
     city: "Дели",
+    population: "29399141",
     imgUrls: [
       "../design/img/cities/delhi/delhi1.jpg",
       "../design/img/cities/delhi/delhi2.jpg",
@@ -26,6 +28,7 @@ const imgCities = [
   },
   {
     city: "Шанхай",
+    population: "26317104",
     imgUrls: [
       "../design/img/cities/shanghai/shanghai1.jpg",
       "../design/img/cities/shanghai/shanghai2.jpg",
@@ -38,6 +41,7 @@ const imgCities = [
   },
   {
     city: "Сан-Паулу",
+    population: "21846507",
     imgUrls: [
       "../design/img/cities/sao-paolo/sao-paolo1.jpg",
       "../design/img/cities/sao-paolo/sao-paolo2.jpg",
@@ -50,6 +54,7 @@ const imgCities = [
   },
   {
     city: "Мехико",
+    population: "21671908",
     imgUrls: [
       "../design/img/cities/mexico/mexico1.jpg",
       "../design/img/cities/mexico/mexico2.jpg",
@@ -62,6 +67,7 @@ const imgCities = [
   },
   {
     city: "Каир",
+    population: "20484965",
     imgUrls: [
       "../design/img/cities/cairo/cairo1.jpg",
       "../design/img/cities/cairo/cairo2.jpg",
@@ -74,6 +80,7 @@ const imgCities = [
   },
   {
     city: "Дакка",
+    population: "20283552",
     imgUrls: [
       "../design/img/cities/dhaka/dhaka1.jpg",
       "../design/img/cities/dhaka/dhaka2.jpg",
@@ -86,6 +93,7 @@ const imgCities = [
   },
   {
     city: "Мумбаи",
+    population: "20185064",
     imgUrls: [
       "../design/img/cities/mumbai/mumbai1.jpg",
       "../design/img/cities/mumbai/mumbai2.jpg",
@@ -98,6 +106,7 @@ const imgCities = [
   },
   {
     city: "Пекин",
+    population: "20035455",
     imgUrls: [
       "../design/img/cities/beijing/beijing1.jpg",
       "../design/img/cities/beijing/beijing2.jpg",
@@ -110,6 +119,7 @@ const imgCities = [
   },
   {
     city: "Осака",
+    population: "19222665",
     imgUrls: [
       "../design/img/cities/osaka/osaka1.jpg",
       "../design/img/cities/osaka/osaka2.jpg",
@@ -117,14 +127,20 @@ const imgCities = [
       "../design/img/cities/osaka/osaka4.jpg",
       "../design/img/cities/osaka/osaka5.jpg",
       "../design/img/cities/osaka/osaka6.jpg",
-      "../design/img/cities/osakai/osaka7.jpg",
+      "../design/img/cities/osaka/osaka7.jpg",
     ],
   },
 ];
+// загрузка слайдера при клике на численность населения в таблице//
 
-let createSlidersElements = () => {
+// загрузка слайдера при вводе названия города в инпут//
+let createSlidersElements = (tempCityName) => {
   let slidesWrapper = document.querySelector(".swiper-wrapper");
+  slidesWrapper.innerHTML = "";
   let cityName = document.getElementById("input").value;
+
+  if (!cityName) cityName = tempCityName;
+  console.log(cityName);
   let cityImagesArr = imgCities.find(
     (elem) => elem.city.toLowerCase() === cityName.toLowerCase()
   ).imgUrls;
@@ -139,27 +155,43 @@ let createSlidersElements = () => {
     slidesWrapper.appendChild(slide);
   });
 };
+setTimeout(() => {
+  console.log(document.querySelector("citycard__name"));
+}, 2000);
+// загрузка слайдера при клике на город в таблице//
+// let cityImagesArrByCityNameInTable = imgCities.find(
+//   (elem) => elem.city.toLowerCase() === tableCities[i].toLowerCase()
+// ).imgUrls;
+// cityImagesArrByCityNameInTable.forEach((elem) => {
+//   const slide = document.createElement("div");
+//   slide.classList.add("swiper-slider-item");
+//   const imageInSlide = document.createElement("img");
+//   imageInSlide.src = elem;
+//   imageInSlide.alt = "фото города";
+//   slide.appendChild(imageInSlide);
+//   slidesWrapper.appendChild(slide);
+// });
 
 function showSlide(index) {
   let slides = document.querySelectorAll(".swiper-slider-item");
-
   slides.forEach((elem) => {
     elem.classList.remove("active");
   });
   slides[index].classList.add("active");
 }
 
-let showSlider = () => {
+let showSlider = (cityName) => {
+  console.log("click12");
   let currentSlide = 0;
-  createSlidersElements();
+  createSlidersElements(cityName);
   let slides = document.querySelectorAll(".swiper-slider-item");
   showSlide(currentSlide);
+  console.log("click1");
 
-  // // перелистывание слайдов по нажатию кнопки //
+  // перелистывание слайдов по нажатию кнопки //
   let btnPrev = document.querySelector(".swiper-button-prev");
   let btnNext = document.querySelector(".swiper-button-next");
 
-  console.log(slides);
   btnNext.addEventListener("click", () => {
     if (currentSlide + 1 < slides.length) {
       btnPrev.classList.remove("swiper-button-disabled");
@@ -180,6 +212,5 @@ let showSlider = () => {
     } else {
       btnNext.classList.remove("swiper-button-disabled");
     }
-    console.log("all is good");
   });
 };

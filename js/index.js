@@ -87,6 +87,7 @@ window.addEventListener("DOMContentLoaded", function () {
   getActiveBtn();
   //Кнопки
   btnChoice.addEventListener("click", choiceOneCity);
+
   btnAllCities.addEventListener("click", choiceAllCities);
   //Кнопки для сортировки
   btnSortDownA.addEventListener("click", sortCitiesDownA);
@@ -94,8 +95,8 @@ window.addEventListener("DOMContentLoaded", function () {
   btnSortDownPeople.addEventListener("click", sortCitiesDownPeople);
   btnSortUpPeople.addEventListener("click", sortCitiesUpPeople);
   animationLoad();
-  choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
-  choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
+  choiceCity(tableCities); //Функция выводит информацию о городе, при клике на название города
+  choiceCity(tableNumbers); //Функция выводит информацию о городе, при клике на количество населения в городе
 });
 
 //Функция записывает данные в localStorage
@@ -187,11 +188,12 @@ function getDate() {
 const intervalId = setInterval(function () {
   getDate();
 }, 1000);
-//При клике на город выходит информация о нем
-function choiceCityOnClickCity() {
-  for (let i = 0; i < tableCities.length; i++) {
-    tableCities[i].addEventListener("click", function (event) {
-      if (event.target == tableCities[i]) {
+
+// Выводит информацию о городе при клике на население или название города в таблице
+function choiceCity(cityArr) {
+  for (let i = 0; i < cityArr.length; i++) {
+    cityArr[i].addEventListener("click", function (event) {
+      if (event.target == cityArr[i]) {
         cities.classList.add("hidden");
         citycard.classList.remove("hidden");
         disableBtn();
@@ -205,29 +207,8 @@ function choiceCityOnClickCity() {
         showWeather();
         nameCity.innerText = citiesArray[i];
         people.innerText = parse(populationArray[i]);
-      }
-    });
-  }
-  input.value = "";
-}
-//При клике на численность города выходит информация о городе
-function choiceCityOnClickNumbers() {
-  for (let i = 0; i < tableNumbers.length; i++) {
-    tableNumbers[i].addEventListener("click", function (event) {
-      if (event.target == tableNumbers[i]) {
-        cities.classList.add("hidden");
-        citycard.classList.remove("hidden");
-        disableBtn();
-        animation();
-        getTimeZoneOfsset = dateArray[i];
-        getDate(); //Функция выводит время на экран
-        getInfo(infoArray[i]);
-        buildChart(dataPopulation[i]);
-        latitude = arrLatitude[i];
-        longitude = arrLongitude[i];
-        showWeather();
-        nameCity.innerText = citiesArray[i];
-        people.innerText = parse(populationArray[i]);
+        console.log("click");
+        showSlider(citiesArray[i]);
       }
     });
   }
