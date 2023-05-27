@@ -227,4 +227,16 @@ form {
   left: 17px;
   position: absolute;
   color: #0085FF;
+}
+
+.swiper-slider-item {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 100%;
+  display: none;
+}
+
+.swiper-slider-item.active {
+  display: block;
 }/*# sourceMappingURL=infoCity.css.map */
