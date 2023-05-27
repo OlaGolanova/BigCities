@@ -130,7 +130,7 @@ function choiceOneCity(eventt) {
                 longitude = arrLongitude[i];
                 showWeather();
                 nameCity.innerText = citiesArray[i]
-                people.innerText = parse(populationArray[i])
+                people.innerText = `(${parse(populationArray[i])})`
             }
         }
     }
@@ -182,7 +182,7 @@ function choiceCityOnClickCity() {
                 longitude = arrLongitude[i];
                 showWeather();
                 nameCity.innerText = citiesArray[i]
-                people.innerText = parse(populationArray[i])
+                people.innerText = `(${parse(populationArray[i])})`
             }
         })
     }
@@ -209,7 +209,7 @@ function choiceCityOnClickNumbers() {
 
                 buildChart(dataPopulation[i]);
                 nameCity.innerText = citiesArray[i]
-                people.innerText = parse(populationArray[i])
+                people.innerText = `(${parse(populationArray[i])})`
 
 
             }
@@ -314,7 +314,7 @@ function sortCitiesUpPeople() {
 
 }
 //Регулярное выражение // число преобразуется в вид с пробелами 1_111_111
-const parse = (s) => [...s.replace(/[^0-9]/g, "")].reduce((a, c, i, l) => a += c + ((l.length - i) % 3 == 1 ? " " : "") || a, "");
+const parse = (s) => s.replace(/\B(?=(?:\d{3})*$)/g, ' ');
 
 //Альбина
 //Функция для вывода графика по городу и численности населения
