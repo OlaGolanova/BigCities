@@ -166,7 +166,6 @@ let showSlider = (cityName) => {
   let currentSlide = 0;
   createSlidersElements(cityName);
   let slides = document.querySelectorAll(".swiper-slider-item");
-  createSlidersElements(cityName);
   showSlide(currentSlide);
 
   // перелистывание слайдов по нажатию кнопки //
