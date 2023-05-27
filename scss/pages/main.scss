@@ -6,7 +6,7 @@ body {
     min-height: 100vh;
     font-family: Lato;
     .panel {
-        margin: 50px 0px 0px 50px;
+        padding: 50px 0px 0px 50px;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -37,9 +37,9 @@ body {
             border: 1px solid #0085FF;
         }
         .active-svg-btn {
-             path {
+            path {
                 fill: #0085FF;
-              }
+                }
             
         }
         &__btn-choice {
@@ -150,7 +150,7 @@ body {
                 outline: 0;
                 outline-offset: 0;
             }
-       }
+        }
     }
     .cities {
         margin: 24px 0px 0px 50px;
