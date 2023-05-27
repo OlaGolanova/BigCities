@@ -5,9 +5,10 @@ body {
   min-height: 100vh;
   font-family: Lato;
 }
-
 body .panel {
-  padding: 50px 0px 0px 50px;
+  margin: 50px 0px 0px 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -22,7 +23,6 @@ body .panel {
   padding: 20px;
   border-radius: 5px;
 }
-
 body .panel .btn {
   width: 50px;
   height: 50px;
@@ -33,22 +33,18 @@ body .panel .btn {
   font-family: Lato;
   font-weight: 700;
 }
-
 body .panel .btn:hover {
   cursor: pointer;
   background-color: #e5e4e4;
 }
-
 body .panel .btn-active {
   background-color: #fff;
   color: #0085FF;
   border: 1px solid #0085FF;
 }
-
 body .panel .active-svg-btn path {
   fill: #0085FF;
 }
-
 body .panel__btn-choice {
   width: 120px;
   height: 50px;
@@ -60,27 +56,22 @@ body .panel__btn-choice {
   font-weight: 600;
   text-transform: uppercase;
 }
-
 body .panel__btn-choice:hover {
   background-color: #0569c6;
   cursor: pointer;
 }
-
 body .panel__btn-choice:active {
   outline: 0;
   outline-offset: 0;
 }
-
 body .panel__btn-choice:hover {
   outline: 0;
   outline-offset: 0;
 }
-
 body .panel__btn-choice:focus {
   outline: 0;
   outline-offset: 0;
 }
-
 body .panel__btn-all-citie {
   width: 143px;
   height: 50px;
@@ -93,22 +84,18 @@ body .panel__btn-all-citie {
   font-weight: 600;
   text-transform: uppercase;
 }
-
 body .panel__btn-all-citie:hover {
   background-color: #373636;
   cursor: pointer;
 }
-
 body .panel__btn-all-citie:active {
   outline: 0;
   outline-offset: 0;
 }
-
 body .panel__btn-all-citie:hover {
   outline: 0;
   outline-offset: 0;
 }
-
 body .panel__btn-all-citie:focus {
   outline: 0;
   outline-offset: 0;
@@ -153,22 +140,18 @@ body .panel #input {
   font-weight: 400;
   text-transform: capitalize;
 }
-
 body .panel #input:active {
   outline: 0;
   outline-offset: 0;
 }
-
 body .panel #input:hover {
   outline: 0;
   outline-offset: 0;
 }
-
 body .panel #input:focus {
   outline: 0;
   outline-offset: 0;
 }
-
 body .cities {
   margin: 24px 0px 0px 50px;
   width: 400px;
@@ -176,14 +159,12 @@ body .cities {
   background-color: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
+          box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
   border-collapse: collapse;
 }
-
 body .cities tr {
   border-radius: 5px;
 }
-
 body .cities tr td {
   font-size: 17px;
   font-family: Lato;
@@ -194,9 +175,6 @@ body .cities tr td {
   border-radius: 5px;
   border: 1px solid #F5F5F5;
 }
-
 body .cities tr td:hover {
   cursor: pointer;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

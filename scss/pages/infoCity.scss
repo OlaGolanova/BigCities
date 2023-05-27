@@ -181,5 +181,13 @@ form {
     left: 17px;
     position: absolute;
     color:#0085FF;
-    }
+}
+.swiper-slider-item {
+  flex: 0 0 auto;
+  width: 100%;
+  display: none;
+}
+.swiper-slider-item.active {
+  display: block;
+}
 //Юля

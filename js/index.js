@@ -44,25 +44,22 @@ for (let i = 0; i < dataPopulation.length; i++) {
   populationArray.push(String(dataPopulation[i].population.pop()));
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-  "use strict";
-  //При загрузке страницы заносятся города в таблицу
-  getActiveBtn();
-  //Кнопки
-  btnChoice.addEventListener("click", choiceOneCity);
-  btnAllCities.addEventListener("click", choiceAllCities);
-  //Кнопки для сортировки
-  btnSortDownA.addEventListener("click", sortCitiesDownA);
-  btnSortUpA.addEventListener("click", sortCitiesUpA);
-  btnSortDownPeople.addEventListener("click", sortCitiesDownPeople);
-  btnSortUpPeople.addEventListener("click", sortCitiesUpPeople);
-  animationLoad();
-  choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
-  choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
-
-  input.addEventListener("input", function () {
-    errorMessage.innerHTML = "";
-  });
+window.addEventListener('DOMContentLoaded', function () {
+    'use strict';
+    //При загрузке страницы заносятся города в таблицу
+    getActiveBtn();
+    //Кнопки
+    btnChoice.addEventListener('click', choiceOneCity);
+    btnAllCities.addEventListener('click', choiceAllCities);
+    //Кнопки для сортировки
+    btnSortDownA.addEventListener('click', sortCitiesDownA);
+    btnSortUpA.addEventListener('click', sortCitiesUpA);
+    btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
+    btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
+    input.addEventListener('input', delMessage);
+    animationLoad();
+    choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
+    choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
 });
 
 // Координаты для погоды из JSON
@@ -659,7 +656,12 @@ function setLocalStorage() {
   localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
 }
 //Функция записывает данные о нажатых кнопах в localStorage
-function setLocalStorage() {
-  let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
-  localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
-}
+function setLocalStorage(){
+    let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
+    localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage );
+};
+function delMessage(){
+    errorMessage.innerHTML = '';
+};
+   
+
