@@ -1,0 +1,269 @@
+body {
+  background: url("../design/img/Mapsicle.jpg") center center no-repeat fixed;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  font-family: Lato;
+}
+body .panel {
+  margin: 50px 0px 0px 50px;
+  display: flex;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 90px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+@media (max-width: 1024px) {
+  body .panel {
+    width: 100%;
+    margin: 0;
+    height: auto;
+    justify-content: flex-start;
+    border-radius: 0;
+  }
+}
+@media (max-width: 1024px) {
+  body .panel a {
+    order: 3;
+    width: 100%;
+    text-decoration: none;
+    display: none;
+  }
+  body .panel a.shown {
+    display: block;
+    margin-top: 25px;
+  }
+  body .panel a.shown .panel__btn-game {
+    width: 100%;
+  }
+}
+body .panel .panel__btns {
+  display: flex;
+}
+@media (max-width: 991px) {
+  body .panel .panel__btns {
+    order: 2;
+    margin-top: 25px;
+    display: none;
+  }
+  body .panel .panel__btns.shown {
+    display: flex;
+  }
+}
+body .panel .btn {
+  width: 50px;
+  height: 50px;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+  border: none;
+  font-size: 15px;
+  font-family: Lato;
+  font-weight: 700;
+}
+body .panel .btn:hover {
+  cursor: pointer;
+  background-color: #e5e4e4;
+}
+body .panel .btn + .btn {
+  margin-left: 16px;
+}
+@media (max-width: 991px) {
+  body .panel .btn + .btn {
+    margin-left: 8px;
+  }
+}
+@media (max-width: 1024px) {
+  body .panel .btn {
+    width: 40px;
+    height: 40px;
+    font-size: 11px;
+  }
+}
+body .panel .btn-active {
+  background-color: #fff;
+  color: #0085FF;
+  border: 1px solid #0085FF;
+}
+body .panel .active-svg-btn path {
+  fill: #0085FF;
+}
+body .panel__btn-choice {
+  width: 120px;
+  height: 50px;
+  background-color: #0085FF;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+  font-family: Lato;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  margin-left: 16px;
+}
+body .panel__btn-choice:hover {
+  background-color: #0569c6;
+  cursor: pointer;
+}
+body .panel__btn-choice:active {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel__btn-choice:hover {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel__btn-choice:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+@media (max-width: 991px) {
+  body .panel__btn-choice {
+    font-size: 11px;
+    width: auto;
+    padding: 0 30px;
+    color: #fff;
+    margin-left: 8px;
+  }
+}
+body .panel__btn-all-citie {
+  width: 143px;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+  font-family: Lato;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 16px;
+}
+body .panel__btn-all-citie:hover {
+  background-color: #373636;
+  cursor: pointer;
+}
+body .panel__btn-all-citie:active {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel__btn-all-citie:hover {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel__btn-all-citie:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+@media (max-width: 1024px) {
+  body .panel__btn-all-citie {
+    display: none;
+  }
+  body .panel__btn-all-citie.shown {
+    display: block;
+    position: absolute;
+    left: 206px;
+    transform: translateY(70px);
+    width: auto;
+    padding: 0 30px;
+    font-size: 11px;
+  }
+}
+body .panel__btn-game {
+  width: 143px;
+  height: 50px;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+  font-family: Lato;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #0085FF;
+  border: 1px solid #0085FF;
+}
+body .panel__btn-game:hover {
+  background-color: #e5e4e4;
+  cursor: pointer;
+}
+body .panel__btn-game:active {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel__btn-game:hover {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel__btn-game:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel #input {
+  width: 250px;
+  height: 50px;
+  border-radius: 5px;
+  padding-left: 20px;
+  border: 1px solid #DADADA;
+  font-size: 14px;
+  font-family: Lato;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+body .panel #input:active {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel #input:hover {
+  outline: 0;
+  outline-offset: 0;
+}
+body .panel #input:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+@media (max-width: 1024px) {
+  body .panel #input {
+    width: calc(100% - 176px);
+  }
+}
+body .cities {
+  margin: 24px 0px 0px 50px;
+  width: 400px;
+  height: 600px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
+  border-collapse: collapse;
+}
+@media (max-width: 767px) {
+  body .cities {
+    width: calc(100% - 100px);
+  }
+}
+body .cities tr {
+  border-radius: 5px;
+}
+body .cities tr td {
+  font-size: 17px;
+  font-family: Lato;
+  font-weight: 400;
+  width: 200px;
+  height: 60px;
+  padding-left: 15px;
+  border-radius: 5px;
+  border: 1px solid #F5F5F5;
+}
+body .cities tr td:hover {
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  body .cities tr td {
+    width: 50%;
+  }
+}/*# sourceMappingURL=main.css.map */

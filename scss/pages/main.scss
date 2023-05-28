@@ -8,14 +8,54 @@ body {
     .panel {
         margin: 50px 0px 0px 50px;
         display: flex;
+        column-gap: 16px;;
         justify-content: space-around;
         align-items: center;
         flex-wrap:wrap;
-        width: 1000px;
+        width: fit-content;
         height: 90px;
         background-color: #fff;
         padding: 20px; 
         border-radius: 5px;
+        
+        @media (max-width:1024px) {
+            width: 100%;
+            margin:0;
+            height: auto;
+            justify-content: flex-start;
+            border-radius: 0;
+
+        }
+        a {
+            @media (max-width:1024px) {
+                order: 3;
+                width: 100%;
+                text-decoration: none;
+                display: none;
+                    &.shown {
+                        display: block;
+                        margin-top: 25px;
+                       
+                        .panel__btn-game {
+                            width: 100%;
+                        }
+                    }
+                
+            }
+        }
+
+        .panel__btns {
+            display: flex;
+            @media (max-width:991px) {
+                order: 2;
+                margin-top: 25px;
+                display: none;
+
+                &.shown {
+                    display: flex;
+                }
+            }
+        }
       
         .btn {
             width: 50px;
@@ -29,6 +69,17 @@ body {
             &:hover{
                 cursor: pointer;
                 background-color:#e5e4e4;
+            }
+            & + .btn {
+                margin-left: 16px;
+                @media (max-width: 991px )   {
+                    margin-left: 8px
+                }
+            }
+            @media (max-width:1024px) {
+                width: 40px;
+                height: 40px;
+                font-size: 11px;
             }
         }
         .btn-active {
@@ -52,6 +103,8 @@ body {
             font-family: Lato;
             font-weight: 600;
             text-transform: uppercase;
+            color: #fff;
+            margin-left: 16px;
             &:hover {
                 background-color: #0569c6;
                 cursor: pointer;
@@ -68,6 +121,13 @@ body {
                 outline: 0;
                 outline-offset: 0;
             }
+            @media (max-width: 991px) {
+                font-size: 11px;
+                width: auto;
+                padding: 0 30px;
+                color: #fff;
+                margin-left: 8px;
+            }
 
         }
         &__btn-all-citie {
@@ -81,6 +141,7 @@ body {
             font-family: Lato;
             font-weight: 600;
             text-transform: uppercase;
+            margin-left:16px;
             &:hover {
                 background-color: #373636;
                 cursor: pointer;
@@ -96,6 +157,19 @@ body {
             &:focus {
                 outline: 0;
                 outline-offset: 0;
+            }
+            @media (max-width: 1024px){
+                display: none;
+                
+                &.shown {
+                    display: block;
+                    position: absolute;
+                    left: 206px;
+                    transform: translateY(70px);
+                    width: auto;
+                    padding: 0 30px;
+                    font-size: 11px;
+                }
             }
         }
         &__btn-game {
@@ -126,6 +200,7 @@ body {
                 outline: 0;
                 outline-offset: 0;
             }
+            
         }
        #input {
         width: 250px;
@@ -150,6 +225,10 @@ body {
                 outline: 0;
                 outline-offset: 0;
             }
+            @media(max-width:1024px) {
+                width: calc(100% - 176px);
+                
+            }
        }
     }
     .cities {
@@ -160,6 +239,10 @@ body {
         border-radius: 5px;
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
         border-collapse: collapse;
+
+        @media(max-width:767px) {
+            width: calc(100% - 100px);
+        }
 
             tr {
                 border-radius: 5px;
@@ -176,6 +259,10 @@ body {
                     &:hover {
                         cursor: pointer;
                     }
+                @media(max-width: 767px){
+                    width: 50%;
+                }
+
                 }
             }  
     }

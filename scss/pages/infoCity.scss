@@ -5,6 +5,8 @@ h2 {
     font-weight: 700;
     font-size: 24px;
 }
+p {line-height: 1.25;}
+
 .citycard {
     background: #F5F5F5;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
@@ -12,6 +14,11 @@ h2 {
     padding: 40px;
     max-width: 1154px;
     margin: 24px 50px;
+
+    @media (max-width:767px) {
+        margin: 0;  
+        padding: 30px 20px;    
+    }
 
     .citycard__header {
         font-weight: 700;
@@ -23,13 +30,18 @@ h2 {
         flex: 1 1 650px;
         
     }
-    .citycard__body-right {flex: 1 1 400px}
-
-    .dateCard {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+    .citycard__body-right {
+        flex: 1 1 400px;
+        
+        @media (max-width:1024px) {
+            margin-top: 16px; 
+            display: flex;  
+            flex-wrap: wrap;
+            justify-content: space-between;   
+        }     
     }
+
+    
 
     .citycard__item {
         background: #FFFFFF;  
@@ -38,19 +50,43 @@ h2 {
         padding: 40px;
 
         & + .citycard__item { 
-            margin-top: 24px;          
-            } 
+            margin-top: 24px;
+            @media (max-width:1024px) {
+                margin-top: 16px;
+            }          
+        } 
+    }
+
+    .dateCard {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        @media (max-width:1024px) {
+            display: inline-flex;
+            flex-direction: column;
+            margin-top: 0 !important; 
+            width: calc(50% - 8px);  
+            align-items: center;  
+            padding: 40px 15px; 
+        }
+
     }
 
     .weather { 
         padding: 15px;
         align-items: center;
+        @media(max-width: 1024px){
+            display: inline-flex;
+            flex-direction: column;
+            width: calc(50% - 8px);
+        }
     }
     .data { 
         min-height: 144px;
     }
     .slider {
-        padding: 0
+        padding: 0;
+        background: none;
     }
     .chart {
         padding: 38px 25px 48px;
@@ -68,6 +104,10 @@ h2 {
 }
 .info {
     height: calc(100% - 542px);
+    @media(max-width:1024px) {
+        height: auto;
+        display: none;
+    }
 }
 
 .data {
@@ -81,7 +121,15 @@ h2 {
     font-size: 17px;
     line-height: 20px;
     border-left:  2px solid #F5F5F5;
-    
+
+    @media(max-width:1024px){
+        padding-left: 0;
+        margin-left: 0;
+        padding-top: 24px;
+        margin-top: 24px;
+        border-left: none;
+        border-top: 2px solid #F5F5F5;
+    } 
 }
 
 .currenttime, .temparature {
@@ -91,18 +139,20 @@ h2 {
 
 .current-img {
     border-radius: 5px; 
-    max-height: 120px;
+    height: 120px;
+    object-fit: cover;
+    width: 100%;
 }
 
 .weather {
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
 .weather__left {
     position: relative;
-    max-height: 120px;}
+    height: 120px;
+    width: 160px;}
 
 .temparature {
     color: #FFFFFF; 
@@ -120,6 +170,9 @@ h2 {
     }
     & > div:last-child {
         margin-bottom:0px;    
+    }
+    @media (max-width: 991px) {
+        margin: 24px 0 10px 0;
     }
 
 }
@@ -172,6 +225,10 @@ h2 {
 } 
 form {
     position: relative ;
+    @media(max-width: 1024px) {
+        display: flex;
+        width: 100%;
+    }
 }
 #errorMessage {
     font-size: 14px;
@@ -186,8 +243,39 @@ form {
   flex: 0 0 auto;
   width: 100%;
   display: none;
+   
+  img {
+    border-radius: 5px;
+    display: block;
+   }
 }
+
 .swiper-slider-item.active {
   display: block;
 }
+.filter-opener {
+    display: none;
+    border: 1px solid #DADADA;
+    border-radius: 5px;
+    background: none;
+    width: 50px;
+    height: 50px;
+    margin-left:8px;
+    cursor: pointer;
+    
+    @media(max-width: 991px) {
+        display: inline-block;
+    }
+    &.opened img {
+        opacity: 0.2;
+    }
+}
+
+.info-mobile {
+    display: none;
+    @media(max-width: 1024px) {
+        display: block;
+    }
+}
+
 //Юля

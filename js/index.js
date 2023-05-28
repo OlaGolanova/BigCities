@@ -26,6 +26,11 @@ const tableNumbers = document.querySelectorAll(".table__numbers"); //Колле�
 const citycard = document.querySelector(".citycard");
 const facts = document.querySelector(".citycard__item.info"); //div с информацией о городах
 const table = document.querySelector("table");
+const btnMobile = document.querySelector(".filter-opener");
+const btnsPanel = document.querySelector(".panel__btns");
+const btnGame = document.querySelector(".panel__link-game");
+const factsMobile = document.querySelector(".citycard__item.info-mobile"); // Информация о городах
+
 
 let myChart = null;
 const nameCity = document.querySelector(".name");
@@ -89,6 +94,9 @@ function getActiveBtn() {
   }
 }
 
+
+
+
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
 moment.locale("ru", {
@@ -117,6 +125,7 @@ function choiceOneCity(eventt) {
     for (let i = 0; i < citiesArray.length; i++) {
       if (cleanCityValue == citiesArray[i]) {
         getInfo(infoArray[i]);
+        getInfoMobile(infoArray[i]);
         cities.classList.add("hidden");
         citycard.classList.remove("hidden");
         disableBtn();
@@ -124,6 +133,7 @@ function choiceOneCity(eventt) {
         getTimeZoneOfsset = dateArray[i];
         getDate(); //Функция выводит время на экран
         getInfo(infoArray[i]);
+        getInfoMobile(infoArray[i]);
         buildChart(dataPopulation[i]);
         latitude = arrLatitude[i];
         longitude = arrLongitude[i];
@@ -158,6 +168,25 @@ function getInfo(elem) {
     <p class="funFacts">${elem.funFacts}</p>`
   );
 }
+
+function getInfoMobile(elem) {
+    factsMobile.innerHTML = "";
+    factsMobile.insertAdjacentHTML(
+      "beforeEnd",
+      `<p class="country">Страна: ${elem.country}</p>`
+    );
+  
+    errorMessage.innerHTML = "";
+    factsMobile.innerHTML = "";
+    factsMobile.insertAdjacentHTML(
+      "beforeEnd",
+      `<p class="country">Страна: ${elem.country}</p>
+      <p class="language">Язык: ${elem.language}</p>
+      <p class="populationDensity">Плотность населения: ${elem.populationDensity}</p>
+      <p class="sights">Достопримечательности: ${elem.sights}</p>
+      <p class="funFacts">${elem.funFacts}</p>`
+    );
+  }
 //Выводит дату и время при загрузке страницы
 function getDate() {
   //Получаем getTimeZoneofsset выбранного города из, нужен для посекундного вывода времени
@@ -183,6 +212,7 @@ function choiceCityOnClickCity() {
         getTimeZoneOfsset = dateArray[i];
         getDate(); //Функция выводит время на экран
         getInfo(infoArray[i]);
+        getInfoMobile(infoArray[i]);
 
         buildChart(dataPopulation[i]);
         latitude = arrLatitude[i];
@@ -208,6 +238,7 @@ function choiceCityOnClickNumbers() {
         getTimeZoneOfsset = dateArray[i];
         getDate(); //Функция выводит время на экран
         getInfo(infoArray[i]);
+        getInfoMobile(infoArray[i]);
 
         // Погода
         latitude = arrLatitude[i];
@@ -395,6 +426,7 @@ function animation() {
     duration: 0.6,
   });
 }
+
 function animationLoad() {
   gsap.from(".panel", {
     opacity: 0.1,
@@ -665,3 +697,10 @@ function delMessage(){
 };
    
 
+btnMobile.addEventListener('click', function(e) {
+    e.preventDefault();
+    this.classList.toggle("opened");
+    btnAllCities.classList.toggle("shown");
+    btnsPanel.classList.toggle("shown");
+    btnGame.classList.toggle("shown");
+}); 
