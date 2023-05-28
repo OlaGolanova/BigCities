@@ -35,8 +35,8 @@
 
 ## Ссылка на github pages 
 ​
-## Командная работа 
-Командная работа <br>
+## Командная работа
+
 [@anna-shr](https://github.com/anna-shr) <br>
 [@Julia6658](https://github.com/Julia6658) <br>
 [@OlaGolanova](https://github.com/OlaGolanova) <br>
