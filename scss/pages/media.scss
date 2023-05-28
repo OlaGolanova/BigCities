@@ -1,22 +1,19 @@
 
-@media(max-width: 1024px) {
-    
-}
 
 @media(max-width: 640px){
  
     .game__question{
-        font-size: 22px;
+        font-size: 18px;
     }
     .game {
         .container {
             .wrap__answer {
                 font-size: 18px;
                 .answer-true {
-                    font-size: 40px;
+                    font-size: 30px;
                 }
                 .answer-false {
-                    font-size: 40px;
+                    font-size: 30px;
                 }
             }
         }
@@ -26,10 +23,16 @@
 
 @media(max-width: 470px) {
 
- 
+    .game {
+        .start {
+            margin-right: 0;
+        }
+        .again {
+            margin-right: 0;
+        }
+       .green {
+        margin-right: 0;
+       }
+    }
 }
 
-@media(max-width: 376px) {
-    
-  
-}
