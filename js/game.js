@@ -4,7 +4,6 @@
 const gameArray = JSON.parse(gamejson); //вопросы
 const answerArray = JSON.parse(answerjson); //ответы
 const explanationsArray = JSON.parse(explanations); //пояснения
-
 //
 const btnTruth = document.querySelector('.green'),
       btnLie = document.querySelector('.red'),
@@ -36,6 +35,7 @@ window.addEventListener('DOMContentLoaded', function () {
     btnTruth.addEventListener('click', trueAnswer);
     btnLie.addEventListener('click', falseAnswer);
     btnForward.addEventListener('click', getNextQuestion);
+    animationLoadBtn();
 
 });
 
@@ -63,7 +63,7 @@ function getNewArrays(){
     wrap.classList.add('hidden');
 };
 function startGameAgain(){
-    startGame()
+    startGame();
     result = 0;
     span.textContent = 1;
     
@@ -129,14 +129,21 @@ function getNextQuestion() {
         divResult.classList.remove('hidden');
         divResult.innerHTML = `Верно ${result}/10`;
 }};
-
-
 function animation() {
     gsap.from(".wrap__answer", {
       opacity: 0.1,
       yPercent: -50,
       duration: 1.2,
     });
-    
-  }
+  };
   
+  function animationLoadBtn() {
+    gsap.to(".start", {
+      opacity: 1,
+      scale: 1
+    });
+    gsap.to(".main", {
+        opacity: 1,
+        scale: 1
+      });
+  }
