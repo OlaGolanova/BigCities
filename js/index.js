@@ -597,23 +597,23 @@ function howWeather(numb) {
       break;
     case 51:
       currentImg.src = "./design/img/images_Weather/Легкая морось.jpg";
-      how = "Легкая морось";
+      how = "Моросящие осадки";
       break;
     case 53:
       currentImg.src = "./design/img/images_Weather/Умеренная морось.jpg";
-      how = "Умеренная морось";
+      how = "Моросящий дождь";
       break;
     case 55:
       currentImg.src = "./design/img/images_Weather/Сильная морось.jpg";
-      how = "Сильная морось";
+      how = "Моросящий дождь";
       break;
     case 56:
       currentImg.src = "./design/img/images_Weather/Ледяная морось.jpg";
-      how = "Небольшая ледяная морось";
+      how = "Снег";
       break;
     case 57:
       currentImg.src = "./design/img/images_Weather/Ледяная морось.jpg";
-      how = "Сильная ледяная морось";
+      how = "Снег";
       break;
     case 61:
       currentImg.src = "./design/img/images_Weather/Небольшой дождь.jpg";
@@ -649,7 +649,7 @@ function howWeather(numb) {
       break;
     case 77:
       currentImg.src = "./design/img/images_Weather/Снежные зерна.jpg";
-      how = "Снежные зерна";
+      how = "Снег";
       break;
     case 80:
       currentImg.src = "./design/img/images_Weather/Слабый ливень.jpeg";
