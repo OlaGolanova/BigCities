@@ -6,7 +6,7 @@ body {
   font-family: Lato;
 }
 body .panel {
-  padding: 50px 0px 0px 50px;
+  margin: 50px 0px 0px 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;

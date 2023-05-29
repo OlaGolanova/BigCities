@@ -6,7 +6,7 @@ body {
   font-family: Lato;
 }
 body .panel {
-  padding: 50px 0px 0px 50px;
+  margin: 50px 0px 0px 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -361,6 +361,16 @@ form {
   left: 17px;
   position: absolute;
   color: #0085FF;
+}
+
+.swiper-slider-item {
+  flex: 0 0 auto;
+  width: 100%;
+  display: none;
+}
+
+.swiper-slider-item.active {
+  display: block;
 }
 
 .game {

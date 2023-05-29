@@ -193,4 +193,5 @@ let showSlider = (cityName) => {
       btnNext.classList.remove("swiper-button-disabled");
     }
   });
+  currentSlide = 0;
 };
