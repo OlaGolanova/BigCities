@@ -45,21 +45,21 @@ for (let i = 0; i < dataPopulation.length; i++) {
 }
 
 window.addEventListener('DOMContentLoaded', function () {
-    'use strict';
-    //При загрузке страницы заносятся города в таблицу
-    getActiveBtn();
-    //Кнопки
-    btnChoice.addEventListener('click', choiceOneCity);
-    btnAllCities.addEventListener('click', choiceAllCities);
-    //Кнопки для сортировки
-    btnSortDownA.addEventListener('click', sortCitiesDownA);
-    btnSortUpA.addEventListener('click', sortCitiesUpA);
-    btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
-    btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
-    input.addEventListener('input', delMessage);
-    animationLoad();
-    choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
-    choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
+  'use strict';
+  //При загрузке страницы заносятся города в таблицу
+  getActiveBtn();
+  //Кнопки
+  btnChoice.addEventListener('click', choiceOneCity);
+  btnAllCities.addEventListener('click', choiceAllCities);
+  //Кнопки для сортировки
+  btnSortDownA.addEventListener('click', sortCitiesDownA);
+  btnSortUpA.addEventListener('click', sortCitiesUpA);
+  btnSortDownPeople.addEventListener('click', sortCitiesDownPeople);
+  btnSortUpPeople.addEventListener('click', sortCitiesUpPeople);
+  input.addEventListener('input', delMessage);
+  animationLoad();
+  choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
+  choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
 });
 
 // Координаты для погоды из JSON
@@ -92,12 +92,10 @@ function getActiveBtn() {
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
 moment.locale("ru", {
-  months:
-    "Января_Февраля_Марта_Апреля_Мая_Июня_Июля_Авгуса_Сентября_Октября_Ноября_Декабря".split(
-      "_"
-    ),
-  weekdays:
-    "Воскресенье_Понедельник_Вторник_Среда_Четверг_Пятница_Суббота".split("_"),
+  months: "Января_Февраля_Марта_Апреля_Мая_Июня_Июля_Авгуса_Сентября_Октября_Ноября_Декабря".split(
+    "_"
+  ),
+  weekdays: "Воскресенье_Понедельник_Вторник_Среда_Четверг_Пятница_Суббота".split("_"),
 });
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 
@@ -354,15 +352,13 @@ function buildChart(item) {
         "2021",
         "2022",
       ], // Метки
-      datasets: [
-        {
-          label: "Численность населения",
-          data: values, // Значения
-          backgroundColor: "rgba(14,156,255,0.2)",
-          borderColor: "#0E9CFF",
-          fill: true, // Заливка линейного графика цветом
-        },
-      ],
+      datasets: [{
+        label: "Численность населения",
+        data: values, // Значения
+        backgroundColor: "rgba(14,156,255,0.2)",
+        borderColor: "#0E9CFF",
+        fill: true, // Заливка линейного графика цветом
+      }, ],
     },
     options: {
       responsive: true, // Даем Chart.js указание реагировать правильно.
@@ -383,6 +379,7 @@ function setTableInfo() {
     tableNumbers[i].textContent = parse(populationArray[i]);
   }
 }
+
 function animation() {
   gsap.from(".citycard", {
     opacity: 0,
@@ -395,6 +392,7 @@ function animation() {
     duration: 0.6,
   });
 }
+
 function animationLoad() {
   gsap.from(".panel", {
     opacity: 0.1,
@@ -421,6 +419,7 @@ function enableBtn() {
   btnSortDownPeople.disabled = false;
   btnSortUpPeople.disabled = false;
 }
+
 function getDateNow() {
   let timeZone = new Date().getTimezoneOffset();
   let time = new Date().getTime();
@@ -465,10 +464,10 @@ async function showWeather() {
   try {
     const data = await fetch(
       "https://api.open-meteo.com/v1/forecast?latitude=" +
-        `${latitude}` +
-        "&longitude=" +
-        `${longitude}` +
-        "&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=2"
+      `${latitude}` +
+      "&longitude=" +
+      `${longitude}` +
+      "&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=2"
     );
     const JSONWeather = await data.json();
     const weather = await JSONWeather;
@@ -588,17 +587,34 @@ function howWeather(numb) {
       currentImg.src = "./design/img/images_Weather/Переменная облачность.jpg";
       how = "Переменная облачность";
       break;
-
     case 3:
       currentImg.src = "./design/img/images_Weather/Пасмурно.jpg";
       how = "Пасмурно";
       break;
-
     case 45:
       currentImg.src = "./design/img/images_Weather/Туман.jpg";
       how = "Туман";
       break;
-
+    case 51:
+      currentImg.src = "./design/img/images_Weather/Легкая морось.jpg";
+      how = "Легкая морось";
+      break;
+    case 53:
+      currentImg.src = "./design/img/images_Weather/Умеренная морось.jpg";
+      how = "Умеренная морось";
+      break;
+    case 55:
+      currentImg.src = "./design/img/images_Weather/Сильная морось.jpg";
+      how = "Сильная морось";
+      break;
+    case 56:
+      currentImg.src = "./design/img/images_Weather/Ледяная морось.jpg";
+      how = "Небольшая ледяная морось";
+      break;
+    case 57:
+      currentImg.src = "./design/img/images_Weather/Ледяная морось.jpg";
+      how = "Сильная ледяная морось";
+      break;
     case 61:
       currentImg.src = "./design/img/images_Weather/Небольшой дождь.jpg";
       how = "Небольшой дождь";
@@ -610,6 +626,30 @@ function howWeather(numb) {
     case 65:
       currentImg.src = "./design/img/images_Weather/Дождь.jpg";
       how = "Дождь";
+      break;
+    case 66:
+      currentImg.src = "./design/img/images_Weather/Град.jpg";
+      how = "Град";
+      break;
+    case 67:
+      currentImg.src = "./design/img/images_Weather/Град.jpg";
+      how = "Сильный град";
+      break;
+    case 71:
+      currentImg.src = "./design/img/images_Weather/Снегопад.jpg";
+      how = "Легкий снегопад";
+      break;
+    case 73:
+      currentImg.src = "./design/img/images_Weather/Снегопад.jpg";
+      how = "Умеренный снегопад";
+      break;
+    case 75:
+      currentImg.src = "./design/img/images_Weather/Снегопад.jpg";
+      how = "Сильный снегопад";
+      break;
+    case 77:
+      currentImg.src = "./design/img/images_Weather/Снежные зерна.jpg";
+      how = "Снежные зерна";
       break;
     case 80:
       currentImg.src = "./design/img/images_Weather/Слабый ливень.jpeg";
@@ -656,12 +696,11 @@ function setLocalStorage() {
   localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
 }
 //Функция записывает данные о нажатых кнопах в localStorage
-function setLocalStorage(){
-    let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
-    localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage );
+function setLocalStorage() {
+  let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
+  localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
 };
-function delMessage(){
-    errorMessage.innerHTML = '';
-};
-   
 
+function delMessage() {
+  errorMessage.innerHTML = '';
+};
