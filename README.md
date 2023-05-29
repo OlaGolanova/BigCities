@@ -21,9 +21,8 @@
 ​
 ## Стек технологий
  
-- Htm5 
-- CSS3
-- SCSS 
+- HTML5 
+- CSS3/SCSS 
 - JS
 - API
 ----------
