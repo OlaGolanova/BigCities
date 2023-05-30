@@ -439,6 +439,13 @@ p {
   }
 }
 
+@media (max-width: 1024px) {
+  .chart {
+    height: auto;
+    display: none;
+  }
+}
+
 .data {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -648,6 +655,16 @@ form {
 @media (max-width: 1024px) {
   .info-mobile {
     display: block;
+  }
+}
+
+.chart-mobile {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .chart-mobile {
+    display: block;
+    width: 100%;
   }
 }
 
