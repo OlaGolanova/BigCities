@@ -34,7 +34,9 @@
 - chart.js
 
 ## Ссылка на github pages 
-​
+
+​https://olagolanova.github.io/BigCities/
+
 ## Командная работа
 
 [@anna-shr](https://github.com/anna-shr) <br>
