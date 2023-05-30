@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Большие города</title>
+  <link rel="icon" href="design/icons/icon.ico">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./scss/app.css">
+</head>
+
+<body>
+  <div class="panel">
+    <div class="panel__btns">
+      <button class="panel__btn-one btn">А - Я</button>
+      <button class="panel__btn-two btn">Я - А</button>
+      <button class="panel__btn-three btn btn-active active-svg-btn">
+        <svg width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M0 10.3333L1.45 8.93334L5 12.4833L5 0.333344L7 0.333344L7 12.4833L10.55 8.93334L12 10.3333L6 16.3333L0 10.3333Z"
+            fill="black" />
+        </svg>
+
+        <svg width="7" height="21" viewBox="0 0 7 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M3.5 0.333344C4.03043 0.333344 4.53914 0.544057 4.91421 0.91913C5.28929 1.2942 5.5 1.80291 5.5 2.33334C5.5 2.86378 5.28929 3.37248 4.91421 3.74756C4.53914 4.12263 4.03043 4.33334 3.5 4.33334C2.96957 4.33334 2.46086 4.12263 2.08579 3.74756C1.71071 3.37248 1.5 2.86378 1.5 2.33334C1.5 1.80291 1.71071 1.2942 2.08579 0.91913C2.46086 0.544057 2.96957 0.333344 3.5 0.333344ZM2 5.33334H5C5.53043 5.33334 6.03914 5.54406 6.41421 5.91913C6.78929 6.2942 7 6.80291 7 7.33334V12.8333H5.5V20.3333H1.5V12.8333H0V7.33334C0 6.80291 0.210714 6.2942 0.585787 5.91913C0.96086 5.54406 1.46957 5.33334 2 5.33334Z"
+            fill="black" />
+        </svg>
+      </button>
+      <button class="panel__btn-four btn">
+        <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 6L10.55 7.4L7 3.85L7 16L5 16L5 3.85L1.45 7.4L0 6L6 0L12 6Z" fill="black" />
+        </svg>
+
+        <svg width="7" height="20" viewBox="0 0 7 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M3.5 0C4.03043 0 4.53914 0.210714 4.91421 0.585786C5.28929 0.960859 5.5 1.46957 5.5 2C5.5 2.53043 5.28929 3.03914 4.91421 3.41421C4.53914 3.78929 4.03043 4 3.5 4C2.96957 4 2.46086 3.78929 2.08579 3.41421C1.71071 3.03914 1.5 2.53043 1.5 2C1.5 1.46957 1.71071 0.960859 2.08579 0.585786C2.46086 0.210714 2.96957 0 3.5 0ZM2 5H5C5.53043 5 6.03914 5.21071 6.41421 5.58579C6.78929 5.96086 7 6.46957 7 7V12.5H5.5V20H1.5V12.5H0V7C0 6.46957 0.210714 5.96086 0.585787 5.58579C0.96086 5.21071 1.46957 5 2 5Z"
+            fill="black" />
+        </svg>
+      </button>
+    </div>
+
+    <form>
+      <input type="text" id="input" placeholder="Введите город">
+      <button type="submit" class="panel__btn-choice">Выбрать</button>
+      <button type="submit" class="panel__btn-all-citie">Все города</button>
+      <div id="errorMessage"></div>
+      <button class="filter-opener"><img src="./design/icons/filter.svg" alt="filter"></button>
+    </form>
+    <a href="./game.html" target="_blank" class="panel__link-game"><button class="panel__btn-game">Сыграем?</button></a>
+  </div>
+
+  <table class="cities">
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+    <tr>
+      <td class="table__cities"></td>
+      <td class="table__numbers"></td>
+    </tr>
+  </table>
+  <div class="citycard hidden">
+    <div class="citycard__header">
+      <span class="citycard__name name">Токио</span>
+      <span class="citycard__amount number">(37 435 191)</span>
+    </div>
+    <div class="citycard__body">
+      <div class="citycard__body-left">
+        <div class="citycard__item chart">
+          <h2>Рост населения за последние 10 лет</h2>
+          <div class="chartblock">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div class="citycard__item info">
+          <h2>Информация о городе</h2>
+
+          <p class="facts">Страна, язык, короткие факты</p>
+
+        </div>
+      </div>
+      <div class="citycard__body-right">
+        <div class="citycard__item weather">
+          <div class="weather__left">
+            <img src="" alt="Current weather" class="current-img">
+            <div class="temparature"></div>
+          </div>
+          <div class="weather__right">
+            <div class="wind"></div>
+            <div class="description"></div>
+            <div class="feelslike"></div>
+            <div class="humidity"></div>
+
+          </div>
+        </div>
+        <div class="citycard__item dateCard">
+          <div class="currenttime">13:35</div>
+          <div class="currentday">
+            <div class="day-of-week">Воскресенье</div>
+            <div class="date">27.09.2022</div>
+          </div>
+        </div>
+        <div class="citycard__item info-mobile">
+          <h2>Информация о городе</h2>
+
+          <p class="facts">Страна, язык, короткие факты</p>
+
+        </div>
+        <div class="citycard__item slider">
+          <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+              </div>
+            </div>
+            <div class="swiper-button-prev swiper-button-disabled"><img src="./design/icons/arrow-left.svg"
+                alt="arrow-prev"></div>
+            <div class="swiper-button-next"><img src="./design/icons/arrow-right.svg" alt="arrow-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/DataJSON.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+
+</html>

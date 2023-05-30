@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Большие города</title>
+  <link rel="icon" href="design/icons/icon.ico">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./scss/app.css">
+<body class="game">
+    <div class="count hidden"><span>1</span>/10</div>
+    <div class="game__wrap">
+      <button class="game__btn start">Старт!</button>
+      <button class="game__btn again hidden">Играть еще раз?</button>
+      <a href="./index.html"><button class="game__btn main">На главную</button></a>
+    </div>
+    <div class="result hidden"></div>
+    <div class="container">
+      <p class="game__question hidden"></p>
+      <div class="wrap__answer">
+        <div class="answer-true hidden">Это правда</div>
+        <div class="answer-false hidden">Это неправда</div>
+        <div class="answer hidden"></div>
+      </div>
+        <div class="game__btn-wrap">
+            <button class="game__btn green hidden">Правда</button>
+            <button class="game__btn white hidden">Далее >> </button>
+            <button class="game__btn red hidden">Ложь</button>
+        </div>
+    </div>
+    
+  <script src="js/DataJSON.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
