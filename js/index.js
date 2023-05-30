@@ -33,6 +33,11 @@ const dateArray = JSON.parse(datejson); //достаем данные по вр�
 const infoArray = JSON.parse(infoCities);
 const dataPopulation = JSON.parse(cityPopulation);
 let myChart = null;
+let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
+let latitude;// Переменные для координат погоды
+let longitude;
+let dateNow; // Получение даты
+const parse = (s) => s.replace(/\B(?=(?:\d{3})*$)/g, " ");//Регулярное выражение // число преобразуется в вид с пробелами 1_111_111
 let btnLocalStorage = ""; //В массив заносятся данные о том, какая кнопка сортировки городов выбрана
 const arrLatitude = JSON.parse(arrLatitudeJson);// Координаты для погоды из JSON
 const arrLongitude = JSON.parse(arrLongitudeJson);
@@ -43,9 +48,8 @@ for (let i = 0; i < dataPopulation.length; i++) {
   citiesArray.push(dataPopulation[i].city);
 }
 for (let i = 0; i < dataPopulation.length; i++) {
-  populationArray.push(String(dataPopulation[i].population.pop()));
+  populationArray.push(String(dataPopulation[i].population.slice(-1)));
 }
-
 
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
@@ -63,11 +67,13 @@ window.addEventListener('DOMContentLoaded', function () {
     choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
     choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
 });
+
 //Функция записывает данные в localStorage
 function setLocalStorage() {
   let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
   localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
-}
+};
+
 // Проверяем, есть ли данные в localStorage
 function getActiveBtn() {
   const infoSortBtn = localStorage.getItem("btnLocalStorage");
@@ -84,21 +90,16 @@ function getActiveBtn() {
     setTableInfo();
     sortCitiesUpPeople();
   }
-}
+};
+
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
 moment.locale("ru", {
-  months:
-    "Января_Февраля_Марта_Апреля_Мая_Июня_Июля_Авгуса_Сентября_Октября_Ноября_Декабря".split(
-      "_"
-    ),
-  weekdays:
-    "Воскресенье_Понедельник_Вторник_Среда_Четверг_Пятница_Суббота".split("_"),
+  months: "Января_Февраля_Марта_Апреля_Мая_Июня_Июля_Авгуса_Сентября_Октября_Ноября_Декабря".split(
+    "_"
+  ),
+  weekdays: "Воскресенье_Понедельник_Вторник_Среда_Четверг_Пятница_Суббота".split("_"),
 });
-let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
-let latitude;// Переменные для координат погоды
-let longitude;
-let dateNow; // Получение даты
 
 //Функция  вызывается при клике на кнопку Выбрать
 function choiceOneCity(eventt) {
@@ -131,7 +132,7 @@ function choiceOneCity(eventt) {
     }
   }
   input.value = "";
-}
+};
 
 //Функция для вывода информации о городе
 function getInfo(elem) {
@@ -140,7 +141,6 @@ function getInfo(elem) {
     "beforeEnd",
     `<p class="country">Страна: ${elem.country}</p>`
   );
-
   errorMessage.innerHTML = "";
   facts.innerHTML = "";
   facts.insertAdjacentHTML(
@@ -151,14 +151,14 @@ function getInfo(elem) {
     <p class="sights">Достопримечательности: ${elem.sights}</p>
     <p class="funFacts">${elem.funFacts}</p>`
   );
-}
+};
+
 function getInfoMobile(elem) {
     factsMobile.innerHTML = "";
     factsMobile.insertAdjacentHTML(
       "beforeEnd",
       `<p class="country">Страна: ${elem.country}</p>`
     );
-
     errorMessage.innerHTML = "";
     factsMobile.innerHTML = "";
     factsMobile.insertAdjacentHTML(
@@ -169,7 +169,8 @@ function getInfoMobile(elem) {
       <p class="sights">Достопримечательности: ${elem.sights}</p>
       <p class="funFacts">${elem.funFacts}</p>`
     );
-  }
+  };
+
 //Выводит дату и время при загрузке страницы
 function getDate() {
   //Получаем getTimeZoneofsset выбранного города из, нужен для посекундного вывода времени
@@ -182,8 +183,8 @@ function getDate() {
 const intervalId = setInterval(function () {
   getDate();
 }, 1000);
-//При клике на город выходит информация о нем
 
+//При клике на город выходит информация о нем
 function choiceCityOnClickCity() {
   for (let i = 0; i < tableCities.length; i++) {
     tableCities[i].addEventListener("click", function (event) {
@@ -196,7 +197,6 @@ function choiceCityOnClickCity() {
         getDate(); //Функция выводит время на экран
         getInfo(infoArray[i]);
         getInfoMobile(infoArray[i]);
-
         buildChart(dataPopulation[i]);
         latitude = arrLatitude[i];
         longitude = arrLongitude[i];
@@ -208,7 +208,8 @@ function choiceCityOnClickCity() {
     });
   }
   input.value = "";
-}
+};
+
 //При клике на численность города выходит информация о городе
 function choiceCityOnClickNumbers() {
   for (let i = 0; i < tableNumbers.length; i++) {
@@ -233,7 +234,8 @@ function choiceCityOnClickNumbers() {
     });
   }
   input.value = "";
-}
+};
+
 //Функция вызывается при нажатие на кнопку Все города
 function choiceAllCities(event) {
   event.preventDefault();
@@ -243,7 +245,8 @@ function choiceAllCities(event) {
   errorMessage.innerHTML = "";
   animation();
   enableBtn();
-}
+};
+
 //Функция сортировки городов по алфавиту от A-Я, вызывается при нажатии на кнопку A-Я
 function sortCitiesDownA() {
   errorMessage.innerHTML = "";
@@ -264,7 +267,8 @@ function sortCitiesDownA() {
 
   btnLocalStorage = 0;
   setLocalStorage();
-}
+};
+
 //Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
 function sortCitiesUpA() {
   errorMessage.innerHTML = "";
@@ -288,7 +292,7 @@ function sortCitiesUpA() {
 
   btnLocalStorage = 1;
   setLocalStorage();
-}
+};
 
 //Функция сортировки городов по численности населения от большего к меньшему, вызывается при нажатии на соответствующую кнопку
 function sortCitiesDownPeople() {
@@ -313,7 +317,8 @@ function sortCitiesDownPeople() {
 
   btnLocalStorage = 2;
   setLocalStorage();
-}
+};
+
 //Функция сортировки городов по численности населения от меньшего к большему,  вызывается при нажатии на соответствующую кнопку
 function sortCitiesUpPeople() {
   errorMessage.innerHTML = "";
@@ -335,9 +340,7 @@ function sortCitiesUpPeople() {
 
   btnLocalStorage = 3;
   setLocalStorage();
-}
-//Регулярное выражение // число преобразуется в вид с пробелами 1_111_111
-const parse = (s) => s.replace(/\B(?=(?:\d{3})*$)/g, " ");
+};
 
 //Альбина
 //Функция для вывода графика по городу и численности населения
@@ -362,15 +365,13 @@ function buildChart(item) {
         "2021",
         "2022",
       ], // Метки
-      datasets: [
-        {
-          label: "Численность населения",
-          data: values, // Значения
-          backgroundColor: "rgba(14,156,255,0.2)",
-          borderColor: "#0E9CFF",
-          fill: true, // Заливка линейного графика цветом
-        },
-      ],
+      datasets: [{
+        label: "Численность населения",
+        data: values, // Значения
+        backgroundColor: "rgba(14,156,255,0.2)",
+        borderColor: "#0E9CFF",
+        fill: true, // Заливка линейного графика цветом
+      }, ],
     },
     options: {
       responsive: true, // Даем Chart.js указание реагировать правильно.
@@ -379,7 +380,7 @@ function buildChart(item) {
   });
 
   return myChart;
-}
+};
 //--Альбина
 
 //Функция заносит данные о городах и населении в таблицу при загрузке
@@ -390,7 +391,8 @@ function setTableInfo() {
   for (let i = 0; i < populationArray.length; i++) {
     tableNumbers[i].textContent = parse(populationArray[i]);
   }
-}
+};
+
 function animation() {
   gsap.from(".citycard", {
     opacity: 0,
@@ -402,7 +404,7 @@ function animation() {
     scale: 0,
     duration: 0.6,
   });
-}
+};
 
 function animationLoad() {
   gsap.from(".panel", {
@@ -415,21 +417,23 @@ function animationLoad() {
     y: 50,
     duration: 1.2,
   });
-}
+};
+
 //Функция для блокировки кнопок сортировки
 function disableBtn() {
   btnSortDownA.disabled = true;
   btnSortUpA.disabled = true;
   btnSortDownPeople.disabled = true;
   btnSortUpPeople.disabled = true;
-}
+};
 //Функция для активации кнопок сортировки
 function enableBtn() {
   btnSortDownA.disabled = false;
   btnSortUpA.disabled = false;
   btnSortDownPeople.disabled = false;
   btnSortUpPeople.disabled = false;
-}
+};
+
 function getDateNow() {
   let timeZone = new Date().getTimezoneOffset();
   let time = new Date().getTime();
@@ -437,7 +441,7 @@ function getDateNow() {
   let timeCity = time + deltaTimeZone * 60 * 1000; //Время в выбранном городе в таймстампе
   let nowDateCity = new Date(timeCity); //Дата и время в выбранном городе
   return nowDateCity;
-}
+};
 // Время для вывода погоды
 function dateForWeather() {
   let day = dateNow.getDate(); //Получаем число месяца
@@ -464,16 +468,17 @@ function dateForWeather() {
   let timeNow = dateForWeather + hours + ":00";
 
   return timeNow;
-}
+};
+
 async function showWeather() {
   let dateForWeatherParams = dateForWeather();
   try {
     const data = await fetch(
       "https://api.open-meteo.com/v1/forecast?latitude=" +
-        `${latitude}` +
-        "&longitude=" +
-        `${longitude}` +
-        "&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=2"
+      `${latitude}` +
+      "&longitude=" +
+      `${longitude}` +
+      "&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m,apparent_temperature&forecast_days=2"
     );
     const JSONWeather = await data.json();
     const weather = await JSONWeather;
@@ -511,7 +516,8 @@ async function showWeather() {
       "Прогноз погоды недоступен,пожалуйста,повторите попытку позже.";
     currentImg.src = "";
   }
-}
+};
+
 // Функция валидации поля с названием города
 function cleanNameCity(param) {
   if (param.search(/[-]/g) !== -1) {
@@ -532,7 +538,7 @@ function cleanNameCity(param) {
     param = param.slice(0, 1).toUpperCase() + param.slice(1);
     return param;
   }
-}
+};
 
 // Направление ветра
 function textWindDirection(val) {
@@ -567,7 +573,7 @@ function textWindDirection(val) {
   }
 
   return windDirection;
-}
+};
 
 // Получение картинки для определенной погоды
 function howWeather(numb) {
@@ -593,6 +599,26 @@ function howWeather(numb) {
       currentImg.src = "./design/img/images_Weather/Туман.jpg";
       how = "Туман";
       break;
+    case 51:
+      currentImg.src = "./design/img/images_Weather/Легкая морось.jpg";
+      how = "Моросящие осадки";
+      break;
+    case 53:
+      currentImg.src = "./design/img/images_Weather/Умеренная морось.jpg";
+      how = "Моросящий дождь";
+      break;
+    case 55:
+      currentImg.src = "./design/img/images_Weather/Сильная морось.jpg";
+      how = "Моросящий дождь";
+      break;
+    case 56:
+      currentImg.src = "./design/img/images_Weather/Ледяная морось.jpg";
+      how = "Снег";
+      break;
+    case 57:
+      currentImg.src = "./design/img/images_Weather/Ледяная морось.jpg";
+      how = "Снег";
+
     case 61:
       currentImg.src = "./design/img/images_Weather/Небольшой дождь.jpg";
       how = "Небольшой дождь";
@@ -604,6 +630,30 @@ function howWeather(numb) {
     case 65:
       currentImg.src = "./design/img/images_Weather/Дождь.jpg";
       how = "Дождь";
+      break;
+    case 66:
+      currentImg.src = "./design/img/images_Weather/Град.jpg";
+      how = "Град";
+      break;
+    case 67:
+      currentImg.src = "./design/img/images_Weather/Град.jpg";
+      how = "Сильный град";
+      break;
+    case 71:
+      currentImg.src = "./design/img/images_Weather/Снегопад.jpg";
+      how = "Легкий снегопад";
+      break;
+    case 73:
+      currentImg.src = "./design/img/images_Weather/Снегопад.jpg";
+      how = "Умеренный снегопад";
+      break;
+    case 75:
+      currentImg.src = "./design/img/images_Weather/Снегопад.jpg";
+      how = "Сильный снегопад";
+      break;
+    case 77:
+      currentImg.src = "./design/img/images_Weather/Снежные зерна.jpg";
+      how = "Снег";
       break;
     case 80:
       currentImg.src = "./design/img/images_Weather/Слабый ливень.jpeg";
@@ -642,23 +692,21 @@ function howWeather(numb) {
       how = "Извините,сервис недоступен";
   }
   return how;
-}
+};
 
 //Функция записывает данные в localStorage
 function setLocalStorage() {
   let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
   localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
-}
+};
 //Функция записывает данные о нажатых кнопах в localStorage
-function setLocalStorage(){
-    let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
-    localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage );
+function setLocalStorage() {
+  let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
+  localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
 };
-function delMessage(){
-    errorMessage.innerHTML = '';
+function delMessage() {
+  errorMessage.innerHTML = '';
 };
-   
-
 btnMobile.addEventListener('click', function(e) {
     e.preventDefault();
     this.classList.toggle("opened");
@@ -696,7 +744,7 @@ function showSlide(index) {
     elem.classList.remove("active");
   });
   slides[index].classList.add("active");
-}
+};
 
 let showSlider = (cityName) => {
   let currentSlide = 0;
@@ -730,3 +778,4 @@ let showSlider = (cityName) => {
     }
   });
 };
+

@@ -56,7 +56,6 @@ const arrLongitudeJson = `[139.69, 77.23, 121.46, 90.41, -46.64, -99.13, 116.40,
 const imgCities = [
     {
       city: "Токио",
-      population: "37435191",
       imgUrls: [
         "../design/img/cities/tokyo/tokyo1.jpg",
         "../design/img/cities/tokyo/tokyo2.jpg",
@@ -69,7 +68,6 @@ const imgCities = [
     },
     {
       city: "Дели",
-      population: "29399141",
       imgUrls: [
         "../design/img/cities/delhi/delhi1.jpg",
         "../design/img/cities/delhi/delhi2.jpg",
@@ -82,7 +80,6 @@ const imgCities = [
     },
     {
       city: "Шанхай",
-      population: "26317104",
       imgUrls: [
         "../design/img/cities/shanghai/shanghai1.jpg",
         "../design/img/cities/shanghai/shanghai2.jpg",
@@ -95,7 +92,6 @@ const imgCities = [
     },
     {
         city: "Дакка",
-        population: "20283552",
         imgUrls: [
             "../design/img/cities/dhaka/dhaka1.jpg",
             "../design/img/cities/dhaka/dhaka2.jpg",
@@ -108,7 +104,6 @@ const imgCities = [
     },
     {
       city: "Сан-Паулу",
-      population: "21846507",
       imgUrls: [
         "../design/img/cities/sao-paolo/sao-paolo1.jpg",
         "../design/img/cities/sao-paolo/sao-paolo2.jpg",
@@ -121,7 +116,6 @@ const imgCities = [
     },
     {
       city: "Мехико",
-      population: "21671908",
       imgUrls: [
         "../design/img/cities/mexico/mexico1.jpg",
         "../design/img/cities/mexico/mexico2.jpg",
@@ -134,7 +128,6 @@ const imgCities = [
     },
     {
         city: "Пекин",
-        population: "20035455",
         imgUrls: [
           "../design/img/cities/beijing/beijing1.jpg",
           "../design/img/cities/beijing/beijing2.jpg",
@@ -147,7 +140,6 @@ const imgCities = [
     },
     {
       city: "Каир",
-      population: "20484965",
       imgUrls: [
         "../design/img/cities/cairo/cairo1.jpg",
         "../design/img/cities/cairo/cairo2.jpg",
@@ -160,7 +152,6 @@ const imgCities = [
     },
     {
       city: "Мумбаи",
-      population: "20185064",
       imgUrls: [
         "../design/img/cities/mumbai/mumbai1.jpg",
         "../design/img/cities/mumbai/mumbai2.jpg",
@@ -173,7 +164,6 @@ const imgCities = [
     },
     {
       city: "Осака",
-      population: "19222665",
       imgUrls: [
         "../design/img/cities/osaka/osaka1.jpg",
         "../design/img/cities/osaka/osaka2.jpg",
