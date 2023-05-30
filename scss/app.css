@@ -904,6 +904,7 @@ form {
   }
   .game .container .wrap__answer {
     font-size: 18px;
+    height: auto;
   }
   .game .container .wrap__answer .answer-true {
     font-size: 30px;
