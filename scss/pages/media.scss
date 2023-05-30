@@ -5,6 +5,9 @@
         font-size: 18px;
     }
     .game {
+        &__wrap {
+            margin-top: 0;
+        }
         .container {
             .wrap__answer {
                 font-size: 18px;

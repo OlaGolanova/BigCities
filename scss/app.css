@@ -902,6 +902,9 @@ form {
   .game__question {
     font-size: 18px;
   }
+  .game__wrap {
+    margin-top: 0;
+  }
   .game .container .wrap__answer {
     font-size: 18px;
     height: auto;
