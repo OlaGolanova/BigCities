@@ -10,6 +10,9 @@ body .panel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-column-gap: 16px;
+     -moz-column-gap: 16px;
+          column-gap: 16px;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center;
@@ -17,11 +20,60 @@ body .panel {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 1000px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 90px;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
+}
+@media (max-width: 1024px) {
+  body .panel {
+    width: 100%;
+    margin: 0;
+    height: auto;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-radius: 0;
+  }
+}
+@media (max-width: 1024px) {
+  body .panel a {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+    width: 100%;
+    text-decoration: none;
+    display: none;
+  }
+  body .panel a.shown {
+    display: block;
+    margin-top: 25px;
+  }
+  body .panel a.shown .panel__btn-game {
+    width: 100%;
+  }
+}
+body .panel .panel__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+@media (max-width: 991px) {
+  body .panel .panel__btns {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    margin-top: 25px;
+    display: none;
+  }
+  body .panel .panel__btns.shown {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 body .panel .btn {
   width: 50px;
@@ -36,6 +88,21 @@ body .panel .btn {
 body .panel .btn:hover {
   cursor: pointer;
   background-color: #e5e4e4;
+}
+body .panel .btn + .btn {
+  margin-left: 16px;
+}
+@media (max-width: 991px) {
+  body .panel .btn + .btn {
+    margin-left: 8px;
+  }
+}
+@media (max-width: 1024px) {
+  body .panel .btn {
+    width: 40px;
+    height: 40px;
+    font-size: 11px;
+  }
 }
 body .panel .btn-active {
   background-color: #fff;
@@ -55,6 +122,8 @@ body .panel__btn-choice {
   font-family: Lato;
   font-weight: 600;
   text-transform: uppercase;
+  color: #fff;
+  margin-left: 16px;
 }
 body .panel__btn-choice:hover {
   background-color: #0569c6;
@@ -72,6 +141,15 @@ body .panel__btn-choice:focus {
   outline: 0;
   outline-offset: 0;
 }
+@media (max-width: 991px) {
+  body .panel__btn-choice {
+    font-size: 11px;
+    width: auto;
+    padding: 0 30px;
+    color: #fff;
+    margin-left: 8px;
+  }
+}
 body .panel__btn-all-citie {
   width: 143px;
   height: 50px;
@@ -83,6 +161,7 @@ body .panel__btn-all-citie {
   font-family: Lato;
   font-weight: 600;
   text-transform: uppercase;
+  margin-left: 16px;
 }
 body .panel__btn-all-citie:hover {
   background-color: #373636;
@@ -99,6 +178,21 @@ body .panel__btn-all-citie:hover {
 body .panel__btn-all-citie:focus {
   outline: 0;
   outline-offset: 0;
+}
+@media (max-width: 1024px) {
+  body .panel__btn-all-citie {
+    display: none;
+  }
+  body .panel__btn-all-citie.shown {
+    display: block;
+    position: absolute;
+    left: 206px;
+    -webkit-transform: translateY(70px);
+            transform: translateY(70px);
+    width: auto;
+    padding: 0 30px;
+    font-size: 11px;
+  }
 }
 body .panel__btn-game {
   width: 143px;
@@ -152,6 +246,11 @@ body .panel #input:focus {
   outline: 0;
   outline-offset: 0;
 }
+@media (max-width: 1024px) {
+  body .panel #input {
+    width: calc(100% - 176px);
+  }
+}
 body .cities {
   margin: 24px 0px 0px 50px;
   width: 400px;
@@ -161,6 +260,11 @@ body .cities {
   -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
           box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.06);
   border-collapse: collapse;
+}
+@media (max-width: 767px) {
+  body .cities {
+    width: calc(100% - 100px);
+  }
 }
 body .cities tr {
   border-radius: 5px;
@@ -178,11 +282,20 @@ body .cities tr td {
 body .cities tr td:hover {
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  body .cities tr td {
+    width: 50%;
+  }
+}
 
 h2 {
   margin-bottom: 16px;
   font-weight: 700;
   font-size: 24px;
+}
+
+p {
+  line-height: 1.25;
 }
 
 .citycard {
@@ -193,6 +306,12 @@ h2 {
   padding: 40px;
   max-width: 1154px;
   margin: 24px 50px;
+}
+@media (max-width: 767px) {
+  .citycard {
+    margin: 0;
+    padding: 30px 20px;
+  }
 }
 .citycard .citycard__header {
   font-weight: 700;
@@ -210,15 +329,18 @@ h2 {
       -ms-flex: 1 1 400px;
           flex: 1 1 400px;
 }
-.citycard .dateCard {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+@media (max-width: 1024px) {
+  .citycard .citycard__body-right {
+    margin-top: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
 }
 .citycard .citycard__item {
   background: #FFFFFF;
@@ -230,17 +352,62 @@ h2 {
 .citycard .citycard__item + .citycard__item {
   margin-top: 24px;
 }
+@media (max-width: 1024px) {
+  .citycard .citycard__item + .citycard__item {
+    margin-top: 16px;
+  }
+}
+.citycard .dateCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+@media (max-width: 1024px) {
+  .citycard .dateCard {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-top: 0 !important;
+    width: calc(50% - 8px);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 40px 15px;
+  }
+}
 .citycard .weather {
   padding: 15px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
+@media (max-width: 1024px) {
+  .citycard .weather {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: calc(50% - 8px);
+  }
+}
 .citycard .data {
   min-height: 144px;
 }
 .citycard .slider {
   padding: 0;
+  background: none;
 }
 .citycard .chart {
   padding: 38px 25px 48px;
@@ -265,6 +432,12 @@ h2 {
 .info {
   height: calc(100% - 542px);
 }
+@media (max-width: 1024px) {
+  .info {
+    height: auto;
+    display: none;
+  }
+}
 
 .data {
   display: -webkit-box;
@@ -285,6 +458,16 @@ h2 {
   line-height: 20px;
   border-left: 2px solid #F5F5F5;
 }
+@media (max-width: 1024px) {
+  .currentday {
+    padding-left: 0;
+    margin-left: 0;
+    padding-top: 24px;
+    margin-top: 24px;
+    border-left: none;
+    border-top: 2px solid #F5F5F5;
+  }
+}
 
 .currenttime, .temparature {
   font-weight: 900;
@@ -293,16 +476,16 @@ h2 {
 
 .current-img {
   border-radius: 5px;
-  max-height: 120px;
+  height: 120px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
 }
 
 .weather {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -310,7 +493,8 @@ h2 {
 
 .weather__left {
   position: relative;
-  max-height: 120px;
+  height: 120px;
+  width: 160px;
 }
 
 .temparature {
@@ -332,6 +516,11 @@ h2 {
 }
 .weather__right > div:last-child {
   margin-bottom: 0px;
+}
+@media (max-width: 991px) {
+  .weather__right {
+    margin: 24px 0 10px 0;
+  }
 }
 
 .chartblock {
@@ -399,6 +588,14 @@ h2 {
 form {
   position: relative;
 }
+@media (max-width: 1024px) {
+  form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+  }
+}
 
 #errorMessage {
   font-size: 14px;
@@ -417,9 +614,41 @@ form {
   width: 100%;
   display: none;
 }
+.swiper-slider-item img {
+  border-radius: 5px;
+  display: block;
+}
 
 .swiper-slider-item.active {
   display: block;
+}
+
+.filter-opener {
+  display: none;
+  border: 1px solid #DADADA;
+  border-radius: 5px;
+  background: none;
+  width: 50px;
+  height: 50px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+@media (max-width: 991px) {
+  .filter-opener {
+    display: inline-block;
+  }
+}
+.filter-opener.opened img {
+  opacity: 0.2;
+}
+
+.info-mobile {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .info-mobile {
+    display: block;
+  }
 }
 
 .game {
@@ -495,8 +724,9 @@ form {
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  -webkit-transition: 1s;
-  transition: 1s;
+  opacity: 0.7;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
 }
 .game .start:hover {
   background-color: rgba(231, 223, 223, 0.792);
@@ -516,8 +746,6 @@ form {
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 .game .again:hover {
   background-color: rgba(231, 223, 223, 0.792);
@@ -536,8 +764,9 @@ form {
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  -webkit-transition: 1s;
-  transition: 1s;
+  opacity: 0.7;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
 }
 .game .main:hover {
   background-color: rgba(231, 223, 223, 0.792);
@@ -671,16 +900,27 @@ form {
 
 @media (max-width: 640px) {
   .game__question {
-    font-size: 22px;
+    font-size: 18px;
   }
   .game .container .wrap__answer {
     font-size: 18px;
   }
   .game .container .wrap__answer .answer-true {
-    font-size: 40px;
+    font-size: 30px;
   }
   .game .container .wrap__answer .answer-false {
-    font-size: 40px;
+    font-size: 30px;
+  }
+}
+@media (max-width: 470px) {
+  .game .start {
+    margin-right: 0;
+  }
+  .game .again {
+    margin-right: 0;
+  }
+  .game .green {
+    margin-right: 0;
   }
 }
 .hidden {
