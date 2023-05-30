@@ -778,4 +778,3 @@ let showSlider = (cityName) => {
     }
   });
 };
-
