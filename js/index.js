@@ -33,6 +33,7 @@ const dateArray = JSON.parse(datejson); //достаем данные по вр�
 const infoArray = JSON.parse(infoCities);
 const dataPopulation = JSON.parse(cityPopulation);
 let myChart = null;
+let myChartMobile = null;
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
 let latitude;// Переменные для координат погоды
 let longitude;
@@ -122,6 +123,7 @@ function choiceOneCity(eventt) {
         getInfo(infoArray[i]);
         getInfoMobile(infoArray[i]);
         buildChart(dataPopulation[i]);
+        buildChartMobile(dataPopulation[i]);
         latitude = arrLatitude[i];
         longitude = arrLongitude[i];
         showWeather();
@@ -198,6 +200,7 @@ function choiceCityOnClickCity() {
         getInfo(infoArray[i]);
         getInfoMobile(infoArray[i]);
         buildChart(dataPopulation[i]);
+        buildChartMobile(dataPopulation[i]);
         latitude = arrLatitude[i];
         longitude = arrLongitude[i];
         showWeather();
@@ -227,6 +230,7 @@ function choiceCityOnClickNumbers() {
         longitude = arrLongitude[i];
         showWeather();
         buildChart(dataPopulation[i]);
+        buildChartMobile(dataPopulation[i]);
         nameCity.innerText = citiesArray[i];
         people.innerText = `(${parse(populationArray[i])})`;
         showSlider(citiesArray[i]);
@@ -382,6 +386,43 @@ function buildChart(item) {
   return myChart;
 };
 //--Альбина
+function buildChartMobile(item){
+  values = item.population; //Данные о численности
+  const ctx = document.getElementById("myChartMobile").getContext("2d");
+  if (myChartMobile != null) {
+    myChartMobile.destroy(); // Очистка
+  }
+  myChartMobile = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: [
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+      ], // Метки
+      datasets: [{
+        label: "Численность населения",
+        data: values, // Значения
+        backgroundColor: "rgba(14,156,255,0.2)",
+        borderColor: "#0E9CFF",
+        fill: true, // Заливка линейного графика цветом
+      }, ],
+    },
+    options: {
+      responsive: true, // Даем Chart.js указание реагировать правильно.
+      maintainAspectRatio: false, // Добавляем эту строку, чтобы избежать переключения на полноразмерный вид (высоту/ширину)
+    },
+  });
+
+  return myChartMobile;
+};
 
 //Функция заносит данные о городах и населении в таблицу при загрузке
 function setTableInfo() {

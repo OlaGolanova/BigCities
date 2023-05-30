@@ -109,6 +109,12 @@ p {line-height: 1.25;}
         display: none;
     }
 }
+.chart {
+    @media(max-width:1024px) {
+        height: auto;
+        display: none;
+    }
+}
 
 .data {
     display: flex;
@@ -277,5 +283,11 @@ form {
         display: block;
     }
 }
-
+.chart-mobile {
+    display: none;
+    @media(max-width: 1024px) {
+        display: block;
+        width: 100%;
+    }
+}
 //Юля
