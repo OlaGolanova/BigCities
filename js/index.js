@@ -46,6 +46,7 @@ for (let i = 0; i < dataPopulation.length; i++) {
   populationArray.push(String(dataPopulation[i].population.pop()));
 }
 
+
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
     getActiveBtn(); //При загрузке страницы заносятся города в таблицу
