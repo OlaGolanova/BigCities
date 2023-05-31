@@ -1,14 +1,25 @@
 @media (max-width: 640px) {
   .game__question {
-    font-size: 22px;
+    font-size: 18px;
   }
   .game .container .wrap__answer {
     font-size: 18px;
   }
   .game .container .wrap__answer .answer-true {
-    font-size: 40px;
+    font-size: 30px;
   }
   .game .container .wrap__answer .answer-false {
-    font-size: 40px;
+    font-size: 30px;
+  }
+}
+@media (max-width: 470px) {
+  .game .start {
+    margin-right: 0;
+  }
+  .game .again {
+    margin-right: 0;
+  }
+  .game .green {
+    margin-right: 0;
   }
 }/*# sourceMappingURL=media.css.map */

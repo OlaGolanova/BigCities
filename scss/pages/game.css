@@ -55,7 +55,8 @@
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  transition: 1s;
+  opacity: 0.7;
+  transform: scale(0.8);
 }
 .game .start:hover {
   background-color: rgba(231, 223, 223, 0.792);
@@ -75,7 +76,6 @@
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  transition: 1s;
 }
 .game .again:hover {
   background-color: rgba(231, 223, 223, 0.792);
@@ -94,7 +94,8 @@
   text-transform: uppercase;
   background-color: #F5F5F5;
   color: #0085FF;
-  transition: 1s;
+  opacity: 0.7;
+  transform: scale(0.8);
 }
 .game .main:hover {
   background-color: rgba(231, 223, 223, 0.792);
