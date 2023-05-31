@@ -1,14 +1,17 @@
 
-
 @media(max-width: 640px){
  
     .game__question{
         font-size: 18px;
     }
     .game {
+        &__wrap {
+            margin-top: 0;
+        }
         .container {
             .wrap__answer {
                 font-size: 18px;
+                height: auto;
                 .answer-true {
                     font-size: 30px;
                 }
@@ -18,7 +21,6 @@
             }
         }
     }
-   
 } 
 
 @media(max-width: 470px) {

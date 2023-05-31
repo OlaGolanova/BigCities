@@ -384,6 +384,13 @@ p {
   }
 }
 
+@media (max-width: 1024px) {
+  .chart {
+    height: auto;
+    display: none;
+  }
+}
+
 .data {
   display: flex;
   justify-content: center;
@@ -569,6 +576,16 @@ form {
 @media (max-width: 1024px) {
   .info-mobile {
     display: block;
+  }
+}
+
+.chart-mobile {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .chart-mobile {
+    display: block;
+    width: 100%;
   }
 }
 
@@ -790,8 +807,12 @@ form {
   .game__question {
     font-size: 18px;
   }
+  .game__wrap {
+    margin-top: 0;
+  }
   .game .container .wrap__answer {
     font-size: 18px;
+    height: auto;
   }
   .game .container .wrap__answer .answer-true {
     font-size: 30px;
