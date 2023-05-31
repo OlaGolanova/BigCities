@@ -7,19 +7,25 @@ const humidity = document.querySelector(".humidity");
 const currentImg = document.querySelector(".current-img");
 const weatherCity = document.querySelector(".weather");
 const errorMessage = document.getElementById("errorMessage"); // Вывод ошибки "Поле не заполнено*"
+
 const cities = document.querySelector(".cities"); //Таблица с городами
+
 const btnChoice = document.querySelector(".panel__btn-choice"); //Кнопка Выбрать город
 const btnAllCities = document.querySelector(".panel__btn-all-citie"); //Кнопка ВСЕ ГОРОДА
 const btnSortDownA = document.querySelector(".panel__btn-one"); //Кнопка сортировать А-Я
 const btnSortUpA = document.querySelector(".panel__btn-two"); //Кнопка сортировать Я-А
 const btnSortDownPeople = document.querySelector(".panel__btn-three"); //Кнопка сортировать по уменьшению численности
 const btnSortUpPeople = document.querySelector(".panel__btn-four"); //Кнопка сортировать по увеличению численности
+
 const input = document.getElementById("input"); //Инпут для ввода города
+
 const date = document.querySelector(".date"); //блок, куда выводим дату
 const hours = document.querySelector(".currenttime"); //блок, куда выводим время
 const dayWeek = document.querySelector(".day-of-week"); //блок, куда выводим день недели
+
 const tableCities = document.querySelectorAll(".table__cities"); //Коллекция ячеек в таблице с городами
 const tableNumbers = document.querySelectorAll(".table__numbers"); //Коллекция ячеек в таблице с численностью населения
+
 const citycard = document.querySelector(".citycard");
 const facts = document.querySelector(".citycard__item.info"); //div с информацией о городах
 const table = document.querySelector("table");
@@ -27,15 +33,20 @@ const btnMobile = document.querySelector(".filter-opener");
 const btnsPanel = document.querySelector(".panel__btns");
 const btnGame = document.querySelector(".panel__link-game");
 const factsMobile = document.querySelector(".citycard__item.info-mobile"); // Информация о городах
+
 const nameCity = document.querySelector(".name");
 const people = document.querySelector(".number");
+
 const dateArray = JSON.parse(datejson); //достаем данные по времени из формата JSON
 const infoArray = JSON.parse(infoCities);
 const dataPopulation = JSON.parse(cityPopulation);
+// Координаты для погоды из JSON
+const arrLatitude = JSON.parse(arrLatitudeJson);
+const arrLongitude = JSON.parse(arrLongitudeJson);
+
 let myChart = null;
 let btnLocalStorage = ""; //В массив заносятся данные о том, какая кнопка сортировки городов выбрана
-const arrLatitude = JSON.parse(arrLatitudeJson);// Координаты для погоды из JSON
-const arrLongitude = JSON.parse(arrLongitudeJson);
+
 const citiesArray = []; //Маcсив из названий городов, которые могут быть выбраны, получаем перебором из массива в JSON
 const populationArray = []; //массив из численнности населения,  получаем перебором из массива в JSON
 
@@ -62,11 +73,13 @@ window.addEventListener('DOMContentLoaded', function () {
     choiceCityOnClickCity(); //Функция выводит информацию о городе, при клике на название города
     choiceCityOnClickNumbers(); //Функция выводит информацию о городе, при клике на количество населения в городе
 });
+
 //Функция записывает данные в localStorage
 function setLocalStorage() {
   let serializedBtnLocalStorage = JSON.stringify(btnLocalStorage);
   localStorage.setItem("btnLocalStorage", serializedBtnLocalStorage);
 }
+
 // Проверяем, есть ли данные в localStorage
 function getActiveBtn() {
   const infoSortBtn = localStorage.getItem("btnLocalStorage");
@@ -84,6 +97,7 @@ function getActiveBtn() {
     sortCitiesUpPeople();
   }
 }
+
 // Вывод времени, даты, дня недели moment.js
 //Задаю локализацию moment.js
 moment.locale("ru", {
@@ -92,8 +106,10 @@ moment.locale("ru", {
   ),
   weekdays: "Воскресенье_Понедельник_Вторник_Среда_Четверг_Пятница_Суббота".split("_"),
 });
+
 let getTimeZoneOfsset; // getTimeZoneofsset выбранного города
-let latitude;// Переменные для координат погоды
+// Переменные для координат погоды
+let latitude;
 let longitude;
 let dateNow; // Получение даты
 
@@ -206,6 +222,7 @@ function choiceCityOnClickCity() {
   }
   input.value = "";
 }
+
 //При клике на численность города выходит информация о городе
 function choiceCityOnClickNumbers() {
   for (let i = 0; i < tableNumbers.length; i++) {
@@ -231,6 +248,7 @@ function choiceCityOnClickNumbers() {
   }
   input.value = "";
 }
+
 //Функция вызывается при нажатие на кнопку Все города
 function choiceAllCities(event) {
   event.preventDefault();
@@ -241,6 +259,7 @@ function choiceAllCities(event) {
   animation();
   enableBtn();
 }
+
 //Функция сортировки городов по алфавиту от A-Я, вызывается при нажатии на кнопку A-Я
 function sortCitiesDownA() {
   errorMessage.innerHTML = "";
@@ -262,6 +281,7 @@ function sortCitiesDownA() {
   btnLocalStorage = 0;
   setLocalStorage();
 }
+
 //Функция сортировки городов по алфавиту от Я-А, вызывается при нажатии на кнопку Я-А
 function sortCitiesUpA() {
   errorMessage.innerHTML = "";
@@ -311,6 +331,7 @@ function sortCitiesDownPeople() {
   btnLocalStorage = 2;
   setLocalStorage();
 }
+
 //Функция сортировки городов по численности населения от меньшего к большему,  вызывается при нажатии на соответствующую кнопку
 function sortCitiesUpPeople() {
   errorMessage.innerHTML = "";
@@ -462,6 +483,8 @@ function dateForWeather() {
 
   return timeNow;
 }
+
+// Получение данных погоды
 async function showWeather() {
   let dateForWeatherParams = dateForWeather();
   try {
@@ -509,6 +532,7 @@ async function showWeather() {
     currentImg.src = "";
   }
 }
+
 // Функция валидации поля с названием города
 function cleanNameCity(param) {
   if (param.search(/[-]/g) !== -1) {
