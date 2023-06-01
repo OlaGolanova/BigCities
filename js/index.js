@@ -810,6 +810,7 @@ function showSlide(index) {
 }
 
 let showSlider = (cityName) => {
+  removeEventListeners();
   let currentSlide = 0;
   createSlidersElements(cityName);
   let slides = document.querySelectorAll(".swiper-slider-item");
@@ -819,25 +820,39 @@ let showSlider = (cityName) => {
   let btnPrev = document.querySelector(".swiper-button-prev");
   let btnNext = document.querySelector(".swiper-button-next");
 
-  btnNext.addEventListener("click", () => {
-    if (currentSlide + 1 < slides.length) {
-      btnPrev.classList.remove("swiper-button-disabled");
-      currentSlide++;
+  btnPrev.classList.add("swiper-button-disabled");
+  btnNext.classList.remove("swiper-button-disabled");
+  const handleButtonClick = (direction) => {
+    if (direction === "next") {
+      if (currentSlide + 1 < slides.length) {
+        btnPrev.classList.remove("swiper-button-disabled");
+        currentSlide++;
+        showSlide(currentSlide);
+        if (currentSlide >= slides.length - 1) {
+          btnNext.classList.add("swiper-button-disabled");
+        }
+      }
+    } else if (direction === "prev") {
+      if (currentSlide - 1 < 0) return;
+      currentSlide--;
       showSlide(currentSlide);
-      if (currentSlide >= slides.length - 1) {
-        btnNext.classList.add("swiper-button-disabled");
+      if (currentSlide <= 0) {
+        btnPrev.classList.add("swiper-button-disabled");
+      } else {
+        btnNext.classList.remove("swiper-button-disabled");
       }
     }
-  });
+  };
 
-  btnPrev.addEventListener("click", () => {
-    if (currentSlide - 1 < 0) return;
-    currentSlide--;
-    showSlide(currentSlide);
-    if (currentSlide <= 0) {
-      btnPrev.classList.add("swiper-button-disabled");
-    } else {
-      btnNext.classList.remove("swiper-button-disabled");
-    }
-  });
+  // Добавление обработчиков событий
+  btnNext.addEventListener("click", () => handleButtonClick("next"));
+  btnPrev.addEventListener("click", () => handleButtonClick("prev"));
 };
+function removeEventListeners() {
+  let btnPrev = document.querySelector(".swiper-button-prev");
+  let btnNext = document.querySelector(".swiper-button-next");
+  const clonedNextButton = btnNext.cloneNode(true);
+  const clonedPrevButton = btnPrev.cloneNode(true);
+  btnNext.parentNode.replaceChild(clonedNextButton, btnNext);
+  btnPrev.parentNode.replaceChild(clonedPrevButton, btnPrev);
+}
