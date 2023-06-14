@@ -20,9 +20,7 @@ body .panel {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 1154px;
   height: 90px;
   background-color: #fff;
   padding: 20px;
