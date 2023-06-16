@@ -305,7 +305,7 @@ p {
 form {
   position: relative;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1070px) {
   form {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -350,7 +350,7 @@ form {
   margin-left: 8px;
   cursor: pointer;
 }
-@media (max-width: 991px) {
+@media (max-width: 1070px) {
   .filter-opener {
     display: inline-block;
   }
@@ -376,4 +376,8 @@ form {
     display: block;
     width: 100%;
   }
+}
+
+canvas {
+  max-width: 100%;
 }/*# sourceMappingURL=infoCity.css.map */
