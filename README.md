@@ -29,6 +29,7 @@
 - JS
 - API (https://open-meteo.com/)
 - БЭМ
+- Agile
 ----------
 
 Библиотеки: 
